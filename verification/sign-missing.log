@@ -1,0 +1,2 @@
+서명 정보가 준비되지 않아 release 빌드를 시작하지 않았습니다. 필요한 항목: SIGNAL_RELEASE_STORE_FILE, SIGNAL_RELEASE_STORE_PASSWORD, SIGNAL_RELEASE_KEY_ALIAS, SIGNAL_RELEASE_KEY_PASSWORD
+개발용 unsigned 빌드만 확인하려면 --unsigned를 지정하세요. unsigned 결과의 종료코드는 2이며 제출용이 아닙니다.

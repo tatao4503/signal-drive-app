@@ -1,0 +1,22 @@
+{
+  "versionName": "0.2.1",
+  "versionCode": 3,
+  "apkSha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7",
+  "certificateSha256": "0ea3775bf31c6f153d8b12c9b6fef23e85cb9a5d64857bdcf022abdb36bf07a5",
+  "sourceManifestSha256": "ddd12a0fae854d8a1495ba4a2882cf940fa76a8d9f980dc7ffbf240f846baf04",
+  "authoredSourceFileCount": 61,
+  "corePassed": 59,
+  "nodePassed": 55,
+  "phoneTraceInstallPassed": 40,
+  "aaosTraceInstallPassed": 12,
+  "deviceApkHashesMatch": true,
+  "sourceHashesMatchBuildAndChecks": true,
+  "deviceSettingsRestored": true,
+  "evidenceLimits": [
+    "app-owned trace assertions, not pixel recognition",
+    "AAOS idling restrictions, not sustained moving",
+    "synthetic traffic signal inputs; live API and mappings not validated",
+    "Pleos and production vehicle untested",
+    "not a driving use approval"
+  ]
+}

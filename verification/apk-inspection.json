@@ -1,0 +1,24 @@
+{
+  "apkSha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7",
+  "signatureVerified": true,
+  "signatureSummary": [
+    "Verifies",
+    "Verified using v1 scheme (JAR signing): false",
+    "Verified using v2 scheme (APK Signature Scheme v2): true",
+    "Verified using v3 scheme (APK Signature Scheme v3): false",
+    "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+    "Verified using v4 scheme (APK Signature Scheme v4): false",
+    "Signer #1 certificate SHA-256 digest: 0ea3775bf31c6f153d8b12c9b6fef23e85cb9a5d64857bdcf022abdb36bf07a5",
+    "Signer #1 public key SHA-256 digest: 3d4bdba66a221427b30b72448e658d62bb57b2d58b1521468070dbe5e4ed8ae3"
+  ],
+  "debuggable": false,
+  "packageBadging": [
+    "package: name='kr.signal.drive' versionCode='3' versionName='0.2.1' platformBuildVersionName='14' platformBuildVersionCode='34' compileSdkVersion='34' compileSdkVersionCodename='14'",
+    "sdkVersion:'28'",
+    "targetSdkVersion:'34'",
+    "uses-permission: name='android.permission.INTERNET'"
+  ],
+  "approvedMappings": [],
+  "certificateSubject": "CN=SIGNAL Drive, OU=SIGNAL Drive, O=SIGNAL Drive, C=KR",
+  "certificateSubjectAnonymous": true
+}

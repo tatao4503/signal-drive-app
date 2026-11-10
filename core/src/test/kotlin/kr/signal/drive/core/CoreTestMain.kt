@@ -278,6 +278,79 @@ fun main() {
         check(clock.checkpoint(NOW + 60_000L, 61_000L))
         assertUnknown(engine().evaluate(selected, packet(), NOW + 60_000L), TrustReason.STALE)
     }
+    test("a sub-tick wall correction cannot reduce trusted source age") {
+        val clock = ClockGuard()
+        check(clock.evaluationTimeMs(NOW, 0L) == NOW)
+        check(clock.evaluationTimeMs(NOW + 200L, 200L) == NOW + 200L)
+        // Wall time still increases, but a 150 ms correction hid part of the real elapsed time.
+        check(clock.evaluationTimeMs(NOW + 250L, 400L) == NOW + 400L)
+    }
+    test("cumulative small corrections cannot extend the freshness window") {
+        val clock = ClockGuard()
+        val p = packet()
+        check(clock.evaluationTimeMs(NOW, 0L) == NOW)
+        var evaluationTime = NOW
+        for (tick in 1L..16L) {
+            evaluationTime = checkNotNull(clock.evaluationTimeMs(NOW + tick * 50L, tick * 200L))
+            check(evaluationTime == NOW + tick * 200L)
+        }
+        // Raw wall age is only 800 ms, but 3.2 seconds really passed.
+        assertUnknown(engine().evaluate(selected, p, evaluationTime), TrustReason.STALE)
+    }
+    test("an expired packet cannot be resurrected by repeated small clock corrections") {
+        val clock = ClockGuard()
+        val p = packet(remainingDeciseconds = 10L)
+        check(clock.evaluationTimeMs(NOW, 0L) == NOW)
+        for (tick in 1L..4L) {
+            val now = checkNotNull(clock.evaluationTimeMs(NOW + tick * 50L, tick * 200L))
+            check(engine().evaluate(selected, p, now).canShowSignal)
+        }
+        for (tick in 5L..8L) {
+            val now = checkNotNull(clock.evaluationTimeMs(NOW + tick * 50L, tick * 200L))
+            assertUnknown(engine().evaluate(selected, p, now), TrustReason.EXPIRED)
+        }
+    }
+    test("a small forward correction cannot freeze subsequent trusted time") {
+        val clock = ClockGuard()
+        check(clock.evaluationTimeMs(NOW, 0L) == NOW)
+        check(clock.evaluationTimeMs(NOW + 350L, 200L) == NOW + 350L)
+        check(clock.evaluationTimeMs(NOW + 400L, 400L) == NOW + 550L)
+        check(clock.evaluationTimeMs(NOW + 600L, 600L) == NOW + 750L)
+    }
+    test("compatibility checkpoints share the same monotonic evaluation floor") {
+        val clock = ClockGuard()
+        check(clock.checkpoint(NOW, 0L))
+        check(clock.checkpoint(NOW + 200L, 200L))
+        check(clock.evaluationTimeMs(NOW + 250L, 400L) == NOW + 400L)
+        check(clock.checkpoint(NOW + 300L, 600L))
+        check(clock.evaluationTimeMs(NOW + 300L, 600L) == NOW + 600L)
+    }
+    test("trusted time stays invalid after a jump until explicit session reset") {
+        val clock = ClockGuard()
+        check(clock.evaluationTimeMs(NOW, 0L) == NOW)
+        check(clock.evaluationTimeMs(NOW + 10_000L, 1L) == null)
+        check(clock.evaluationTimeMs(NOW + 10_001L, 2L) == null)
+        check(!clock.checkpoint(NOW + 10_002L, 3L))
+        clock.reset()
+        check(clock.evaluationTimeMs(NOW + 10_002L, 3L) == NOW + 10_002L)
+    }
+    test("reset clears the previous session floor for a new packet") {
+        val clock = ClockGuard()
+        clock.evaluationTimeMs(NOW, 0L)
+        check(clock.evaluationTimeMs(NOW + 50L, 200L) == NOW + 200L)
+        clock.reset()
+        val now = checkNotNull(clock.evaluationTimeMs(NOW + 50L, 200L))
+        check(now == NOW + 50L)
+        // Lifecycle/transport code must clear the old packet when resetting the clock.
+        check(engine().evaluate(selected, packet(sourceTimestampEpochMs = now), now).canShowSignal)
+    }
+    test("trusted time overflow invalidates instead of wrapping the age floor") {
+        val clock = ClockGuard()
+        val nearLimit = Long.MAX_VALUE - 20L
+        check(clock.evaluationTimeMs(nearLimit, 0L) == nearLimit)
+        check(clock.evaluationTimeMs(nearLimit + 10L, 100L) == null)
+        check(clock.evaluationTimeMs(nearLimit + 11L, 101L) == null)
+    }
     test("wire enum parsing preserves eight directions and known movement") {
         Approach.entries.forEach { check(Approach.fromWire(it.name) == it && Approach.fromWire(it.name.lowercase()) == it) }
         check(Approach.fromWire("nearest") == null)

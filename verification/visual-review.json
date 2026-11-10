@@ -1,0 +1,102 @@
+{
+  "reviewDateKst": "2026-11-10",
+  "method": "Assistant visual inspection of full-resolution still images using view_image(detail=original); not automated pixel assertions.",
+  "apkSha256FromDeviceEvidence": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7",
+  "versionName": "0.2.1",
+  "versionCode": 3,
+  "inspectedFiles": [
+    {
+      "file": "phone/01-start.png",
+      "sha256": "d42641c821bc429b15a7f9374709d5eec6e0db6f856d06e5cd4ff06eb71a363d",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Full demo provenance badge, green phase and 20-second countdown visible; lower parked controls continue below the viewport."
+    },
+    {
+      "file": "phone/02-1-데이터지연.png",
+      "sha256": "46fd08d1b391fea4c26da0bc1cbf35b71ec7f8276e10a9f9f3f9031bada03acd",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Full demo badge and unknown phase visible; empty lamp and no countdown; stale-data reason fits."
+    },
+    {
+      "file": "phone/04-lock-주행.png",
+      "sha256": "354c70f91e8b718e6072b7369fd8f4a893f3fbf5e0c0b63ceb4c312019de53d4",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Full demo badge, green phase, countdown and field-signal priority notice visible. The reason line intentionally ends in an ellipsis; the independent provenance badge remains complete."
+    },
+    {
+      "file": "phone/06-small-landscape-driving-large-text.png",
+      "sha256": "abec14917272e2de1c6202690ca9ae4bd3c14b4499cd99739c8f5a4586c9706c",
+      "pixels": [
+        1280,
+        720
+      ],
+      "observation": "At the captured 1280x720 large-text viewport the complete provenance badge, green phase, countdown, reason and field-signal priority notice fit above the bottom system bar. A separate redundant vehicle-status card is partly below the viewport."
+    },
+    {
+      "file": "phone/07-clock-restored.png",
+      "sha256": "7e0e6a55a804f575915e439d4351f61a806d8de1a17e6a3fe9174ac95962419c",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Full demo badge, empty lamp and unknown phase visible without countdown. Clock-change hold reason is visible; no prior green indication appears in this still."
+    },
+    {
+      "file": "aaos/aaos-start.png",
+      "sha256": "5621179d84389f892dd88cd292c4737681a56ad4ba14a877e211f608d84e24a1",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Live connection provenance, unknown phase and unregistered-mapping reason visible. AAOS system top and bottom bars do not cover the primary app information."
+    },
+    {
+      "file": "aaos/aaos-driving.png",
+      "sha256": "53fa1c7735d522089e90909314d259813c03fbbaac6773423b375fb67aec5058",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Live connection provenance, empty lamp, unknown phase, mapping reason and field-signal priority notice visible. Demo console is absent; system bars do not overlap the card."
+    },
+    {
+      "file": "aaos/aaos-parked-demo.png",
+      "sha256": "40d36343dae4359e0e83fd515dde52aaa6567e86903662a80c5ecff255033e70",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Demo provenance, green phase and countdown visible. Parked scenario controls are readable; no primary card overlap from system bars."
+    },
+    {
+      "file": "aaos/aaos-parked-again.png",
+      "sha256": "1010aee64bf850f45319f5fcaa8443d61d9ee41efbef13dc347a59f36e5366ae",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Live connection provenance and unknown phase remain after the captured return to parked. No green demo phase or countdown appears in this still."
+    }
+  ],
+  "blockingVisualIssuesObserved": [],
+  "nonBlockingObservations": [
+    "Portrait simulated-driving reason is intentionally ellipsized, while the complete demo badge and field-signal priority notice remain visible.",
+    "The compact-landscape duplicate vehicle-status card continues below the viewport; all primary signal and safety text is visible.",
+    "Parked screens are scrollable and lower controls or footer can extend below the captured viewport."
+  ],
+  "limits": [
+    "Inspection covers these nine stills only; it does not prove every frame, interaction, viewport, font size or physical device.",
+    "Automated 40/40 phone and 12/12 AAOS assertions are separate app-owned trace/install evidence, not results of this visual inspection.",
+    "AAOS restriction captures represent the tested idling restriction transition; no sustained moving state, Pleos or production-vehicle validation is inferred.",
+    "Synthetic demo signals and no live traffic signal reception; no safety approval or real-world signal accuracy claim."
+  ]
+}

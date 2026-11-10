@@ -1,10 +1,10 @@
-# SIGNAL Drive v0.2
+# SIGNAL Drive v0.2.1
 
-**확인된 신호만 보여주고, 확인할 수 없으면 아무것도 보여주지 않는 차량용 신호 표시 앱.**
+**확인된 신호만 보여주고, 확인할 수 없으면 색과 숫자를 숨기는 차량용 신호 표시 앱.**
 
 한 교차로의 신호를 표시하기 전에 대상 방향과 원천 데이터 유효성을 확인하는 로컬 MVP입니다. 기존 보행자 Signal 원본에서 분리해 새로 만들었습니다.
 
-## 왜 "아무것도 보여주지 않는 것"이 기능인가
+## 확인할 수 없는 신호를 숨기는 이유
 
 운전자는 신호 앱의 숫자를 믿고 판단합니다. 몇 초 늦은 데이터, 다른 진입 방향의 신호, 시계가 틀어진 기기에서 계산한 카운트다운은 틀린 정보를 자신 있게 보여주는 것이고, 빈 화면보다 위험합니다.
 
@@ -18,11 +18,11 @@
 
 | 항목 | 내용 |
 |---|---|
-| 앱 이름 | SIGNAL Drive (`kr.signal.drive`, 0.2.0) |
-| 한 줄 소개 | 확인된 신호만 보여주고, 확인할 수 없으면 아무것도 보여주지 않는 차량용 신호 표시 앱 |
-| APK 위치 | 공모전 제출 메일에 첨부한 release APK. 이 저장소의 `apk/` 폴더에는 서명 키 교체 후 올립니다 |
+| 앱 이름 | SIGNAL Drive (`kr.signal.drive`, 0.2.1 / versionCode 3) |
+| 한 줄 소개 | 확인된 신호만 보여주고, 확인할 수 없으면 색과 숫자를 숨기는 차량용 신호 표시 앱 |
+| APK 위치 | [`apk/메이드인시그널_SIGNALDrive_release.apk`](apk/) (제출 명칭 메이드인시그널; 최종 서명·해시는 검증 기록 참조) |
 | 테스트 환경 | Android 9(API 28) 이상. 일반 Android 14 에뮬레이터·Android Automotive 13 에뮬레이터에서 실행 확인(`검증결과.md`). 일반 Android는 시연 모드로 시작. Pleos SDK·Pleos 에뮬레이터·실차는 미검증 |
-| 시연 영상 | [`demo/SIGNAL-Drive-v0.2-시연영상.mp4`](demo/) (97초, 에뮬레이터 화면 녹화 · Pleos·실차 아님) |
+| 시연 영상 | [`demo/SIGNAL-Drive-v0.2.1-시연영상.mp4`](demo/) (합성 시연, 에뮬레이터 화면 녹화 · Pleos·실차 아님) |
 | 필요 설정 | 시연에는 설정·키가 필요 없음. 실제 신호는 승인 매핑과 소유 HTTPS 서버가 있어야 하며 기본 상태에서는 표시하지 않음 |
 
 ## APK 설치·실행
@@ -30,10 +30,10 @@
 Android 9 이상 기기 또는 에뮬레이터에 설치합니다.
 
 ```sh
-adb install <release APK 파일>.apk
+adb install apk/메이드인시그널_SIGNALDrive_release.apk
 ```
 
-앱 이름은 `SIGNAL Drive`입니다. 일반 Android에서는 시연 화면으로 시작하고, 설정·키 없이 바로 시연할 수 있습니다. Android Automotive에서는 주행 중에도 열려 있으며 주행 화면으로 바뀝니다. 시연 데이터는 정차 상태에서만 볼 수 있습니다.
+앱 이름은 `SIGNAL Drive`입니다. 일반 Android에서는 시연 화면으로 시작하고, 설정·키 없이 바로 시연할 수 있습니다. Android Automotive에서는 플랫폼의 제한 상태에 따라 화면을 줄이고 입력을 잠급니다. AAOS 공회전(idling) 제한 상태 전환을 시험하며, 지속 moving·Pleos·실차 실행은 미검증입니다. 시연 데이터는 정차 상태에서만 볼 수 있습니다.
 
 ## 웹 시연 실행
 
@@ -83,15 +83,17 @@ npm run android:check
 
 APK에는 API 키나 승인 매핑을 포함하지 않습니다. 기본 화면은 합성 신호이며 실제 차량 위치를 읽지 않습니다. 소유한 HTTPS 서버를 사용할 때만 Gradle 속성 `signalBackendUrl`을 설정합니다. HTTPS 주소 외의 임의 중계나 공개 CORS 프록시는 지원하지 않습니다.
 
-manifest에서 화면을 주행 중 사용 가능(`distractionOptimized`)으로 선언했습니다. 차량 제한 상태가 정차가 아니면(주행·미확인) 앱이 스스로 주행 화면으로 줄이고 시연·설정 입력을 잠그며, 시연 데이터를 끕니다. AAOS 에뮬레이터에서 주행 상태에도 앱이 차단되지 않고 주행 화면으로 바뀌는 것을 확인했습니다. **Pleos·실차의 주행 허용 심사는 받지 않았습니다.** 앱 카테고리·주행 허용 검토와 실제 플랫폼 제한 시험은 다음 단계입니다. `npm run android:check`의 APK는 로컬 개발용 debug 빌드입니다. 제출용은 아래 release 빌드를 사용합니다.
+manifest에서 화면을 주행 중 사용 가능(`distractionOptimized`)으로 선언했습니다. 차량 제한 상태가 정차가 아니면(주행·미확인) 앱이 스스로 주행 화면으로 줄이고 시연·설정 입력을 잠그며, 시연 데이터를 끕니다. AAOS 에뮬레이터에서 기어 D·주차 브레이크 해제의 공회전(idling) 제한 상태 전환을 시험합니다. 지속 moving 상태 확인과 구분하며 최종 실행 결과는 `검증결과.md`에서 연결된 근거를 확인하세요. **Pleos·실차의 주행 허용 심사는 받지 않았습니다.** 앱 카테고리·주행 허용 검토와 실제 플랫폼 제한 시험은 다음 단계입니다. `npm run android:check`의 APK는 로컬 개발용 debug 빌드입니다. 제출용은 아래 release 빌드를 사용합니다.
 
 ## 제출용 release 빌드
+
+0.2.1은 익명 인증서의 새 키를 사용하며 기존 0.2.0 키를 보존합니다. 서명이 다른 기존 앱 위에 업데이트할 수 없으므로 시험 기기에서는 기존 설치본을 직접 확인한 뒤 제거해야 합니다.
 
 debug APK의 이름만 바꾼 것은 release가 아닙니다. `:app:assembleRelease`로 빌드하고 서명을 검사한 결과만 제출합니다.
 
 서명 정보는 환경변수로만 넘깁니다. 키스토어는 작업본 밖에 두고, 비밀번호를 파일에 적지 않습니다.
 
-Mac에서는 `scripts/sign-release.sh`를 실행하면 비밀번호를 화면에 표시하지 않고 한 번 입력받아 빌드합니다(기본 키스토어 `~/Documents/SignalDrive-keys/signal-release.jks`, 별칭 `signal`). 직접 지정하려면:
+Mac 터미널에서는 새 출력 폴더를 지정해 `SIGNAL_RELEASE_OUT=/새/출력폴더 scripts/sign-release.sh`를 실행하면 비밀번호를 화면에 표시하지 않고 한 번 입력받아 빌드합니다(기본 키스토어 `~/Documents/SignalDrive-keys/signal-release-v2.jks`, 별칭 `signal`). 직접 지정하려면:
 
 ```sh
 export SIGNAL_RELEASE_STORE_FILE=/작업본/밖/signal-release.jks
@@ -101,7 +103,7 @@ read -s SIGNAL_RELEASE_KEY_PASSWORD; export SIGNAL_RELEASE_KEY_PASSWORD
 SIGNAL_RELEASE_TEAM=팀명 SIGNAL_RELEASE_OUT=./apk npm run android:release
 ```
 
-키가 없으면 서명 없는 release가 만들어지고 "제출용이 아님"으로 표시됩니다. 키스토어가 작업본 안에 있거나 debug 인증서로 서명된 경우에는 실패합니다. release 키를 잃어버리면 같은 앱으로 업데이트할 수 없으므로 키스토어와 비밀번호는 별도로 백업합니다.
+서명 정보가 없으면 빌드를 시작하지 않고 종료코드 2로 끝납니다. 개발용 unsigned 빌드는 `npm run android:release -- --unsigned`로 명시해야 하며, 이 경우에도 제출용이 아님을 표시하고 종료코드 2로 끝납니다. 기존 제출 APK는 덮어쓰지 않습니다. 키스토어가 작업본 안에 있거나 debug 인증서로 서명된 경우에는 실패합니다. release 키를 잃어버리면 같은 앱으로 업데이트할 수 없으므로 키스토어와 비밀번호는 별도로 백업합니다.
 
 ## 검증
 
@@ -115,11 +117,15 @@ npm run android:check
 ### 기기·에뮬레이터 실행 검증
 
 ```sh
-node scripts/android-device-check.mjs <apk> <결과폴더> [--serial emulator-5554] [--clock]
+node scripts/android-device-check.mjs <apk> <새 결과폴더> --serial emulator-5554 [--clock]
 ```
 
 연결된 기기에 APK를 설치하고 시연 화면을 실제로 조작해 표시·보류·복구·잠금·백그라운드 복귀·화면 크기 변경·스크롤을 확인합니다. `--clock`은 root가 되는 에뮬레이터에서 시계를 1시간 뒤로 돌렸다 되돌려 과거 패킷이 다시 나타나지 않는지 봅니다. 단계별 스크린샷과 `results.json`을 남깁니다.
 
-남은 초가 1초마다 바뀌는 동안에는 UI Automator가 화면을 읽지 못하므로, 스크립트는 앱의 검증용 화면 기록을 읽습니다. 이 기록은 `adb shell setprop log.tag.SignalDriveUi DEBUG`로 켤 때만 남고(스크립트가 켬), 화면에 보이는 문구·초·접근성 설명·버튼 위치만 담습니다.
+남은 초가 1초마다 바뀌는 동안에는 UI Automator가 화면을 읽지 못하므로, 스크립트는 앱의 검증용 화면 기록을 읽습니다. 이 기록은 `adb shell setprop log.tag.SignalDriveUi DEBUG`로 켤 때만 남고(스크립트가 켬), 화면 문구·초·접근성 설명·버튼 위치와 가시 영역을 담습니다. 이 기록은 앱 자체 보고이며 독립적인 화면 인식 판정이 아닙니다. 주요 스크린샷은 별도로 눈으로 확인해야 합니다. 검사 후 설정 복구 결과와 APK·설치본·소스 해시를 `results.json`에 남깁니다. 시계 변경·AAOS HAL 주입은 명시적으로 선택한 에뮬레이터에만 수행합니다.
 
 이번 범위는 표시·보류·복구의 개발 검증입니다. 실제 신호 정확도, 실차 안전, 사고 감소, 전국 실시간 서비스, Pleos 심사·입점 결과를 주장하지 않습니다.
+
+## 0.2.1 변경
+
+작은 기기 시계 보정이 누적돼도 신선도와 만료 시간이 늘어나지 않도록 세션 경과시간 하한을 적용했습니다. 주행 화면의 신호 카드에는 `현장 신호 우선 확인`을 유지합니다. 서명·검사 도구는 취소와 실패를 성공으로 처리하지 않으며, 새 산출물에 APK·소스 식별 근거를 남깁니다.

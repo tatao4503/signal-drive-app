@@ -1,0 +1,895 @@
+{
+  "schemaVersion": 2,
+  "startedAt": "2026-11-10T09:44:37.585Z",
+  "apk": {
+    "name": "메이드인시그널_SIGNALDrive_release.apk",
+    "sha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7",
+    "certificateSha256": "0ea3775bf31c6f153d8b12c9b6fef23e85cb9a5d64857bdcf022abdb36bf07a5",
+    "isDebugCertificate": false
+  },
+  "source": {
+    "gitRevision": "d47dfcb14e0f0f068ef6b29e965b438fd28a38c5",
+    "workingTreeDirty": true,
+    "manifestSha256": "ddd12a0fae854d8a1495ba4a2882cf940fa76a8d9f980dc7ffbf240f846baf04",
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e70102e9174e199bcd6af998f98958258baf04cc3d574c26ca64eb778c0d444c"
+      },
+      {
+        "path": "app/build.gradle.kts",
+        "sha256": "dbe9f642e439d708fcf5900d90790f7b7f39ed38c8f3bf50b67ae96c12af623d"
+      },
+      {
+        "path": "app/src/main/AndroidManifest.xml",
+        "sha256": "e132a1023589e890106316baba1a0ff1532b889d9451ec2b3f7eda4d488e1a29"
+      },
+      {
+        "path": "app/src/main/assets/approved-mappings.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/CarRestrictionsAdapter.kt",
+        "sha256": "225eda98dc38d8114164aac5e13619806a45dac10a8285ec056ff5fce98319c2"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/MainActivity.kt",
+        "sha256": "43067fd0414c24fe3f002a411d6319095281802ed7577bf44e427f00aa016605"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/SignalLamp.kt",
+        "sha256": "7f3a3cccc30ca4300f94611fdc0e59d21c2943f69b26abaf5aca02eacc49e84b"
+      },
+      {
+        "path": "app/src/main/res/drawable/ic_signal_fg.xml",
+        "sha256": "1a2526d7080e329f4c0233df1bb69291d592e4770bd009d3323672dc812d1390"
+      },
+      {
+        "path": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+        "sha256": "57e00b3029d668034ebc97aaf2b47d64ccf913e6900228064e433d8031fdd707"
+      },
+      {
+        "path": "app/src/main/res/values/colors.xml",
+        "sha256": "06d6bb5eb00543a2faf01bd185245bd40cfaf9d2ecc229bf33591e78e0f5e756"
+      },
+      {
+        "path": "app/src/main/res/values/styles.xml",
+        "sha256": "3afcf4a522744de8c96e22352c39273afc1916669d1bfbb0d5b2a8144cb849cb"
+      },
+      {
+        "path": "app/src/main/res/values-v31/styles.xml",
+        "sha256": "b77d6a6ee45c8ab4c60bda362bdf8ed53349d65b336aed28b235cf7fc0a1b9d8"
+      },
+      {
+        "path": "app/src/main/res/xml/backup_rules.xml",
+        "sha256": "cbc4e53dd0927c1c80896940d0b90a8c3a1d4adee63f6596426b14d34d6a612e"
+      },
+      {
+        "path": "app/src/main/res/xml/data_extraction_rules.xml",
+        "sha256": "d67eb03f4c69e9e659bda309d762306d21f87b582e6a2e5b8ca808e08ad4d436"
+      },
+      {
+        "path": "build.gradle.kts",
+        "sha256": "bf17502666fe249f7ad0e9fb2c5ffd073def565bd1976f2f4963785be3f58bb2"
+      },
+      {
+        "path": "core/build.gradle.kts",
+        "sha256": "dafeb07454db1b9a6bcb8163c967b4948286fc160f931752438b90d762b06712"
+      },
+      {
+        "path": "core/README.md",
+        "sha256": "ae8c40a0be5a532ed1eb2890e315064965b9a2af453d684843f014655c839d79"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/ClockGuard.kt",
+        "sha256": "92692938653cce5507b9122febabba2b74b132000433a56d8b95c9a2aac7cd17"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/SignalModels.kt",
+        "sha256": "16ff90c744ab6eb0975f8e2d8e32ee2644df32a9b1267b372ce6855deaf7e34d"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/TrustEngine.kt",
+        "sha256": "8371c20cae343443830582178c949609dfbce7b106665029556b5abe1e34aed4"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/VehicleUxPolicy.kt",
+        "sha256": "de291b8eac726facf4a8e8cb6122ad3ef947db214a5b01ba43ef0b529831cecf"
+      },
+      {
+        "path": "core/src/test/kotlin/kr/signal/drive/core/CoreTestMain.kt",
+        "sha256": "30340f1cc4b670336c790407b8680a2c8413a5c3da593452a373cabc24fa7f13"
+      },
+      {
+        "path": "gradle/LICENSE",
+        "sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.jar",
+        "sha256": "498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.properties",
+        "sha256": "40ad196c886842d44adb88e1c64445c55720cf0855fa0c5585f35449e7fc2385"
+      },
+      {
+        "path": "gradle.properties",
+        "sha256": "4bc4969dfaa1dec271c4df66f0dcc0b32ef94cb1febc78f98f31acfa4d44d3b1"
+      },
+      {
+        "path": "gradlew",
+        "sha256": "a3648413b47ef77af21d5ebc36c687c7d103aaef3e17f33de7d4f080a6f300a3"
+      },
+      {
+        "path": "gradlew.bat",
+        "sha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f"
+      },
+      {
+        "path": "package.json",
+        "sha256": "b35f0f60214794d6271d072deaf288fdc0398903637cab8acc80cb6b75a86117"
+      },
+      {
+        "path": "README.md",
+        "sha256": "0b1af14f8d857325d07f75b5547778619f504a9fd552149af8cb35e399774432"
+      },
+      {
+        "path": "scripts/android-device-check.mjs",
+        "sha256": "e738e8d3a266c612b6b8cf1a0d06ce724d973ea1b15d84cbee2cd225f415a248"
+      },
+      {
+        "path": "scripts/build-android.mjs",
+        "sha256": "09282f12c342a0c72056ef1cb7d1673e178dedf5c8ab3df4413a004d8dfeaf8a"
+      },
+      {
+        "path": "scripts/build-release.mjs",
+        "sha256": "ee8937b57ad3e486fa79e75119c57fee10f4f3740c1dbfbccc2af5a4a1bef2d2"
+      },
+      {
+        "path": "scripts/compose-demo.py",
+        "sha256": "46c0d37e93d02ad32e133a80774f9ae23994bcbebcb1a50d63b40863933ed419"
+      },
+      {
+        "path": "scripts/new-release-key.sh",
+        "sha256": "5c1197b976cb095eff80ccdf4831b89e37b54865d3e457fc85ea9510f6330ae3"
+      },
+      {
+        "path": "scripts/record-demo.mjs",
+        "sha256": "efc0d9acd69e38f16fd0195e76fa53a17c5e3950a01ef4f901c0240ba4f0afc7"
+      },
+      {
+        "path": "scripts/sign-release-macos.py",
+        "sha256": "9a5e208b4c1fcaad42f085892a32c14759d3d376047a4b474eb8c1aeb8c38da9"
+      },
+      {
+        "path": "scripts/sign-release.sh",
+        "sha256": "f167f512d97c10de297cb6bc120ed1a9efdb42fef6fcd23d1ec8bf71ad571843"
+      },
+      {
+        "path": "scripts/test.mjs",
+        "sha256": "acef44cc6c7201ff7beb60c7802dc8ff3b385006a436797daed06296cdc4b39d"
+      },
+      {
+        "path": "server/config.mjs",
+        "sha256": "d831546dd1a92a442e759d5944b5709da471c778ea1a11086653a58f83da0a18"
+      },
+      {
+        "path": "server/normalize.mjs",
+        "sha256": "6dde519dc9e9edc8e7709aaf22cbe7ac2389435f596d08822b12c4cac3b8dc0d"
+      },
+      {
+        "path": "server/README.md",
+        "sha256": "80763d7c684b07674c28f6bf3a7887af874b2f11bc02650a5080670ca5ad1a5f"
+      },
+      {
+        "path": "server/server.mjs",
+        "sha256": "b61b730ff3ac610a8cfb96f23572001952a2c0620913a860ef446b11a1a38394"
+      },
+      {
+        "path": "server/start.mjs",
+        "sha256": "5288d5e752336b3cedc468bee334444bbdb55beadeabd51a86269bdc9aa0b92c"
+      },
+      {
+        "path": "server/targets.example.json",
+        "sha256": "dfcee8d87b2e73fd6aeb116b77057e0277299b750708013a929cac5bf4ea929b"
+      },
+      {
+        "path": "server/targets.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "path": "settings.gradle.kts",
+        "sha256": "3959a1dd7226edbe58d4cf1e84a2641aca6f3aa5aa41a6a33183292a981c1926"
+      },
+      {
+        "path": "shared/README.md",
+        "sha256": "f9c9324954a2f53d47b2f596772a859db5b7af4d1027577724050618fb46d4b6"
+      },
+      {
+        "path": "shared/trust-fixtures.json",
+        "sha256": "9cec0b9960f2d9e31f05d36f3f30b583300363bbae3bda3ef6f6f7655fa3b930"
+      },
+      {
+        "path": "shared/trust-fixtures.schema.json",
+        "sha256": "5b9bd252338643bcc6a09f00aaf5ea396fe23dfcd060786e0b5a75f525315804"
+      },
+      {
+        "path": "tests/server-http.test.mjs",
+        "sha256": "7c802e645f617d8ac30e46fa59995f24b2ec5bae65d7799b2f27b8c55972634a"
+      },
+      {
+        "path": "tests/server-normalize.test.mjs",
+        "sha256": "83306d8f71db2f7376c14fab5377115090969afc2658ff80f4a78230159d067e"
+      },
+      {
+        "path": "tests/tooling.test.mjs",
+        "sha256": "68251fe3b3d3ae6a98928bb6f568acf68166e2e4f98f75248814b172d7e7b2db"
+      },
+      {
+        "path": "tests/web-trust.test.mjs",
+        "sha256": "3b95caa7378852c0f73a777e6f44e7a9b932b6d3e49231f1f61b776dfcdc6bf9"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.md",
+        "sha256": "bbd62c89ff66aa32b868e7d95de9321cdde218d3ef466b4aacbae86f66beb8f1"
+      },
+      {
+        "path": "web/app.mjs",
+        "sha256": "261827b494ad425816c8a6e54ea8163a85faed41b832ece74ca686958d00dc79"
+      },
+      {
+        "path": "web/index.html",
+        "sha256": "6e7df169489269fd5e54404ec82acef5d3ec724dd1f2c881911b975861e298c7"
+      },
+      {
+        "path": "web/styles.css",
+        "sha256": "949ba46f461e0d6a85a1c51d9d5d597931fccde6aff0b4decc54f3ef96d67fa5"
+      },
+      {
+        "path": "web/trust.mjs",
+        "sha256": "8722c74a33eb2e3ed02cf0f90eabb465954af10f216a2ccf66bb12e02492b8d9"
+      },
+      {
+        "path": "검증결과.md",
+        "sha256": "c55d79615bf557adc414c4d012d1993afd557ad69c792a69bda19926a60cc1da"
+      },
+      {
+        "path": "시작.command",
+        "sha256": "4a3c9faa03409d430efdb5a6d1ae409e9ac3b66996733184f14440cbd42126e0"
+      }
+    ]
+  },
+  "device": {
+    "serial": "emulator-5580",
+    "model": "sdk_gphone64_arm64",
+    "release": "14",
+    "sdkInt": 34,
+    "automotive": false,
+    "qemu": true,
+    "avdName": "signal-final-phone34"
+  },
+  "evidenceMethod": "app-owned-view-trace-and-adb-actions",
+  "independentVisualReview": "not-performed-by-script",
+  "installed": {
+    "packageName": "kr.signal.drive",
+    "versionName": "0.2.1",
+    "versionCode": 3,
+    "apkSha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7"
+  },
+  "appProcessId": 10578,
+  "appStarted": true,
+  "restoration": {
+    "ok": true,
+    "steps": [
+      {
+        "label": "device-clock",
+        "ok": true
+      },
+      {
+        "label": "auto-time",
+        "ok": true
+      },
+      {
+        "label": "rotation-auto",
+        "ok": true
+      },
+      {
+        "label": "rotation-user",
+        "ok": true
+      },
+      {
+        "label": "font-scale",
+        "ok": true
+      },
+      {
+        "label": "screen-override",
+        "ok": true
+      },
+      {
+        "label": "trace-property",
+        "ok": true
+      }
+    ]
+  },
+  "sourceAtEnd": {
+    "gitRevision": "d47dfcb14e0f0f068ef6b29e965b438fd28a38c5",
+    "workingTreeDirty": true,
+    "manifestSha256": "ddd12a0fae854d8a1495ba4a2882cf940fa76a8d9f980dc7ffbf240f846baf04",
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "e70102e9174e199bcd6af998f98958258baf04cc3d574c26ca64eb778c0d444c"
+      },
+      {
+        "path": "app/build.gradle.kts",
+        "sha256": "dbe9f642e439d708fcf5900d90790f7b7f39ed38c8f3bf50b67ae96c12af623d"
+      },
+      {
+        "path": "app/src/main/AndroidManifest.xml",
+        "sha256": "e132a1023589e890106316baba1a0ff1532b889d9451ec2b3f7eda4d488e1a29"
+      },
+      {
+        "path": "app/src/main/assets/approved-mappings.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/CarRestrictionsAdapter.kt",
+        "sha256": "225eda98dc38d8114164aac5e13619806a45dac10a8285ec056ff5fce98319c2"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/MainActivity.kt",
+        "sha256": "43067fd0414c24fe3f002a411d6319095281802ed7577bf44e427f00aa016605"
+      },
+      {
+        "path": "app/src/main/java/kr/signal/drive/SignalLamp.kt",
+        "sha256": "7f3a3cccc30ca4300f94611fdc0e59d21c2943f69b26abaf5aca02eacc49e84b"
+      },
+      {
+        "path": "app/src/main/res/drawable/ic_signal_fg.xml",
+        "sha256": "1a2526d7080e329f4c0233df1bb69291d592e4770bd009d3323672dc812d1390"
+      },
+      {
+        "path": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+        "sha256": "57e00b3029d668034ebc97aaf2b47d64ccf913e6900228064e433d8031fdd707"
+      },
+      {
+        "path": "app/src/main/res/values/colors.xml",
+        "sha256": "06d6bb5eb00543a2faf01bd185245bd40cfaf9d2ecc229bf33591e78e0f5e756"
+      },
+      {
+        "path": "app/src/main/res/values/styles.xml",
+        "sha256": "3afcf4a522744de8c96e22352c39273afc1916669d1bfbb0d5b2a8144cb849cb"
+      },
+      {
+        "path": "app/src/main/res/values-v31/styles.xml",
+        "sha256": "b77d6a6ee45c8ab4c60bda362bdf8ed53349d65b336aed28b235cf7fc0a1b9d8"
+      },
+      {
+        "path": "app/src/main/res/xml/backup_rules.xml",
+        "sha256": "cbc4e53dd0927c1c80896940d0b90a8c3a1d4adee63f6596426b14d34d6a612e"
+      },
+      {
+        "path": "app/src/main/res/xml/data_extraction_rules.xml",
+        "sha256": "d67eb03f4c69e9e659bda309d762306d21f87b582e6a2e5b8ca808e08ad4d436"
+      },
+      {
+        "path": "build.gradle.kts",
+        "sha256": "bf17502666fe249f7ad0e9fb2c5ffd073def565bd1976f2f4963785be3f58bb2"
+      },
+      {
+        "path": "core/build.gradle.kts",
+        "sha256": "dafeb07454db1b9a6bcb8163c967b4948286fc160f931752438b90d762b06712"
+      },
+      {
+        "path": "core/README.md",
+        "sha256": "ae8c40a0be5a532ed1eb2890e315064965b9a2af453d684843f014655c839d79"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/ClockGuard.kt",
+        "sha256": "92692938653cce5507b9122febabba2b74b132000433a56d8b95c9a2aac7cd17"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/SignalModels.kt",
+        "sha256": "16ff90c744ab6eb0975f8e2d8e32ee2644df32a9b1267b372ce6855deaf7e34d"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/TrustEngine.kt",
+        "sha256": "8371c20cae343443830582178c949609dfbce7b106665029556b5abe1e34aed4"
+      },
+      {
+        "path": "core/src/main/kotlin/kr/signal/drive/core/VehicleUxPolicy.kt",
+        "sha256": "de291b8eac726facf4a8e8cb6122ad3ef947db214a5b01ba43ef0b529831cecf"
+      },
+      {
+        "path": "core/src/test/kotlin/kr/signal/drive/core/CoreTestMain.kt",
+        "sha256": "30340f1cc4b670336c790407b8680a2c8413a5c3da593452a373cabc24fa7f13"
+      },
+      {
+        "path": "gradle/LICENSE",
+        "sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.jar",
+        "sha256": "498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.properties",
+        "sha256": "40ad196c886842d44adb88e1c64445c55720cf0855fa0c5585f35449e7fc2385"
+      },
+      {
+        "path": "gradle.properties",
+        "sha256": "4bc4969dfaa1dec271c4df66f0dcc0b32ef94cb1febc78f98f31acfa4d44d3b1"
+      },
+      {
+        "path": "gradlew",
+        "sha256": "a3648413b47ef77af21d5ebc36c687c7d103aaef3e17f33de7d4f080a6f300a3"
+      },
+      {
+        "path": "gradlew.bat",
+        "sha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f"
+      },
+      {
+        "path": "package.json",
+        "sha256": "b35f0f60214794d6271d072deaf288fdc0398903637cab8acc80cb6b75a86117"
+      },
+      {
+        "path": "README.md",
+        "sha256": "0b1af14f8d857325d07f75b5547778619f504a9fd552149af8cb35e399774432"
+      },
+      {
+        "path": "scripts/android-device-check.mjs",
+        "sha256": "e738e8d3a266c612b6b8cf1a0d06ce724d973ea1b15d84cbee2cd225f415a248"
+      },
+      {
+        "path": "scripts/build-android.mjs",
+        "sha256": "09282f12c342a0c72056ef1cb7d1673e178dedf5c8ab3df4413a004d8dfeaf8a"
+      },
+      {
+        "path": "scripts/build-release.mjs",
+        "sha256": "ee8937b57ad3e486fa79e75119c57fee10f4f3740c1dbfbccc2af5a4a1bef2d2"
+      },
+      {
+        "path": "scripts/compose-demo.py",
+        "sha256": "46c0d37e93d02ad32e133a80774f9ae23994bcbebcb1a50d63b40863933ed419"
+      },
+      {
+        "path": "scripts/new-release-key.sh",
+        "sha256": "5c1197b976cb095eff80ccdf4831b89e37b54865d3e457fc85ea9510f6330ae3"
+      },
+      {
+        "path": "scripts/record-demo.mjs",
+        "sha256": "efc0d9acd69e38f16fd0195e76fa53a17c5e3950a01ef4f901c0240ba4f0afc7"
+      },
+      {
+        "path": "scripts/sign-release-macos.py",
+        "sha256": "9a5e208b4c1fcaad42f085892a32c14759d3d376047a4b474eb8c1aeb8c38da9"
+      },
+      {
+        "path": "scripts/sign-release.sh",
+        "sha256": "f167f512d97c10de297cb6bc120ed1a9efdb42fef6fcd23d1ec8bf71ad571843"
+      },
+      {
+        "path": "scripts/test.mjs",
+        "sha256": "acef44cc6c7201ff7beb60c7802dc8ff3b385006a436797daed06296cdc4b39d"
+      },
+      {
+        "path": "server/config.mjs",
+        "sha256": "d831546dd1a92a442e759d5944b5709da471c778ea1a11086653a58f83da0a18"
+      },
+      {
+        "path": "server/normalize.mjs",
+        "sha256": "6dde519dc9e9edc8e7709aaf22cbe7ac2389435f596d08822b12c4cac3b8dc0d"
+      },
+      {
+        "path": "server/README.md",
+        "sha256": "80763d7c684b07674c28f6bf3a7887af874b2f11bc02650a5080670ca5ad1a5f"
+      },
+      {
+        "path": "server/server.mjs",
+        "sha256": "b61b730ff3ac610a8cfb96f23572001952a2c0620913a860ef446b11a1a38394"
+      },
+      {
+        "path": "server/start.mjs",
+        "sha256": "5288d5e752336b3cedc468bee334444bbdb55beadeabd51a86269bdc9aa0b92c"
+      },
+      {
+        "path": "server/targets.example.json",
+        "sha256": "dfcee8d87b2e73fd6aeb116b77057e0277299b750708013a929cac5bf4ea929b"
+      },
+      {
+        "path": "server/targets.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "path": "settings.gradle.kts",
+        "sha256": "3959a1dd7226edbe58d4cf1e84a2641aca6f3aa5aa41a6a33183292a981c1926"
+      },
+      {
+        "path": "shared/README.md",
+        "sha256": "f9c9324954a2f53d47b2f596772a859db5b7af4d1027577724050618fb46d4b6"
+      },
+      {
+        "path": "shared/trust-fixtures.json",
+        "sha256": "9cec0b9960f2d9e31f05d36f3f30b583300363bbae3bda3ef6f6f7655fa3b930"
+      },
+      {
+        "path": "shared/trust-fixtures.schema.json",
+        "sha256": "5b9bd252338643bcc6a09f00aaf5ea396fe23dfcd060786e0b5a75f525315804"
+      },
+      {
+        "path": "tests/server-http.test.mjs",
+        "sha256": "7c802e645f617d8ac30e46fa59995f24b2ec5bae65d7799b2f27b8c55972634a"
+      },
+      {
+        "path": "tests/server-normalize.test.mjs",
+        "sha256": "83306d8f71db2f7376c14fab5377115090969afc2658ff80f4a78230159d067e"
+      },
+      {
+        "path": "tests/tooling.test.mjs",
+        "sha256": "68251fe3b3d3ae6a98928bb6f568acf68166e2e4f98f75248814b172d7e7b2db"
+      },
+      {
+        "path": "tests/web-trust.test.mjs",
+        "sha256": "3b95caa7378852c0f73a777e6f44e7a9b932b6d3e49231f1f61b776dfcdc6bf9"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.md",
+        "sha256": "bbd62c89ff66aa32b868e7d95de9321cdde218d3ef466b4aacbae86f66beb8f1"
+      },
+      {
+        "path": "web/app.mjs",
+        "sha256": "261827b494ad425816c8a6e54ea8163a85faed41b832ece74ca686958d00dc79"
+      },
+      {
+        "path": "web/index.html",
+        "sha256": "6e7df169489269fd5e54404ec82acef5d3ec724dd1f2c881911b975861e298c7"
+      },
+      {
+        "path": "web/styles.css",
+        "sha256": "949ba46f461e0d6a85a1c51d9d5d597931fccde6aff0b4decc54f3ef96d67fa5"
+      },
+      {
+        "path": "web/trust.mjs",
+        "sha256": "8722c74a33eb2e3ed02cf0f90eabb465954af10f216a2ccf66bb12e02492b8d9"
+      },
+      {
+        "path": "검증결과.md",
+        "sha256": "c55d79615bf557adc414c4d012d1993afd557ad69c792a69bda19926a60cc1da"
+      },
+      {
+        "path": "시작.command",
+        "sha256": "4a3c9faa03409d430efdb5a6d1ae409e9ac3b66996733184f14440cbd42126e0"
+      }
+    ]
+  },
+  "completedAt": "2026-11-10T09:47:47.752Z",
+  "screenshots": [
+    {
+      "filename": "01-start.png",
+      "sha256": "d42641c821bc429b15a7f9374709d5eec6e0db6f856d06e5cd4ff06eb71a363d",
+      "at": "2026-11-10T09:44:49.128Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1576417,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-1-데이터지연.png",
+      "sha256": "46fd08d1b391fea4c26da0bc1cbf35b71ec7f8276e10a9f9f3f9031bada03acd",
+      "at": "2026-11-10T09:44:51.250Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1578448,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-2-연결단절.png",
+      "sha256": "fc8131e98f3a67268b2718ecaeb266aa5a59d5498e46fba294e6c108e2c6b4ca",
+      "at": "2026-11-10T09:44:53.232Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1580479,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-3-교차로불일치.png",
+      "sha256": "5c794e1972b354a692bfd4d32deaf405f155550312eef3228c9b42c568ab5302",
+      "at": "2026-11-10T09:44:55.050Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1582300,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-4-방향미확정.png",
+      "sha256": "2aa99eb9a63321712570bdf8536c3de2fddeb37dd66b87cff20e2831824d02b3",
+      "at": "2026-11-10T09:44:57.006Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1584321,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-5-미래시각.png",
+      "sha256": "d927e7d97df0dcfbb546b0817906f96bb32d254264dc22af069cc40e966ff27b",
+      "at": "2026-11-10T09:44:59.260Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1586544,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "02-6-잔여시간만료.png",
+      "sha256": "71a4482d38ecdfdddce4ba8f4b4cf4d71a2f668e4edbb71ef7d034fd9fd5256e",
+      "at": "2026-11-10T09:45:01.222Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1588372,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "03-recovery.png",
+      "sha256": "80b8e0c577ad37d0742aad0d709916f459ac1c44988540b37cc3dda472dbfc31",
+      "at": "2026-11-10T09:45:03.342Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1590566,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "04-lock-주행.png",
+      "sha256": "354c70f91e8b718e6072b7369fd8f4a893f3fbf5e0c0b63ceb4c312019de53d4",
+      "at": "2026-11-10T09:45:18.236Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1605493,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "04-lock-미확인.png",
+      "sha256": "1906e061baaca78f117c526a3a5043d36102862b9772c78c9d7126d4deb1de5f",
+      "at": "2026-11-10T09:45:38.671Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1625986,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "05-resume.png",
+      "sha256": "ef3325705392e25c3b162ff027ba195bffb6d3c28ec82f2ec6b5b36dde8a5e17",
+      "at": "2026-11-10T09:46:04.527Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1651805,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "06-landscape-top.png",
+      "sha256": "6b6d03f0f2725e66157fbc97aaca997842756ab2027bae720c49906da38defb1",
+      "at": "2026-11-10T09:46:11.840Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1659103,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "06-landscape-bottom.png",
+      "sha256": "77d145e149edc4de555a7e393a35c6f512e2ccb6e6e82524e004018f80b64b9e",
+      "at": "2026-11-10T09:46:22.096Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1669240,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "06-small-bottom.png",
+      "sha256": "1fe09819878a12b7a71bda5821bb426d88ad5721a60ce50495599ea76e4bec94",
+      "at": "2026-11-10T09:46:36.343Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1683674,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "06-small-landscape-driving-large-text.png",
+      "sha256": "abec14917272e2de1c6202690ca9ae4bd3c14b4499cd99739c8f5a4586c9706c",
+      "at": "2026-11-10T09:47:09.467Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1716669,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "07-clock-back.png",
+      "sha256": "58c4637f7c00c3ac84e4cbfd439bd90c9009eab5fe9adc2a2c2d6b58bc04145c",
+      "at": "2026-11-10T09:47:29.518Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1736712,
+      "independentVisualReview": "not-performed-by-script"
+    },
+    {
+      "filename": "07-clock-restored.png",
+      "sha256": "7e0e6a55a804f575915e439d4351f61a806d8de1a17e6a3fe9174ac95962419c",
+      "at": "2026-11-10T09:47:40.861Z",
+      "traceProcessId": 10578,
+      "traceElapsedMs": 1748043,
+      "independentVisualReview": "not-performed-by-script"
+    }
+  ],
+  "results": [
+    {
+      "name": "입력·설치 APK 해시 일치",
+      "ok": true,
+      "detail": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7"
+    },
+    {
+      "name": "시작 화면 시연 표시",
+      "ok": true,
+      "detail": "시연 데이터 · 실제 신호 아님"
+    },
+    {
+      "name": "정상 녹색 — 색·초·접근성 표시",
+      "ok": true,
+      "detail": "녹색 신호 21초 [시연 잔여시간 21초]"
+    },
+    {
+      "name": "데이터 지연 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 원천 데이터가 허용 갱신 시간을 넘었습니다"
+    },
+    {
+      "name": "데이터 지연 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "연결 단절 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 현재 신호 데이터를 확인할 수 없습니다"
+    },
+    {
+      "name": "연결 단절 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "교차로 불일치 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 선택한 교차로와 수신 데이터가 다릅니다"
+    },
+    {
+      "name": "교차로 불일치 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "방향 미확정 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 진입 방향을 확인할 수 없습니다"
+    },
+    {
+      "name": "방향 미확정 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "미래 시각 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 원천 전송 시각이 현재보다 미래입니다"
+    },
+    {
+      "name": "미래 시각 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "잔여시간 만료 — 색·초·접근성 문구 제거",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 초=\"\" | 설명=\"\" | 수신한 신호의 유효시간이 끝났습니다"
+    },
+    {
+      "name": "잔여시간 만료 — 시연 표시 유지",
+      "ok": true
+    },
+    {
+      "name": "복구 — 새 데이터로 표시 재개",
+      "ok": true,
+      "detail": "녹색 신호 23초"
+    },
+    {
+      "name": "정상 적색 — 적색 표시",
+      "ok": true,
+      "detail": "적색 신호"
+    },
+    {
+      "name": "모의 주행 — 시연 버튼 숨김 또는 비활성",
+      "ok": true,
+      "detail": "숨김"
+    },
+    {
+      "name": "모의 주행 — 주행 화면(콘솔·교차로 정보 숨김)",
+      "ok": true
+    },
+    {
+      "name": "모의 주행 — 현장 신호 우선 안내 완전 표시",
+      "ok": true,
+      "detail": "모의 차량 주행 · 설정 잠금 · 현장 신호 우선 확인"
+    },
+    {
+      "name": "모의 주행 — 눌러도 시나리오 안 바뀜(녹색 유지)",
+      "ok": true,
+      "detail": "녹색 신호"
+    },
+    {
+      "name": "모의 주행 — 잠금 문구",
+      "ok": true,
+      "detail": "모의 차량 주행 · 설정 잠금"
+    },
+    {
+      "name": "모의 미확인 — 시연 버튼 숨김 또는 비활성",
+      "ok": true,
+      "detail": "enabled=false"
+    },
+    {
+      "name": "모의 미확인 — 눌러도 시나리오 안 바뀜(녹색 유지)",
+      "ok": true,
+      "detail": "녹색 신호"
+    },
+    {
+      "name": "모의 미확인 — 잠금 문구",
+      "ok": true,
+      "detail": "모의 차량 미확인 · 설정 잠금"
+    },
+    {
+      "name": "모의 정차 — 시연 버튼 다시 활성",
+      "ok": true
+    },
+    {
+      "name": "백그라운드 복귀 — 새 원천 시각과 세션으로 표시",
+      "ok": true,
+      "detail": "녹색 신호 21초"
+    },
+    {
+      "name": "백그라운드 복귀 — 잔여시간이 시연 창(24초) 안",
+      "ok": true,
+      "detail": "21초"
+    },
+    {
+      "name": "가로 전환 — 앱 유지·시연 표시",
+      "ok": true
+    },
+    {
+      "name": "가로 전환 — 맨 아래 안내까지 스크롤로 도달",
+      "ok": true,
+      "detail": "안내문 850..979 in 63..1017"
+    },
+    {
+      "name": "작은 가로 화면(1280x720) — 맨 아래까지 스크롤",
+      "ok": true,
+      "detail": "1280x720 · 안내문 465..594 in 63..657"
+    },
+    {
+      "name": "작은 가로 시험 뷰포트 확인",
+      "ok": true,
+      "detail": "1280x720"
+    },
+    {
+      "name": "작은 가로 화면·큰 글자 — 주행 출처·색·초 완전 표시",
+      "ok": true,
+      "detail": "1280x720 · 녹색 신호 6초"
+    },
+    {
+      "name": "작은 가로 화면·큰 글자 — 현장 신호 우선 안내 완전 표시",
+      "ok": true,
+      "detail": "모의 차량 주행 · 설정 잠금 · 현장 신호 우선 확인"
+    },
+    {
+      "name": "시계 시험 전 — 표시 중",
+      "ok": true,
+      "detail": "23초"
+    },
+    {
+      "name": "시계 1시간 뒤로 — 즉시 보류",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 시각 변경 감지 · 재수신 전까지 표시를 중단합니다"
+    },
+    {
+      "name": "시계 복원 후 — 과거 패킷 자동 재표시 안 함",
+      "ok": true,
+      "detail": "현재 신호\n확인 불가 | 시각 변경 감지 · 재수신 전까지 표시를 중단합니다"
+    },
+    {
+      "name": "새 시연 입력 후 — 표시 재개",
+      "ok": true,
+      "detail": "22초"
+    },
+    {
+      "name": "전용 에뮬레이터에서 시계 시험 완료",
+      "ok": true
+    },
+    {
+      "name": "시작된 앱의 비정상 종료 로그 없음",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

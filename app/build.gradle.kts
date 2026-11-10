@@ -6,12 +6,14 @@ android {
     namespace = "kr.signal.drive"
     compileSdk = 34
     compileSdkExtension = 12
+    // AAOS 차량 제한 API(Car·CarUxRestrictionsManager). 컴파일에만 쓰고 기기에서는 manifest의 uses-library(required=false)로 연결.
+    useLibrary("android.car")
     defaultConfig {
         applicationId = "kr.signal.drive"
         minSdk = 28
         targetSdk = 34
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.2.1"
         // Public owned server address only. Never place a Seoul API key in the APK.
         val backend = providers.gradleProperty("signalBackendUrl").orElse("").get()
         if (backend.isNotEmpty()) {

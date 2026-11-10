@@ -1,0 +1,82 @@
+[
+  {
+    "file": "clip-01-green.mp4",
+    "lead": 1.2086927090000008,
+    "sha256": "de5ca9c70ff7cc45c0b6cfa9d725e2e0c43dd17aa69eeefb4416e6640743ba5e",
+    "requestedDurationSeconds": 9,
+    "caption": "정상 녹색"
+  },
+  {
+    "file": "clip-02-delay.mp4",
+    "lead": 1.2019492919999974,
+    "sha256": "90befbd164f7d9aa16c6f486f12e184b6ec677f057d7af977839f2211a044633",
+    "requestedDurationSeconds": 9,
+    "caption": "데이터 지연"
+  },
+  {
+    "file": "clip-03-recover.mp4",
+    "lead": 1.2029268749999973,
+    "sha256": "959f963c5cda4ecfdade97444f04c64bb8fcc8956751218ff26df7d3e1e15007",
+    "requestedDurationSeconds": 9,
+    "caption": "복구"
+  },
+  {
+    "file": "clip-04-disconnect.mp4",
+    "lead": 1.2024339160000017,
+    "sha256": "e252c226d34c3f3e64cc9b8abdb93d670f8b8def5fb8540cb7555ca58f559d06",
+    "requestedDurationSeconds": 9,
+    "caption": "연결 단절"
+  },
+  {
+    "file": "clip-05-mismatch.mp4",
+    "lead": 1.2095576250000013,
+    "sha256": "9427396c647f8b34f5e7155dab4032d7cef4b10203de3f530f907ec6a8299ada",
+    "requestedDurationSeconds": 9,
+    "caption": "교차로 불일치"
+  },
+  {
+    "file": "clip-06-direction.mp4",
+    "lead": 1.2015737079999962,
+    "sha256": "cb1986db785aa91e8e926f26ac4a6684620a9054753b7af76aa73bab75259257",
+    "requestedDurationSeconds": 9,
+    "caption": "방향 미확정"
+  },
+  {
+    "file": "clip-07-expired.mp4",
+    "lead": 1.208610750000007,
+    "sha256": "3d5cb69312eb663d8371c7fbbf2f565ceb4ad43ea156cec24b7fb049f433acaa",
+    "requestedDurationSeconds": 9,
+    "caption": "잔여시간 만료"
+  },
+  {
+    "file": "clip-08-recover.mp4",
+    "lead": 1.2026878339999967,
+    "sha256": "63089a6c418b460559b66da6e2285d5bbed63fcf7e8af6e5f0406333a3ee3689",
+    "requestedDurationSeconds": 9,
+    "caption": "복구"
+  },
+  {
+    "file": "clip-09-driving.mp4",
+    "lead": 3.0125229169999947,
+    "sha256": "815de4750e3f91c600a1319fc134aa402473f5031778eaeb2eb46369acaaf3f0",
+    "requestedDurationSeconds": 10
+  },
+  {
+    "file": "clip-10-clock-back.mp4",
+    "lead": 1.5993647499999932,
+    "sha256": "c6ffab335172e576915987f8e6acf200344cf4fe4ab31e3764568fa0e8b1c50e",
+    "requestedDurationSeconds": 9
+  },
+  {
+    "file": "clip-11-clock-restore.mp4",
+    "lead": 2.314361541999999,
+    "sha256": "52bc787307f512d4b930867652b77ea1c1c4f65b9ca0c22e0b4af6edf8e79f3e",
+    "requestedDurationSeconds": 9
+  },
+  {
+    "file": "clip-12-new-data.mp4",
+    "lead": 1.2026334999999961,
+    "sha256": "31bd901a489ab034f8f96f6cc7122cf5bcf5b517c07625a3b23b6f1406d4bdb2",
+    "requestedDurationSeconds": 9
+  }
+]

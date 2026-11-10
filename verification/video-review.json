@@ -1,0 +1,41 @@
+{
+  "videoSha256": "d41b9ff64807e97971541627a893a4cbeb756d66000d78206f25a15559356aa7",
+  "apkSha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7",
+  "durationSeconds": 101.166667,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "codec": "h264",
+  "audio": false,
+  "decodeWholeFilePassed": true,
+  "sampleFramesInspectedSeconds": [
+    1,
+    7,
+    13,
+    19,
+    29,
+    39,
+    49,
+    59,
+    65,
+    71,
+    77,
+    85,
+    91,
+    99.166667,
+    53
+  ],
+  "method": "full-file decoder and visual frame sampling, not full continuous playback",
+  "observations": [
+    "Korean captions rendered with no major clipping in samples",
+    "synthetic signal and emulator notes visible",
+    "AAOS parked/idling-restricted/parked-live scenes distinguish sustained moving limitation",
+    "phone compact driving sample retains field-signal notice"
+  ],
+  "staticTailExtensions": [
+    {
+      "file": "aaos-2-drive.mp4",
+      "seconds": 0.11122200000000149
+    }
+  ]
+}

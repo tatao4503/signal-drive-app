@@ -97,6 +97,10 @@ class MainActivity : Activity() {
     private var drivingApplied: Boolean? = null
     private var sideColumn: LinearLayout? = null
     private var wideLayout = false
+    private var compactLandscape = false
+    private lateinit var rootColumn: LinearLayout
+    private lateinit var brandRow: LinearLayout
+    private lateinit var signalSection: View
     private lateinit var headRow: LinearLayout
     private lateinit var signalStack: LinearLayout
     private lateinit var drivingStatus: TextView
@@ -145,20 +149,27 @@ class MainActivity : Activity() {
     private val tick = object : Runnable {
         override fun run() {
             if (!active) return
-            val now = System.currentTimeMillis()
-            if (!clockGuard.checkpoint(now, SystemClock.elapsedRealtime())) {
-                if (clockValid) generation++
-                clockValid = false
-                packet = null
-                liveMessage = "시각 변경 감지 · 화면을 다시 열어 데이터를 갱신하세요"
-            } else if (modeDemo) {
+            val now = trustedNow()
+            if (now != null && modeDemo) {
                 packet = demoPacket(now)
-            } else if (SystemClock.elapsedRealtime() - lastPoll >= 1_000L) {
+            } else if (now != null && SystemClock.elapsedRealtime() - lastPoll >= 1_000L) {
                 fetchLive()
             }
             renderState()
             handler.postDelayed(this, 200L)
         }
+    }
+
+    /** Use the same session clock at timer, render and asynchronous response boundaries. */
+    private fun trustedNow(): Long? {
+        val now = clockGuard.evaluationTimeMs(System.currentTimeMillis(), SystemClock.elapsedRealtime())
+        if (now == null) {
+            if (clockValid) generation++
+            clockValid = false
+            packet = null
+            liveMessage = "시각 변경 감지 · 화면을 다시 열어 데이터를 갱신하세요"
+        }
+        return now
     }
 
     private fun buildScreen() {
@@ -167,33 +178,44 @@ class MainActivity : Activity() {
         val cfg = resources.configuration
         val wide = cfg.screenWidthDp >= 600 && cfg.screenWidthDp > cfg.screenHeightDp
         wideLayout = wide
+        compactLandscape = cfg.screenHeightDp < 400 && cfg.screenWidthDp > cfg.screenHeightDp
         val scroll = ScrollView(this).apply { setBackgroundColor(bg); isFillViewport = true }
         val root = column().apply { val side = dp(if (wide) 28 else 18); setPadding(side, dp(14), side, dp(24)) }
+        rootColumn = root
         scroll.addView(root)
         setContentView(scroll)
 
         // ── 상단: 이름 · 출처 배지 ──
         val top = row()
+        brandRow = top
         top.addView(text("SIGNAL", 19f, ink, true).apply { letterSpacing = 0.14f })
         top.addView(text(" Drive", 19f, mint, true))
-        versionLabel = text("   v${BuildConfig.VERSION_NAME}", 11f, muted)
+        versionLabel = text("   v${BuildConfig.VERSION_NAME}", 11f, muted).apply { maxLines = 1 }
         top.addView(versionLabel, LinearLayout.LayoutParams(0, -2, 1f))
+        // 출처 배지("시연 데이터 · 실제 신호 아님")는 안전 문구라 잘리면 안 된다.
+        // 세로 화면이나 큰 글자 설정에서는 이름 아래 줄에 두고, 길면 줄바꿈한다(말줄임 없음).
         sourceLabel = text("", 12f, ink, true).apply { setPadding(dp(12), dp(6), dp(12), dp(6)) }
-        top.addView(sourceLabel)
+        val badgeOnOwnLine = compactLandscape || !wide || resources.configuration.fontScale > 1.15f
+        if (!badgeOnOwnLine) top.addView(sourceLabel)
         root.addView(top)
+        if (badgeOnOwnLine) root.addView(sourceLabel, LinearLayout.LayoutParams(-2, -2).apply { topMargin = dp(10) })
 
         // ── 화면 전환 (세그먼트) ──
         val modes = row().apply { background = rounded(surface, 14); setPadding(dp(4), dp(4), dp(4), dp(4)) }
         modesRow = modes
         modeDemoButton = segment("시연 화면") { changeMode(true) }
         modeLiveButton = segment("실시간 연결 상태") { changeMode(false) }
-        modes.addView(modeDemoButton, LinearLayout.LayoutParams(0, dp(42), 1f))
-        modes.addView(modeLiveButton, LinearLayout.LayoutParams(0, dp(42), 1f).apply { leftMargin = dp(4) })
+        modes.addView(modeDemoButton, LinearLayout.LayoutParams(0, dp(48), 1f))
+        modes.addView(modeLiveButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { leftMargin = dp(4) })
         root.addView(modes, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(14) })
 
         // ── 신호 카드: 신호 원 + 상태 + 남은 시간 + 이유 ──
         lamp = SignalLamp(this)
-        phaseLabel = text("", if (wide) 30f else 26f, ink).apply { typeface = weight(600) }
+        phaseLabel = text("", if (wide) 30f else 26f, ink).apply {
+            typeface = weight(600)
+            // 신호가 바뀌거나 확인 불가가 되면 화면 읽기가 알려준다. 매초 바뀌는 숫자는 알리지 않는다.
+            accessibilityLiveRegion = View.ACCESSIBILITY_LIVE_REGION_POLITE
+        }
         timeLabel = text("", if (wide) 88f else 72f, ink).apply {
             typeface = weight(700); fontFeatureSettings = "tnum"; includeFontPadding = false; letterSpacing = -0.03f; maxLines = 1
         }
@@ -258,7 +280,7 @@ class MainActivity : Activity() {
             group.forEachIndexed { i, name ->
                 val b = chip(name) { if (canControl()) selectScenario(name) }
                 scenarioButtons.add(b)
-                r.addView(b, LinearLayout.LayoutParams(0, dp(44), 1f).apply { setMargins(if (i == 0) 0 else dp(6), dp(3), 0, dp(3)) })
+                r.addView(b, LinearLayout.LayoutParams(0, dp(48), 1f).apply { setMargins(if (i == 0) 0 else dp(6), dp(3), 0, dp(3)) })
             }
             controls.addView(r)
         }
@@ -268,7 +290,7 @@ class MainActivity : Activity() {
             vehicle.addView(text("모의 차량 상태 · 시험 운영자용", 11f, muted).apply { setPadding(0, 0, 0, dp(6)) })
             val r = row()
             listOf("정차" to VehicleUxState.UNRESTRICTED, "주행" to VehicleUxState.RESTRICTED, "미확인" to VehicleUxState.UNKNOWN).forEachIndexed { i, (label, state) ->
-                r.addView(chip(label) { simulatedUx = state; renderState() }, LinearLayout.LayoutParams(0, dp(42), 1f).apply { if (i > 0) leftMargin = dp(6) })
+                r.addView(chip(label) { simulatedUx = state; renderState() }, LinearLayout.LayoutParams(0, dp(48), 1f).apply { if (i > 0) leftMargin = dp(6) })
             }
             vehicle.addView(r)
         }
@@ -277,6 +299,7 @@ class MainActivity : Activity() {
         val gap = dp(12)
         if (wide) {
             val body = row().apply { gravity = Gravity.TOP }
+            signalSection = body
             body.addView(signalCard, LinearLayout.LayoutParams(0, -2, 1f))
             val side = column()
             side.addView(info)
@@ -287,6 +310,7 @@ class MainActivity : Activity() {
             sideColumn = side
             root.addView(body, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(16) })
         } else {
+            signalSection = signalCard
             root.addView(signalCard, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(14) })
             root.addView(info, LinearLayout.LayoutParams(-1, -2).apply { topMargin = gap })
             root.addView(status, LinearLayout.LayoutParams(-1, -2).apply { topMargin = gap })
@@ -338,8 +362,9 @@ class MainActivity : Activity() {
 
     private fun renderState() {
         if (!::sourceLabel.isInitialized) return
+        val now = trustedNow()
         val target = if (modeDemo) demoTarget else liveTarget
-        val d = engine.evaluate(target, if (clockValid) packet else null, System.currentTimeMillis(), if (modeDemo) DisplayMode.DEMONSTRATION else DisplayMode.LIVE_ONLY)
+        val d = engine.evaluate(target, if (clockValid) packet else null, now ?: 0L, if (modeDemo) DisplayMode.DEMONSTRATION else DisplayMode.LIVE_ONLY)
         sourceLabel.put(if (modeDemo) "시연 데이터 · 실제 신호 아님" else "실시간 연결 · 검증된 데이터만 표시")
         titleLabel.put(if (modeDemo) "가상 교차로 01" else liveMapping?.intersectionId?.let { "교차로 $it" } ?: "검증된 교차로 미등록")
         directionLabel.put(if (modeDemo) "북서 접근  /  직진" else target?.let { "${it.approach?.name} 접근  /  ${it.movement?.name}" } ?: "대상 교차로와 진행 방향 확인 필요")
@@ -387,8 +412,9 @@ class MainActivity : Activity() {
         platformLabel.visibility = full
         versionLabel.visibility = if (driving) View.INVISIBLE else View.VISIBLE  // 자리는 남겨 배지와 붙지 않게
         setupGuide.visibility = if (!modeDemo && liveMapping == null) View.VISIBLE else View.GONE
-        drivingStatus.visibility = if (driving && wideLayout) View.VISIBLE else View.GONE
-        if (driving && wideLayout) drivingStatus.put("●  ${uxLabel.text}")
+        // Keep the field-signal priority notice inside the primary card, even in the compact view.
+        drivingStatus.visibility = if (driving) View.VISIBLE else View.GONE
+        if (driving) drivingStatus.put("${uxLabel.text} · 현장 신호 우선 확인")
         reasonLabel.maxLines = if (driving) 1 else Int.MAX_VALUE
         reasonLabel.ellipsize = if (driving) android.text.TextUtils.TruncateAt.END else null
         controls.visibility = if (modeDemo && !driving) View.VISIBLE else View.GONE
@@ -417,11 +443,32 @@ class MainActivity : Activity() {
     private fun traceUi() {
         if (!window.decorView.isAttachedToWindow) return  // 붙기 전에는 보이는 상태가 아니다
         val frame = android.graphics.Rect().also { window.decorView.getWindowVisibleDisplayFrame(it) }
-        fun onScreen(v: View): Boolean {
-            if (!v.isShown) return false
+        fun visibleBounds(v: View): JSONObject {
             val at = IntArray(2); v.getLocationOnScreen(at)
-            return at[1] >= frame.top && at[1] + v.height <= frame.bottom
+            val bounds = android.graphics.Rect(at[0], at[1], at[0] + v.width, at[1] + v.height)
+            val global = android.graphics.Rect()
+            val globallyVisible = v.getGlobalVisibleRect(global)
+            val local = android.graphics.Rect()
+            val locallyVisible = v.getLocalVisibleRect(local)
+            // Local clipping + screen position avoids mixing root coordinates with screen insets.
+            val visible = android.graphics.Rect(local).apply { offset(at[0], at[1]) }
+            if (!visible.intersect(frame)) visible.setEmpty()
+            var opaqueEnough = true
+            var ancestor: View? = v
+            while (ancestor != null) {
+                if (ancestor.alpha < 0.99f) opaqueEnough = false
+                ancestor = ancestor.parent as? View
+            }
+            val fullyVisible = v.isShown && opaqueEnough && globallyVisible && locallyVisible &&
+                v.width > 0 && v.height > 0 && visible.contains(bounds)
+            return JSONObject().put("left", bounds.left).put("top", bounds.top)
+                .put("right", bounds.right).put("bottom", bounds.bottom)
+                .put("visibleLeft", visible.left).put("visibleTop", visible.top)
+                .put("visibleRight", visible.right).put("visibleBottom", visible.bottom)
+                .put("shown", v.isShown).put("globalVisible", globallyVisible)
+                .put("alphaVisible", opaqueEnough).put("fullyVisible", fullyVisible)
         }
+        fun onScreen(v: View): Boolean = visibleBounds(v).optBoolean("fullyVisible")
         val buttons = JSONArray()
         fun walk(v: View) {
             if (v is Button && v.isShown) {
@@ -432,13 +479,33 @@ class MainActivity : Activity() {
             if (v is android.view.ViewGroup) for (i in 0 until v.childCount) walk(v.getChildAt(i))
         }
         walk(window.decorView)
+        val sourceBounds = visibleBounds(sourceLabel)
+        val phaseBounds = visibleBounds(phaseLabel)
+        val secondsBounds = visibleBounds(timeLabel)
+        val scroll = rootColumn.parent as? ScrollView
+        val contentAt = IntArray(2).also { rootColumn.getLocationOnScreen(it) }
         val o = JSONObject()
+            .put("scrollY", scroll?.scrollY ?: 0)
+            .put("contentTop", contentAt[1])
+            .put("traceElapsedMs", SystemClock.elapsedRealtime())
+            .put("processId", android.os.Process.myPid())
+            .put("windowFocused", window.decorView.hasWindowFocus())
+            .put("traceSession", generation)
+            .put("sourceTimestampMs", packet?.sourceTimestampEpochMs ?: JSONObject.NULL)
             .put("source", sourceLabel.text.toString())
+            .put("sourceOnScreen", sourceBounds.optBoolean("fullyVisible"))
+            .put("sourceBounds", sourceBounds)
             .put("phase", phaseLabel.text.toString())
+            .put("phaseOnScreen", phaseBounds.optBoolean("fullyVisible"))
+            .put("phaseBounds", phaseBounds)
             .put("seconds", if (timeLabel.isShown) timeLabel.text.toString() else "")
             .put("secondsDesc", if (timeLabel.isShown) (timeLabel.contentDescription?.toString() ?: "") else "")
+            .put("secondsOnScreen", secondsBounds.optBoolean("fullyVisible"))
+            .put("secondsBounds", secondsBounds)
             .put("reason", reasonLabel.text.toString())
             .put("ux", uxLabel.text.toString())
+            .put("drivingNotice", if (drivingStatus.isShown) drivingStatus.text.toString() else "")
+            .put("drivingNoticeOnScreen", onScreen(drivingStatus))
             .put("footerOnScreen", onScreen(footerLabel))
             .put("driving", driving)
             .put("footerBox", IntArray(2).also { footerLabel.getLocationOnScreen(it) }.let { "${it[1]}..${it[1] + footerLabel.height} in ${frame.top}..${frame.bottom}" })
@@ -492,7 +559,10 @@ class MainActivity : Activity() {
             finally { connection?.disconnect() }
             handler.post {
                 inFlight = false
+                // An HTTP callback may arrive between timer ticks, including after a clock change.
+                trustedNow()
                 if (active && !modeDemo && clockValid && generation == requestGeneration) { packet = next; liveMessage = error; renderState() }
+                else if (active && !clockValid) renderState()
             }
         }
     }
@@ -517,6 +587,11 @@ class MainActivity : Activity() {
         setColor(color); cornerRadius = dp(radius).toFloat()
         if (stroke != null) { if (dash) setStroke(dp(1), stroke, dp(6).toFloat(), dp(5).toFloat()) else setStroke(dp(2), stroke) }
     }
+    /** 차량 다이얼·방향키로 옮겨 다닐 때 지금 위치가 보이도록, 포커스를 받으면 민트 테두리를 두른다. */
+    private fun focusable(color: Int, radius: Int) = android.graphics.drawable.StateListDrawable().apply {
+        addState(intArrayOf(android.R.attr.state_focused), rounded(color, radius).apply { setStroke(dp(2), mint) })
+        addState(intArrayOf(), rounded(color, radius))
+    }
     private fun weight(w: Int): Typeface = Typeface.create(Typeface.DEFAULT, w, false)
     private fun dashed() = rounded(bg, 18, line, dash = true)
     private fun caption(value: String) = text(value, 11f, muted, true).apply { letterSpacing = 0.08f; setPadding(0, 0, 0, dp(6)) }
@@ -526,23 +601,66 @@ class MainActivity : Activity() {
         setSpan(android.text.style.RelativeSizeSpan(0.42f), length - 1, length, 0)
     }
 
-    /** 주행 화면에서는 신호를 키우고, 가로 화면이면 오른쪽 열을 좁힌다. 상태가 바뀔 때만 실행. */
+    /** Keep primary signal and safety text together in shallow landscape driving viewports. */
     private fun applyDrivingScale(on: Boolean) {
         drivingApplied = on
-        val lampSize = dp(when { on && wideLayout -> 240; on -> 124; wideLayout -> 132; else -> 104 })
-        lamp.layoutParams = (lamp.layoutParams as LinearLayout.LayoutParams).apply { width = lampSize; height = lampSize; rightMargin = dp(when { on && wideLayout -> 36; on -> 22; wideLayout -> 24; else -> 18 }) }
-        timeLabel.textSize = when { on && wideLayout -> 150f; on -> 90f; wideLayout -> 88f; else -> 72f }
-        phaseLabel.textSize = when { on && wideLayout -> 40f; on -> 30f; wideLayout -> 30f; else -> 26f }
-        reasonLabel.textSize = if (on) 19f else 15f
-        // 가로 주행 화면: 오른쪽 열을 숨기고 신호 카드가 화면을 채운다. 내용은 가운데.
+        val compact = on && compactLandscape
+        val side = dp(if (wideLayout) 28 else 18)
+        rootColumn.setPadding(side, dp(if (compact) 8 else 14), side, dp(if (compact) 8 else 24))
+        brandRow.visibility = if (compact) View.GONE else View.VISIBLE
+        if (sourceLabel.parent === rootColumn) {
+            sourceLabel.layoutParams = (sourceLabel.layoutParams as LinearLayout.LayoutParams).apply {
+                topMargin = dp(if (compact) 0 else 10)
+            }
+        }
+        sourceLabel.setPadding(dp(12), dp(if (compact) 4 else 6), dp(12), dp(if (compact) 4 else 6))
+        signalSection.layoutParams = (signalSection.layoutParams as LinearLayout.LayoutParams).apply {
+            topMargin = dp(if (compact) 6 else if (wideLayout) 16 else 14)
+        }
+        val lampSize = dp(when { compact -> 64; on && wideLayout -> 240; on -> 124; wideLayout -> 132; else -> 104 })
+        lamp.layoutParams = (lamp.layoutParams as LinearLayout.LayoutParams).apply {
+            width = lampSize; height = lampSize
+            rightMargin = dp(when { compact -> 12; on && wideLayout -> 36; on -> 22; wideLayout -> 24; else -> 18 })
+        }
+        timeLabel.textSize = when { compact -> 42f; on && wideLayout -> 150f; on -> 90f; wideLayout -> 88f; else -> 72f }
+        phaseLabel.textSize = when { compact -> 18f; on && wideLayout -> 40f; on -> 30f; wideLayout -> 30f; else -> 26f }
+        reasonLabel.textSize = when { compact -> 12f; on -> 19f; else -> 15f }
+        reasonLabel.layoutParams = (reasonLabel.layoutParams as LinearLayout.LayoutParams).apply {
+            topMargin = dp(if (compact) 4 else 12)
+        }
+        drivingStatus.textSize = if (compact) 12f else 15f
+        drivingStatus.maxLines = if (compact) 2 else Int.MAX_VALUE
+        drivingStatus.ellipsize = null
+        drivingStatus.layoutParams = (drivingStatus.layoutParams as LinearLayout.LayoutParams).apply {
+            topMargin = dp(if (compact) 4 else 10)
+        }
+        // The existing hierarchy stays in place; parked controls retain their full touch targets.
         val fill = on && wideLayout
         sideColumn?.visibility = if (fill) View.GONE else View.VISIBLE
         signalStack.layoutParams = (signalStack.layoutParams as LinearLayout.LayoutParams).apply { width = if (fill) -2 else 0; weight = if (fill) 0f else 1f }
         headRow.gravity = if (fill) Gravity.CENTER else Gravity.CENTER_VERTICAL
         reasonLabel.gravity = if (fill) Gravity.CENTER else Gravity.START
         signalCard.gravity = if (fill) Gravity.CENTER else Gravity.START
-        signalCard.minimumHeight = if (fill) resources.displayMetrics.heightPixels - dp(150) else 0
-        signalCard.setPadding(dp(22), dp(if (fill) 28 else 22), dp(22), dp(if (fill) 28 else 20))
+        signalCard.minimumHeight = if (fill && !compact) resources.displayMetrics.heightPixels - dp(150) else 0
+        signalCard.setPadding(dp(if (compact) 12 else 22), dp(when { compact -> 8; fill -> 28; else -> 22 }),
+            dp(if (compact) 12 else 22), dp(when { compact -> 8; fill -> 28; else -> 20 }))
+        if (on) {
+            // A lower control may have scrolled the parked screen. Show the safety badge again
+            // after the driving hierarchy has finished measuring, without retaining that focus.
+            rootColumn.findFocus()?.clearFocus()
+            (rootColumn.parent as? ScrollView)?.let { scroll ->
+                scroll.viewTreeObserver.addOnPreDrawListener(object : android.view.ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        if (scroll.viewTreeObserver.isAlive) scroll.viewTreeObserver.removeOnPreDrawListener(this)
+                        if (driving && rootColumn.parent === scroll) {
+                            scroll.scrollTo(0, 0)
+                            scroll.post { if (driving && rootColumn.parent === scroll) scroll.scrollTo(0, 0) }
+                        }
+                        return true
+                    }
+                })
+            }
+        }
     }
 
     /** 신호 카드 바탕. 확인된 신호면 그 색을 아주 옅게 깔고, 확인 불가면 점선 테두리의 빈 카드. */
@@ -563,7 +681,7 @@ class MainActivity : Activity() {
         sourceLabel.background = rounded(blend(bg, badge, 0.16f), 20)
         sourceLabel.setTextColor(badge)
         listOf(modeDemoButton to modeDemo, modeLiveButton to !modeDemo).forEach { (b, on) ->
-            b.background = rounded(if (on) raised else Color.TRANSPARENT, 11)
+            b.background = focusable(if (on) raised else Color.TRANSPARENT, 11)
             b.setTextColor(if (on) ink else muted)
             b.alpha = if (b.isEnabled) 1f else 0.4f
         }
@@ -576,7 +694,7 @@ class MainActivity : Activity() {
     }
     private fun chip(label: String, click: () -> Unit) = Button(this).apply {
         text = label; textSize = 13f; isAllCaps = false; setTextColor(ink); stateListAnimator = null
-        background = rounded(raised, 12); minHeight = 0; minimumHeight = 0; setPadding(dp(4), 0, dp(4), 0)
+        background = focusable(raised, 12); minHeight = 0; minimumHeight = 0; setPadding(dp(4), 0, dp(4), 0)
         setOnClickListener { click() }
     }
 
