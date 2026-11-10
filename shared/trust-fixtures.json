@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "purpose": "SYNTHETIC TEST FIXTURES ONLY — never a production mapping registry",
+  "nowEpochMs": 1793836800000,
+  "policy": {"maxSourceAgeMs": 3000, "maxFutureSkewMs": 0, "maxRemainingDeciseconds": 36000},
+  "approvedMappings": [{
+    "id": "test-se-straight",
+    "version": "fixture-v1",
+    "intersectionId": "TEST-001",
+    "approach": "SE",
+    "movement": "STRAIGHT",
+    "verification": "VERIFIED",
+    "evidenceReference": "synthetic-test-authority-only"
+  }],
+  "baseTarget": {"intersectionId": "TEST-001", "approach": "SE", "movement": "STRAIGHT", "mappingId": "test-se-straight", "mappingVersion": "fixture-v1"},
+  "baseObservation": {"intersectionId": "TEST-001", "approach": "SE", "movement": "STRAIGHT", "phase": "RED", "provenance": "LIVE", "sourceTimestampEpochMs": 1793836800000, "remainingDeciseconds": 150, "mappingId": "test-se-straight", "mappingVersion": "fixture-v1"},
+  "mergeRule": "For each case shallow-merge targetPatch and observationPatch into their base. Set useEmptyRegistry true to use no mapping authority. Null remains null; it is never filled from another field.",
+  "cases": [
+    {"id": "explicit-red", "expected": {"kind": "VERIFIED_LIVE", "reason": "verified", "phase": "RED", "remainingSeconds": 15}},
+    {"id": "missing-registry", "useEmptyRegistry": true, "expected": {"kind": "UNKNOWN", "reason": "mapping-unverified", "phase": null, "remainingSeconds": null}},
+    {"id": "wrong-id", "observationPatch": {"intersectionId": "TEST-002"}, "expected": {"kind": "UNKNOWN", "reason": "id-mismatch", "phase": null, "remainingSeconds": null}},
+    {"id": "wrong-approach", "observationPatch": {"approach": "NW"}, "expected": {"kind": "UNKNOWN", "reason": "approach-mismatch", "phase": null, "remainingSeconds": null}},
+    {"id": "wrong-movement", "observationPatch": {"movement": "PEDESTRIAN"}, "expected": {"kind": "UNKNOWN", "reason": "movement-mismatch", "phase": null, "remainingSeconds": null}},
+    {"id": "missing-timestamp", "observationPatch": {"sourceTimestampEpochMs": null}, "expected": {"kind": "UNKNOWN", "reason": "missing-timestamp", "phase": null, "remainingSeconds": null}},
+    {"id": "future-timestamp", "observationPatch": {"sourceTimestampEpochMs": 1793836800001}, "expected": {"kind": "UNKNOWN", "reason": "future-timestamp", "phase": null, "remainingSeconds": null}},
+    {"id": "stale-boundary", "observationPatch": {"sourceTimestampEpochMs": 1793836797000}, "expected": {"kind": "UNKNOWN", "reason": "stale", "phase": null, "remainingSeconds": null}},
+    {"id": "expiry-boundary", "observationPatch": {"sourceTimestampEpochMs": 1793836799500, "remainingDeciseconds": 5}, "expected": {"kind": "UNKNOWN", "reason": "expired", "phase": null, "remainingSeconds": null}},
+    {"id": "actual-elapsed", "observationPatch": {"sourceTimestampEpochMs": 1793836798000, "remainingDeciseconds": 150}, "expected": {"kind": "VERIFIED_LIVE", "reason": "verified", "phase": "RED", "remainingSeconds": 13}},
+    {"id": "short-green-is-not-yellow", "observationPatch": {"phase": "GREEN", "remainingDeciseconds": 20}, "expected": {"kind": "VERIFIED_LIVE", "reason": "verified", "phase": "GREEN", "remainingSeconds": 2}},
+    {"id": "unknown-state", "observationPatch": {"phase": "UNKNOWN"}, "expected": {"kind": "UNKNOWN", "reason": "unsupported-phase", "phase": null, "remainingSeconds": null}},
+    {"id": "mapping-version-changed", "observationPatch": {"mappingVersion": "fixture-v2"}, "expected": {"kind": "UNKNOWN", "reason": "mapping-version-mismatch", "phase": null, "remainingSeconds": null}},
+    {"id": "simulation-default-denied", "observationPatch": {"provenance": "SIMULATION"}, "expected": {"kind": "UNKNOWN", "reason": "source-mode-mismatch", "phase": null, "remainingSeconds": null}},
+    {"id": "explicit-simulation", "useEmptyRegistry": true, "displayMode": "DEMONSTRATION", "observationPatch": {"provenance": "SIMULATION"}, "expected": {"kind": "DEMONSTRATION", "reason": "demonstration", "phase": "RED", "remainingSeconds": 15}},
+    {"id": "explicit-replay", "useEmptyRegistry": true, "displayMode": "DEMONSTRATION", "observationPatch": {"provenance": "REPLAY"}, "expected": {"kind": "DEMONSTRATION", "reason": "demonstration", "phase": "RED", "remainingSeconds": 15}}
+  ]
+}

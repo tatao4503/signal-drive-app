@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ 시작 화면. 기본값은 흰 바탕이라 어두운 차량 화면에서 번쩍인다. -->
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0A0E13</item>
+        <item name="android:navigationBarColor">#0A0E13</item>
+        <item name="android:colorAccent">#3DDC97</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#0A0E13</item>
+        <item name="android:windowSplashScreenBackground">#0A0E13</item>
+    </style>
+</resources>

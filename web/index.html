@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101719">
+  <meta name="description" content="SIGNAL Drive — 방향과 데이터 유효성을 확인하는 차량 신호 정보 시뮬레이터">
+  <title>SIGNAL Drive · 개발 프리뷰</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#driver-view">신호 화면으로 바로가기</a>
+  <div class="app-wrap">
+    <header class="app-header">
+      <a class="brand" href="/" aria-label="SIGNAL Drive 홈"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>SIGNAL<span class="brand-divider">/</span><b>DRIVE</b></span></a>
+      <div class="mode-tabs" role="tablist" aria-label="데이터 모드">
+        <button type="button" id="demo-mode" role="tab" aria-selected="true" aria-controls="driver-view" data-testid="mode-demo">시연 모드</button>
+        <button type="button" id="live-mode" role="tab" aria-selected="false" aria-controls="driver-view" data-testid="mode-live">서버 데이터</button>
+      </div>
+      <span class="version">DEVELOPMENT <b>01</b></span>
+    </header>
+
+    <div class="provenance-banner" id="provenance-banner" data-testid="provenance-banner"><span class="mode-tag" id="mode-tag">DEMO</span><strong id="provenance-label">시연 데이터 · 실제 신호 아님</strong><span class="banner-detail" id="provenance-detail">한 교차로의 데이터 흐름을 확인합니다.</span></div>
+
+    <main id="driver-view" tabindex="-1">
+      <div class="view-heading"><div><p class="eyebrow">NEXT INTERSECTION</p><h1 id="target-label">가상 교차로 01</h1><p class="target-subtitle" id="target-description">북서 접근 <span aria-hidden="true">→</span> 직진</p></div><div class="vehicle-pill" id="vehicle-pill"><span class="vehicle-dot" aria-hidden="true"></span><span id="vehicle-label">모의 차량 · 정차</span></div></div>
+      <div class="drive-grid">
+        <section class="signal-card" id="signal-card" aria-labelledby="signal-section-title" data-testid="signal-card">
+          <div class="card-topline"><h2 id="signal-section-title">신호 정보</h2><span class="availability" id="availability">시연 입력 확인</span></div>
+          <div class="signal-readout" id="signal-readout" data-testid="signal-readout" hidden><div class="phase-symbol" id="phase-symbol" aria-hidden="true"></div><div class="phase-copy"><span class="phase-label" id="phase-label"></span><div class="remaining"><strong id="countdown" data-testid="countdown"></strong><span>초</span></div></div></div>
+          <div class="unknown-readout" id="unknown-readout" data-testid="unknown-readout"><div class="unknown-mark" aria-hidden="true"><span></span><span></span><span></span></div><h3>현재 신호 확인 불가</h3><p id="unknown-reason" data-testid="unknown-reason">데이터를 확인하고 있습니다.</p></div>
+          <div class="signal-footer"><span class="source-dot" aria-hidden="true"></span><span id="signal-footnote">실제 현장 신호를 우선 확인하세요.</span></div>
+        </section>
+
+        <section class="trust-card" aria-labelledby="trust-title"><div class="card-topline"><h2 id="trust-title">표시 근거</h2><span class="trust-word">SIGNAL TRUST</span></div><p class="trust-intro" id="trust-intro">조건을 모두 확인할 때만 신호를 표시합니다.</p><dl class="trust-checks" id="trust-checks"></dl><div class="source-time"><span>원천 데이터 시각</span><strong id="source-time">—</strong><small id="age-label">수신 전</small></div><div class="trust-note" id="trust-note">시연 입력은 실제 교차로와 연결되지 않습니다.</div></section>
+      </div>
+      <p class="driving-notice" id="driving-notice" hidden><span aria-hidden="true">⌁</span> 주행 제한 적용 중 · 설정과 시나리오 변경이 잠겨 있습니다.</p>
+    </main>
+
+    <section class="lab" aria-labelledby="lab-title"><div class="lab-heading"><div><span class="eyebrow">TEST CONSOLE</span><h2 id="lab-title">시연 제어</h2></div><p>차량 연동 전 브라우저 테스트 도구</p><button type="button" id="lab-toggle" aria-expanded="false" aria-controls="lab-body">펼치기 <span aria-hidden="true">+</span></button></div>
+      <div class="lab-body" id="lab-body" hidden><div class="lab-group scenario-group"><label for="scenario">데이터 시나리오</label><div class="scenario-actions"><select id="scenario" data-testid="scenario-select"><option value="normal">정상 수신</option><option value="alternate">대체 현시</option><option value="stale">데이터 지연</option><option value="future">원천 시각 오류</option><option value="mismatch">대상 매핑 불일치</option><option value="offline">연결 끊김</option><option value="expired">신호시간 만료</option><option value="uncertain">접근 방향 미확정</option><option value="recovered">연결 복구</option></select><button class="secondary-button" id="replay" type="button" data-testid="replay-button">장애 흐름 재생 <span aria-hidden="true">↗</span></button></div><p class="control-note" id="scenario-note">실시간 데이터의 정확성을 평가하는 화면이 아닙니다.</p></div><div class="lab-group vehicle-group"><label for="vehicle-state">모의 차량 상태 <span class="sim-label">SIM</span></label><select id="vehicle-state" data-testid="vehicle-select"><option value="parked">정차 · 설정 허용</option><option value="driving">주행 · 설정 제한</option><option value="unknown">차량 상태 미확인 · 설정 제한</option></select><p class="control-note">실제 AAOS 차량 상태와 독립된 테스트 입력입니다.</p></div></div>
+      <div class="lab-locked" id="lab-locked" hidden>모의 차량 상태만 변경할 수 있습니다. 데이터 설정은 정차 상태에서 조작하세요.</div>
+    </section>
+    <footer class="app-footer"><span>정보의 유효성을 먼저 확인합니다.</span><span>LOCAL PROTOTYPE <span class="footer-slash">/</span> v0.2.0</span></footer>
+    <div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</body>
+</html>

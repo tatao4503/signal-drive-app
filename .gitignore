@@ -1,0 +1,24 @@
+.gradle/
+**/build/
+local.properties
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+.DS_Store
+node_modules/
+.logs/
+.local/
+*.nosync
+# iCloud 충돌 복사본 (예: ".env 2", "README 2.md")
+.env *
+* [2-9]
+* [2-9].*
+.kotlin/
+
+# iCloud 제외 링크(빌드·로그는 *.nosync 실폴더)
+build
+.gradle
+.logs
+.kotlin

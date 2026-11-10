@@ -1,0 +1,13 @@
+[
+  {
+    "id": "review-required-example",
+    "label": "연결 검토용 예시이며 실시간 승인 대상이 아님",
+    "intersectionId": "20386",
+    "approach": "SE",
+    "movement": "STRAIGHT",
+    "mappingVersion": "unverified-example-1",
+    "verified": false,
+    "verificationEvidence": "",
+    "verifiedAt": ""
+  }
+]
