@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "completed": true,
+  "expectedVersion": {
+    "versionName": "0.2.2",
+    "versionCode": 4
+  },
+  "platform": "phone",
+  "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "serial": "emulator-5584",
+  "sourceManifestFile": "source-manifest.json",
+  "sourceManifestSha256": "ebc9ed1c2a2df124df56c9f427c03623b6ee8885658a090e6c60386a30bd889a",
+  "startedAt": "2026-11-11T08:59:46.669Z",
+  "clips": [
+    {
+      "file": "clip-01-green.mp4",
+      "lead": 1.2189530000000013,
+      "sha256": "0ee5179714f770d36968c2bd595a333df93408429934db5b831bf73fb0a6d88c",
+      "requestedDurationSeconds": 9,
+      "caption": "정상 녹색"
+    },
+    {
+      "file": "clip-02-delay.mp4",
+      "lead": 1.200891292,
+      "sha256": "fb8eb9706d8f7a18e87578802b8212c644823221c0dd848dacbda2c7fb5da8a3",
+      "requestedDurationSeconds": 9,
+      "caption": "데이터 지연"
+    },
+    {
+      "file": "clip-03-recover.mp4",
+      "lead": 1.2021197080000057,
+      "sha256": "3a1574f63c4b663f74fa8eba0cf67eb1f6e76b66c2e863f04b3be1948a1bea9d",
+      "requestedDurationSeconds": 9,
+      "caption": "복구"
+    },
+    {
+      "file": "clip-04-disconnect.mp4",
+      "lead": 1.202176625,
+      "sha256": "e0c498b07f4a77c8092b9c751650129eba1bd3203673c75874309fbaee4c234f",
+      "requestedDurationSeconds": 9,
+      "caption": "연결 단절"
+    },
+    {
+      "file": "clip-05-mismatch.mp4",
+      "lead": 1.2031172499999956,
+      "sha256": "78cd28d92e4b7f6f5541d6527e68eb069a1518cbdce81d0b326dda40188b9c96",
+      "requestedDurationSeconds": 9,
+      "caption": "교차로 불일치"
+    },
+    {
+      "file": "clip-06-direction.mp4",
+      "lead": 1.2018180419999989,
+      "sha256": "a8a4fbb59b44c52b906618d44ba144c9d841d00f522e028106798e6464409583",
+      "requestedDurationSeconds": 9,
+      "caption": "방향 미확정"
+    },
+    {
+      "file": "clip-07-expired.mp4",
+      "lead": 1.2024324170000036,
+      "sha256": "94e7bb773fe61d1e4cf902637078b25b84229dc06cb8cb6e0eca4dc2442aca43",
+      "requestedDurationSeconds": 9,
+      "caption": "잔여시간 만료"
+    },
+    {
+      "file": "clip-08-recover.mp4",
+      "lead": 1.201799874999997,
+      "sha256": "1c178338b56612cbfb576311658048c60fec8a2f089612a2d50147855b660922",
+      "requestedDurationSeconds": 9,
+      "caption": "복구"
+    },
+    {
+      "file": "clip-09-driving.mp4",
+      "lead": 2.0532427079999906,
+      "sha256": "e1173a54781050b2f39a25f86b259d7dc1a9f6ccd5edb910fe22fc76c6bf50ed",
+      "requestedDurationSeconds": 10
+    },
+    {
+      "file": "clip-10-clock-back.mp4",
+      "lead": 1.5621644169999926,
+      "sha256": "384c9a391ab292bef7be5b0ba873e73a53d55a1292428f1f0af53fb1059baf95",
+      "requestedDurationSeconds": 9
+    },
+    {
+      "file": "clip-11-clock-restore.mp4",
+      "lead": 1.6035090830000116,
+      "sha256": "3e939a510dcaa5df02bfd5afa88b01b5b9ccd5002ce2422a4c228fc658f34677",
+      "requestedDurationSeconds": 9
+    },
+    {
+      "file": "clip-12-new-data.mp4",
+      "lead": 1.2025815839999996,
+      "sha256": "52bc4664e0d6105e7ab55f77aa4f1a8166894b8f161f7f11bc7513fab2a1a3b8",
+      "requestedDurationSeconds": 9
+    }
+  ],
+  "evidenceMethod": "adb-screenrecord-and-app-owned-trace",
+  "limits": [
+    "synthetic signal demonstration",
+    "no live traffic data received",
+    "not Pleos or a production vehicle",
+    "AAOS idling restriction only; sustained moving untested"
+  ],
+  "avdName": "signal-final-phone34",
+  "versionName": "0.2.2",
+  "versionCode": 4,
+  "installedApkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "restoration": {
+    "ok": true,
+    "steps": [
+      {
+        "label": "device-clock",
+        "ok": true
+      },
+      {
+        "label": "auto-time",
+        "ok": true
+      },
+      {
+        "label": "rotation-auto",
+        "ok": true
+      },
+      {
+        "label": "rotation-user",
+        "ok": true
+      },
+      {
+        "label": "screen-override",
+        "ok": true
+      },
+      {
+        "label": "trace-property",
+        "ok": true
+      }
+    ]
+  },
+  "completedAt": "2026-11-11T09:02:10.750Z"
+}

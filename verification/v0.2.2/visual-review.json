@@ -1,0 +1,102 @@
+{
+  "reviewDateKst": "2026-11-11",
+  "method": "Assistant visual inspection of nine original-resolution still images via view_image(detail=original); not automated pixel assertions.",
+  "versionName": "0.2.2",
+  "versionCode": 4,
+  "apkSha256FromDeviceEvidence": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "inspectedFiles": [
+    {
+      "file": "phone/01-start.png",
+      "sha256": "39b14dcdec6a555a25d6f98217b0e49ad9fcd6384f5e149e9e2d5e16d584513b",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Version0.2.2, full synthetic-data badge, green signal and countdown, and the neutral field-signal/check-surroundings guide are visible. Lower parked controls continue below the viewport."
+    },
+    {
+      "file": "phone/02-1-데이터지연.png",
+      "sha256": "f1c0f4db3c19aa43c8356a34ecffbfa210818d62d67b4a72435ddee3a9255934",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Synthetic-data badge and unknown phase remain visible; the lamp has no signal color and no countdown is shown. Direct-observation guide and stale-data reason fit."
+    },
+    {
+      "file": "phone/04-lock-주행.png",
+      "sha256": "11961691ae46d64756724af01885eb6ddcfe42651c7dee4d3acdfe8c3c482a45",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Full synthetic-data badge, green phase, countdown, neutral guide and field-signal priority notice fit. The reason intentionally uses a one-line ellipsis; the provenance badge stays complete."
+    },
+    {
+      "file": "phone/06-small-landscape-driving-large-text.png",
+      "sha256": "929aed70e6259dfd357a911aaf42b6466f6df63eec2e5564b25ce39bdfe4b076",
+      "pixels": [
+        1280,
+        720
+      ],
+      "observation": "At1280x720 with the large-text test setting, source badge, green phase, countdown, neutral guide, reason and field-signal priority notice all fit above the navigation bar. The bottom margin is small; this does not establish fit at larger fonts or other viewports."
+    },
+    {
+      "file": "phone/07-clock-restored.png",
+      "sha256": "dc98d61b6803bfe8fd87620ab0f0aec0877a867439afaf45d4ada2d4a166c5a2",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "observation": "Synthetic-data badge, empty lamp, unknown phase, direct-observation guide and clock-change hold reason are visible. No previous green signal or countdown appears in this still."
+    },
+    {
+      "file": "aaos/aaos-start.png",
+      "sha256": "6ef1d06f561df7b3dbc72a3d977fb91eaf8ed0018dc2ea5b05ff0893f4bcb2c9",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Live-connection status starts with no registered mapping, an empty lamp and no countdown. Direct-observation guide, registration requirement and full live-source badge fit."
+    },
+    {
+      "file": "aaos/aaos-parked-demo.png",
+      "sha256": "3c3c3b1990ca99cdce1063b50f0f09570978f8ed9d9f2cdbf153c8b4d23875ec",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Parked synthetic-data badge, green signal, countdown and neutral guide fit in the card. Separate demo controls are visible without a blocking overlay."
+    },
+    {
+      "file": "aaos/aaos-driving.png",
+      "sha256": "56f341bb18e518a6443bb692deaaafa0de8af37462c8690e8a8c25b5ef316bf9",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "Restricted AAOS screen shows live provenance, empty lamp, unknown phase, direct-observation guide and full field-signal priority/locked-setting notice. No synthetic green indication is visible."
+    },
+    {
+      "file": "aaos/aaos-parked-again.png",
+      "sha256": "6ef1d06f561df7b3dbc72a3d977fb91eaf8ed0018dc2ea5b05ff0893f4bcb2c9",
+      "pixels": [
+        1024,
+        768
+      ],
+      "observation": "The returned parked screen remains in live mode with no signal/countdown; source badge and direct-observation guide remain visible. This is a still observation, not continuous-transition proof."
+    }
+  ],
+  "blockingPrimaryCardClippingOrSystemOverlayObserved": false,
+  "nonblockingObservations": [
+    "Portrait driving reason uses intentional ellipsis while the independent provenance badge stays complete.",
+    "Parked controls may continue below the viewport.",
+    "The tested small landscape card has little bottom margin; larger font scales and other viewports remain outside this inspection."
+  ],
+  "limits": [
+    "Only these captured stills were visually inspected; this is not full continuous UI/video playback.",
+    "App-owned trace assertions and this manual still-image inspection are separate evidence.",
+    "AAOS idling restriction evidence is not sustained moving, Pleos or real-car verification.",
+    "Synthetic signal inputs; no live traffic-signal accuracy or driving-use approval is established."
+  ]
+}

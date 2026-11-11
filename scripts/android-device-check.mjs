@@ -290,6 +290,7 @@ async function main() {
     check('AAOS 공회전 제한 — 시연 콘솔·화면 전환 숨김', Array.isArray(trace()?.buttons) && !trace().buttons.some((b) => b.text === '데이터 지연' || b.text === '시연 화면'));
     check('AAOS 공회전 제한 — 잠금 문구', s.ux.includes('설정 잠금'), s.ux);
     check('AAOS 공회전 제한 — 현장 신호 우선 안내 완전 표시', s.drivingNoticeOnScreen === true && s.drivingNotice.includes('현장 신호 우선 확인'), s.drivingNotice);
+    check('AAOS 공회전 제한 — 신호 직접 확인 안내 완전 표시', s.guideOnScreen === true && s.guide === '지금은 신호등을 직접 봐 주세요', s.guide);
     await park(); s = await state(); await shot('aaos-parked-again');
     check('AAOS 정차 복귀 — 일반 화면 복귀, 시연으로 자동 복귀 안 함', trace()?.driving === false && s.sourceOnScreen && s.source.includes('실시간'), s.source);
     return;
@@ -299,6 +300,7 @@ async function main() {
   let s = await state(); await shot('01-start');
   check('시작 화면 시연 표시', s.sourceOnScreen && s.source === '시연 데이터 · 실제 신호 아님', s.source);
   check('정상 녹색 — 색·초·접근성 표시', shown(s) && s.phase.includes('녹색'), `${s.phase} ${s.seconds} [${s.secondsDesc}]`);
+  check('녹색 안내 — 현장 신호 확인 문구 완전 표시', s.guideOnScreen === true && s.guide === '현장 신호와 주위를 한 번 더 확인해요', s.guide);
 
   // 2) 보류 시나리오
   const holds = ['데이터 지연', '연결 단절', '교차로 불일치', '방향 미확정', '미래 시각', '잔여시간 만료'];
@@ -359,6 +361,7 @@ async function main() {
   check('작은 가로 시험 뷰포트 확인', size().w === 1280 && size().h === 720, `${size().w}x${size().h}`);
   check('작은 가로 화면·큰 글자 — 주행 출처·색·초 완전 표시', shown(s), `${size().w}x${size().h} · ${s.phase} ${s.seconds}`);
   check('작은 가로 화면·큰 글자 — 현장 신호 우선 안내 완전 표시', s.drivingNoticeOnScreen === true && s.drivingNotice.includes('현장 신호 우선 확인'), s.drivingNotice);
+  check('작은 가로 화면·큰 글자 — 새 확인 안내 완전 표시', s.guideOnScreen === true && s.guide === '현장 신호와 주위를 한 번 더 확인해요', s.guide);
   await tap('정차');
   shell(snapshot.fontScale === 'null' ? 'settings delete system font_scale' : `settings put system font_scale ${snapshot.fontScale}`);
   shell(snapshot.wmSizeOverride ? `wm size ${snapshot.wmSizeOverride}` : 'wm size reset');

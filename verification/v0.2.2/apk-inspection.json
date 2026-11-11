@@ -1,0 +1,42 @@
+{
+  "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "certificateSha256": "0ea3775bf31c6f153d8b12c9b6fef23e85cb9a5d64857bdcf022abdb36bf07a5",
+  "certificateSubjectAnonymous": true,
+  "signatureVerified": true,
+  "signatureSchemes": [
+    "Verified using v1 scheme (JAR signing): false",
+    "Verified using v2 scheme (APK Signature Scheme v2): true",
+    "Verified using v3 scheme (APK Signature Scheme v3): false",
+    "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+    "Verified using v4 scheme (APK Signature Scheme v4): false"
+  ],
+  "debuggable": false,
+  "packageName": "kr.signal.drive",
+  "versionName": "0.2.2",
+  "versionCode": 4,
+  "minSdk": 28,
+  "targetSdk": 34,
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "approvedMappings": [],
+  "buildSourceFileCount": 64,
+  "buildSourceManifestSha256": "974911e18aa61c3813e8fabae3506c51597a19677f4787a1c8eb6086a2188512",
+  "currentSourceManifestSha256": "974911e18aa61c3813e8fabae3506c51597a19677f4787a1c8eb6086a2188512",
+  "sourceFileMismatches": [],
+  "checks": {
+    "apkSha256Matches": true,
+    "signatureVerified": true,
+    "sameAnonymousCertificate": true,
+    "nonDebugCertificate": true,
+    "nonDebuggable": true,
+    "packageVersionMatches": true,
+    "sdkMatches": true,
+    "onlyInternetPermission": true,
+    "approvedMappingsEmpty": true,
+    "sourceFilesMatchBuildIdentity": true,
+    "sourceManifestMatchesBuildIdentity": true,
+    "buildIdentityApkMatches": true
+  },
+  "allChecksPassed": true
+}

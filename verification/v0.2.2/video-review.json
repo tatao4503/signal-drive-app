@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 2,
+  "reviewedAtUtc": "2026-11-11T09:11:11.911610+00:00",
+  "status": "pass",
+  "pass": true,
+  "videoFile": "outputs/SIGNAL-Drive-v0.2.2-RC/개발물/SIGNAL-Drive-v0.2.2-시연영상.mp4",
+  "videoSha256": "1a83b74566a6b3c9daebac9d0f692be403374c4b309ee3e6ff559cfc0e9fe14e",
+  "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "versionName": "0.2.2",
+  "versionCode": 4,
+  "durationSeconds": 90.366667,
+  "plannedTimelineDurationSeconds": 89.4,
+  "actualMinusPlannedDurationSeconds": 0.966667,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "codec": "h264",
+  "audio": false,
+  "frameCount": 2711,
+  "decodeWholeFilePassed": true,
+  "decodeCommand": "ffmpeg -v error -i <videoFile> -f null -",
+  "decodeExitCode": 0,
+  "decodeErrorOutput": "",
+  "method": "Full-file decode; 72 original frame extractions viewed in contact sheets; selected originals viewed separately; all decoded frames checked against visually reviewed caption and restricted-panel crop templates. No full continuous playback.",
+  "sampleFramesInspectedSeconds": [
+    0.0,
+    3.0,
+    5.0,
+    10.4,
+    10.45,
+    10.5,
+    10.55,
+    10.6,
+    12.0,
+    15.0,
+    15.4,
+    15.45,
+    15.5,
+    15.55,
+    15.6,
+    16.0,
+    17.3,
+    20.0,
+    23.0,
+    28.0,
+    32.0,
+    36.0,
+    39.0,
+    43.0,
+    46.0,
+    50.0,
+    54.0,
+    58.0,
+    61.0,
+    61.5,
+    62.0,
+    62.1,
+    62.2,
+    62.3,
+    62.4,
+    63.0,
+    63.5,
+    64.0,
+    64.5,
+    64.7,
+    64.8,
+    64.9,
+    65.0,
+    66.0,
+    68.0,
+    70.0,
+    70.5,
+    70.9,
+    71.0,
+    71.1,
+    71.5,
+    72.0,
+    72.5,
+    73.0,
+    73.2,
+    73.3,
+    73.4,
+    73.5,
+    74.0,
+    76.0,
+    78.0,
+    79.0,
+    79.6,
+    79.7,
+    80.0,
+    82.0,
+    84.0,
+    85.0,
+    85.3,
+    85.4,
+    88.0,
+    90.0
+  ],
+  "originalFramesSeparatelyInspectedSeconds": [
+    12.0,
+    17.3,
+    63.0,
+    65.0,
+    71.0,
+    73.5,
+    80.0,
+    88.0
+  ],
+  "sampleFrameDirectory": "work/fix-v022-20261111/video-qa",
+  "checks": {
+    "videoHashMatchesManifest": true,
+    "phoneRecordingCompleted": true,
+    "aaosRecordingCompleted": true,
+    "recordingsDeclareSameApk": true,
+    "recordingsDeclareVersionCode4": true,
+    "parkedCaptionRestrictedPanelOverlapZero": true
+  },
+  "criticalRegression": {
+    "oldBugTimeSeconds": 17.3,
+    "oldBugPointNow": "Phone mock vehicle driving preview, with synthetic signal badge and separate mock-input caption.",
+    "parkedSyntheticCaptionOnlySeconds": [
+      10.5,
+      15.6
+    ],
+    "restrictedPanelDetectedSeconds": [
+      62.4,
+      71.266667
+    ],
+    "overlapFrameCount": 0,
+    "result": "pass"
+  },
+  "actualCaptionIntervals": {
+    "parkedSynthetic": [
+      {
+        "firstFrame": 315,
+        "lastFrame": 467,
+        "startSeconds": 10.5,
+        "endExclusiveSeconds": 15.6
+      }
+    ],
+    "restrictionTransition": [
+      {
+        "firstFrame": 1862,
+        "lastFrame": 1938,
+        "startSeconds": 62.066667,
+        "endExclusiveSeconds": 64.633333
+      }
+    ],
+    "idlingRestricted": [
+      {
+        "firstFrame": 1939,
+        "lastFrame": 2125,
+        "startSeconds": 64.633333,
+        "endExclusiveSeconds": 70.866667
+      }
+    ],
+    "parkReturnTransition": [
+      {
+        "firstFrame": 2126,
+        "lastFrame": 2201,
+        "startSeconds": 70.866667,
+        "endExclusiveSeconds": 73.4
+      }
+    ],
+    "parkedLiveNoAutoDemo": [
+      {
+        "firstFrame": 2202,
+        "lastFrame": 2395,
+        "startSeconds": 73.4,
+        "endExclusiveSeconds": 79.866667
+      }
+    ],
+    "liveNoReceivedSignal": [
+      {
+        "firstFrame": 2396,
+        "lastFrame": 2560,
+        "startSeconds": 79.866667,
+        "endExclusiveSeconds": 85.366667
+      }
+    ]
+  },
+  "bufferedTransitionMetadata": {
+    "introEndSeconds": 5.101519583000001,
+    "endSeconds": 22.9,
+    "preCommandBufferSeconds": 0.5,
+    "postObservationBufferSeconds": 0.25,
+    "rawTimes": {
+      "idlingCommand": 5.601519583000001,
+      "idlingObserved": 7.402281958,
+      "parkCommand": 14.400773541,
+      "parkObserved": 16.165723999999997
+    },
+    "captions": [
+      [
+        0.0,
+        5.101519583000001,
+        "정차 중 합성 신호 시연\n실제 교통신호가 아닙니다"
+      ],
+      [
+        5.101519583000001,
+        7.652281958,
+        "AAOS 에뮬레이터 제한 상태 전환 구간\n합성 시연을 해제하고 설정을 잠급니다"
+      ],
+      [
+        7.652281958,
+        13.900773541,
+        "AAOS 에뮬레이터 공회전(idling) 제한 상태\n시연 해제 · 설정 잠금 · 현재 신호 확인 불가"
+      ],
+      [
+        13.900773541,
+        16.415723999999997,
+        "AAOS 에뮬레이터 정차 복귀 전환 구간\n실제 차량 주행 시험이 아닙니다"
+      ],
+      [
+        16.415723999999997,
+        22.9,
+        "정차 복귀 · 시연으로 자동 복귀하지 않습니다\n지속 moving·Pleos·실차는 미검증입니다"
+      ]
+    ]
+  },
+  "observations": [
+    "The parked synthetic caption appears only in the early parked AAOS scene. All-frame crop comparison found no overlap with the AAOS restricted panel.",
+    "The early AAOS scene ends at 15.600 seconds before restriction. The old 17.3-second defect location now shows the phone mock driving preview.",
+    "The later AAOS sequence uses restriction-transition, idling-restricted, park-return-transition and parked-live/no-auto-demo captions. Restricted content shows no signal color or countdown, retains the field-signal guide and source badge, and hides settings/demo controls.",
+    "At the park return the app remains in real-time connection mode with current signal unavailable; the caption explicitly says it does not automatically return to demonstration.",
+    "AAOS captions and footer qualify this as an emulator idling restriction test, state sustained moving is unverified, and disclose that Pleos and a production vehicle are unverified.",
+    "The final real-time scene discloses no actual traffic signals received and zero approved mappings; its app content shows no signal color or countdown.",
+    "Korean added captions, field-signal guides and source badges are readable and show no clipping or overlay obstruction in inspected frames.",
+    "The phone mock driving preview uses an ellipsis on its secondary synthetic explanation line; its synthetic source badge, full field-signal guide and external synthetic/mock-input caption remain visible. This is not a caption-timing failure.",
+    "The manifest timeline is a planned edit timeline. Actual late AAOS start is 62.066667 seconds rather than planned 61.101520 seconds, and the actual end is 90.366667 rather than planned 89.400000. Actual captions and scene content agree, so the offset is nonblocking.",
+    "Both recording manifests are completed and declare v0.2.2 / versionCode 4 and the same installed APK SHA-256 as the final video manifest."
+  ],
+  "blockingIssues": [],
+  "nonBlockingNotes": [
+    "Planned timeline offsets differ from encoded timestamps by about 0.97 seconds in the late portion; use actualCaptionIntervals for review seeks.",
+    "Phone mock driving secondary explanation is ellipsized, while the source badge and guide remain fully visible."
+  ],
+  "fullFrameConsistency": {
+    "method": "All 2711 decoded frames; grayscale crop mean absolute difference to visually reviewed templates. This is a consistency check, not OCR or real vehicle verification.",
+    "frameCount": 2711,
+    "thresholdGrayLevels": 1.5,
+    "parkedCaptionIntervals": [
+      {
+        "firstFrame": 315,
+        "lastFrame": 467,
+        "firstSeconds": 10.5,
+        "lastSeconds": 15.566666666666666
+      }
+    ],
+    "restrictedPanelIntervals": [
+      {
+        "firstFrame": 1872,
+        "lastFrame": 2137,
+        "firstSeconds": 62.4,
+        "lastSeconds": 71.23333333333333
+      }
+    ],
+    "overlapFrames": [],
+    "captionMatchMeanAbsAtSamples": {
+      "10.5": 0.2811,
+      "12": 0.244,
+      "15.5": 0.244,
+      "15.6": 13.6903,
+      "17.3": 13.6904,
+      "62.1": 21.9585,
+      "62.3": 21.9576,
+      "62.4": 21.9577,
+      "63": 21.9577,
+      "65": 24.3023,
+      "71": 20.5172,
+      "73.5": 23.909,
+      "80": 24.6207
+    },
+    "restrictedPanelMeanAbsAtSamples": {
+      "10.5": 20.9443,
+      "12": 20.5309,
+      "15.5": 20.3385,
+      "62.1": 20.3202,
+      "62.3": 20.4162,
+      "62.4": 0.1019,
+      "63": 0.1012,
+      "65": 0.1011,
+      "71": 0.1246,
+      "71.5": 13.4314,
+      "73.5": 13.4314,
+      "80": 13.4328
+    },
+    "actualCaptionIntervalsByTemplate": {
+      "parkedSynthetic": [
+        {
+          "firstFrame": 315,
+          "lastFrame": 467,
+          "startSeconds": 10.5,
+          "endExclusiveSeconds": 15.6
+        }
+      ],
+      "restrictionTransition": [
+        {
+          "firstFrame": 1862,
+          "lastFrame": 1938,
+          "startSeconds": 62.066667,
+          "endExclusiveSeconds": 64.633333
+        }
+      ],
+      "idlingRestricted": [
+        {
+          "firstFrame": 1939,
+          "lastFrame": 2125,
+          "startSeconds": 64.633333,
+          "endExclusiveSeconds": 70.866667
+        }
+      ],
+      "parkReturnTransition": [
+        {
+          "firstFrame": 2126,
+          "lastFrame": 2201,
+          "startSeconds": 70.866667,
+          "endExclusiveSeconds": 73.4
+        }
+      ],
+      "parkedLiveNoAutoDemo": [
+        {
+          "firstFrame": 2202,
+          "lastFrame": 2395,
+          "startSeconds": 73.4,
+          "endExclusiveSeconds": 79.866667
+        }
+      ],
+      "liveNoReceivedSignal": [
+        {
+          "firstFrame": 2396,
+          "lastFrame": 2560,
+          "startSeconds": 79.866667,
+          "endExclusiveSeconds": 85.366667
+        }
+      ]
+    }
+  },
+  "staticTailExtensions": [],
+  "limitations": [
+    "Visual review uses sampled original frames and contact sheets, plus full-frame crop consistency checks; it is not continuous playback or semantic OCR of every frame.",
+    "Transition command and observation times are app/recording metadata with 0.5-second pre-command and 0.25-second post-observation buffers; they are not independently measured vehicle events.",
+    "This review verifies the final video and declared recording provenance. APK execution and source-code tests are separate evidence.",
+    "Synthetic traffic data and Android/AAOS emulator evidence do not establish received live traffic signals, sustained moving behavior, Pleos compatibility, production vehicle behavior or driving-use approval."
+  ]
+}

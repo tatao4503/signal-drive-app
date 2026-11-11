@@ -1,0 +1,369 @@
+
+> signal-drive-local-mvp@0.2.2 test
+> node scripts/test.mjs
+
+TAP version 13
+# Subtest: 기본 registry는 비어 있으며 임의 대상·클라이언트 키로 실시간을 열 수 없다
+ok 1 - 기본 registry는 비어 있으며 임의 대상·클라이언트 키로 실시간을 열 수 없다
+  ---
+  duration_ms: 123.16575
+  type: 'test'
+  ...
+# Subtest: 키 누락과 미승인 매핑은 요청 이전에 차단한다
+ok 2 - 키 누락과 미승인 매핑은 요청 이전에 차단한다
+  ---
+  duration_ms: 28.41925
+  type: 'test'
+  ...
+# Subtest: 고정 원천·서버 키·정확 ID로만 요청하며 브라우저에 키를 돌려주지 않는다
+ok 3 - 고정 원천·서버 키·정확 ID로만 요청하며 브라우저에 키를 돌려주지 않는다
+  ---
+  duration_ms: 26.871375
+  type: 'test'
+  ...
+# Subtest: upstream 오류·schema 오류·큰 응답에서는 색과 숫자를 숨긴다
+ok 4 - upstream 오류·schema 오류·큰 응답에서는 색과 숫자를 숨긴다
+  ---
+  duration_ms: 32.471458
+  type: 'test'
+  ...
+# Subtest: upstream 요청을 제한 시간에 취소하고 다음 요청에서 복구한다
+ok 5 - upstream 요청을 제한 시간에 취소하고 다음 요청에서 복구한다
+  ---
+  duration_ms: 217.95475
+  type: 'test'
+  ...
+# Subtest: 동일 교차로의 동시 요청은 하나의 upstream 요청을 공유한다
+ok 6 - 동일 교차로의 동시 요청은 하나의 upstream 요청을 공유한다
+  ---
+  duration_ms: 33.222708
+  type: 'test'
+  ...
+# Subtest: cross-origin과 외부 Host 요청은 차단하고 키 관련 query를 전달하지 않는다
+ok 7 - cross-origin과 외부 Host 요청은 차단하고 키 관련 query를 전달하지 않는다
+  ---
+  duration_ms: 43.436042
+  type: 'test'
+  ...
+# Subtest: 호출량 제한이 적용되며 윈도우 만료 후 복구한다
+ok 8 - 호출량 제한이 적용되며 윈도우 만료 후 복구한다
+  ---
+  duration_ms: 7.378209
+  type: 'test'
+  ...
+# Subtest: web 폴더 정적 파일만 적절한 MIME으로 제공하고 symlink·경로 이탈을 차단한다
+ok 9 - web 폴더 정적 파일만 적절한 MIME으로 제공하고 symlink·경로 이탈을 차단한다
+  ---
+  duration_ms: 22.895834
+  type: 'test'
+  ...
+# Subtest: 선택한 대각 방향과 movement만 보존하고 원천 시각으로 만료를 계산한다
+ok 10 - 선택한 대각 방향과 movement만 보존하고 원천 시각으로 만료를 계산한다
+  ---
+  duration_ms: 0.943959
+  type: 'test'
+  ...
+# Subtest: 잔여시간만으로 녹색이나 황색을 만들지 않는다
+ok 11 - 잔여시간만으로 녹색이나 황색을 만들지 않는다
+  ---
+  duration_ms: 0.308583
+  type: 'test'
+  ...
+# Subtest: 오래됨·미래·소실·다른 ID·잘못된 시간·상태·만료를 숨긴다
+    # Subtest: stale
+    ok 1 - stale
+      ---
+      duration_ms: 0.306667
+      type: 'test'
+      ...
+    # Subtest: future-timestamp
+    ok 2 - future-timestamp
+      ---
+      duration_ms: 0.140334
+      type: 'test'
+      ...
+    # Subtest: missing-timestamp
+    ok 3 - missing-timestamp
+      ---
+      duration_ms: 0.104667
+      type: 'test'
+      ...
+    # Subtest: missing-timestamp
+    ok 4 - missing-timestamp
+      ---
+      duration_ms: 0.151333
+      type: 'test'
+      ...
+    # Subtest: missing-timestamp
+    ok 5 - missing-timestamp
+      ---
+      duration_ms: 0.099209
+      type: 'test'
+      ...
+    # Subtest: id-mismatch
+    ok 6 - id-mismatch
+      ---
+      duration_ms: 0.281583
+      type: 'test'
+      ...
+    # Subtest: no-data
+    ok 7 - no-data
+      ---
+      duration_ms: 0.326417
+      type: 'test'
+      ...
+    # Subtest: missing-phase
+    ok 8 - missing-phase
+      ---
+      duration_ms: 0.1875
+      type: 'test'
+      ...
+    # Subtest: unsupported-phase
+    ok 9 - unsupported-phase
+      ---
+      duration_ms: 0.126667
+      type: 'test'
+      ...
+    # Subtest: unsupported-phase
+    ok 10 - unsupported-phase
+      ---
+      duration_ms: 0.542334
+      type: 'test'
+      ...
+    # Subtest: missing-remaining
+    ok 11 - missing-remaining
+      ---
+      duration_ms: 0.125708
+      type: 'test'
+      ...
+    # Subtest: invalid-remaining
+    ok 12 - invalid-remaining
+      ---
+      duration_ms: 0.1015
+      type: 'test'
+      ...
+    # Subtest: invalid-remaining
+    ok 13 - invalid-remaining
+      ---
+      duration_ms: 0.094292
+      type: 'test'
+      ...
+    # Subtest: invalid-remaining
+    ok 14 - invalid-remaining
+      ---
+      duration_ms: 0.165292
+      type: 'test'
+      ...
+    # Subtest: invalid-remaining
+    ok 15 - invalid-remaining
+      ---
+      duration_ms: 0.085292
+      type: 'test'
+      ...
+    # Subtest: expired
+    ok 16 - expired
+      ---
+      duration_ms: 0.083125
+      type: 'test'
+      ...
+    # Subtest: expired
+    ok 17 - expired
+      ---
+      duration_ms: 0.0865
+      type: 'test'
+      ...
+    # Subtest: upstream-invalid
+    ok 18 - upstream-invalid
+      ---
+      duration_ms: 0.075
+      type: 'test'
+      ...
+    # Subtest: upstream-invalid
+    ok 19 - upstream-invalid
+      ---
+      duration_ms: 0.078291
+      type: 'test'
+      ...
+    # Subtest: upstream-invalid
+    ok 20 - upstream-invalid
+      ---
+      duration_ms: 0.355625
+      type: 'test'
+      ...
+    # Subtest: ambiguous-data
+    ok 21 - ambiguous-data
+      ---
+      duration_ms: 0.078625
+      type: 'test'
+      ...
+    1..21
+ok 12 - 오래됨·미래·소실·다른 ID·잘못된 시간·상태·만료를 숨긴다
+  ---
+  duration_ms: 8.453791
+  type: 'test'
+  ...
+# Subtest: 최신 원천 행을 선택하고 보행을 차량 상태로 반전하지 않는다
+ok 13 - 최신 원천 행을 선택하고 보행을 차량 상태로 반전하지 않는다
+  ---
+  duration_ms: 0.29825
+  type: 'test'
+  ...
+# Subtest: 브라우저가 승인하지 않은 매핑은 명시적으로 보류한다
+ok 14 - 브라우저가 승인하지 않은 매핑은 명시적으로 보류한다
+  ---
+  duration_ms: 1.710791
+  type: 'test'
+  ...
+# Subtest: registry는 서버 측 파일에서 엄격히 승인하고 검증 근거를 공개하지 않는다
+ok 15 - registry는 서버 측 파일에서 엄격히 승인하고 검증 근거를 공개하지 않는다
+  ---
+  duration_ms: 0.8715
+  type: 'test'
+  ...
+# Subtest: device selection refuses ambiguity and explicitly requested offline devices
+ok 16 - device selection refuses ambiguity and explicitly requested offline devices
+  ---
+  duration_ms: 1.522625
+  type: 'test'
+  ...
+# Subtest: clock mutation requires explicit emulator serial before any device operation
+ok 17 - clock mutation requires explicit emulator serial before any device operation
+  ---
+  duration_ms: 0.57625
+  type: 'test'
+  ...
+# Subtest: cleanup restores exact overrides and elapsed wall time instead of hardcoded defaults
+ok 18 - cleanup restores exact overrides and elapsed wall time instead of hardcoded defaults
+  ---
+  duration_ms: 1.689
+  type: 'test'
+  ...
+# Subtest: cleanup attempts every remaining setting after an individual restore failure
+ok 19 - cleanup attempts every remaining setting after an individual restore failure
+  ---
+  duration_ms: 0.642042
+  type: 'test'
+  ...
+# Subtest: unsafe snapshots or unsuccessful VHAL readings cannot become cleanup commands
+ok 20 - unsafe snapshots or unsuccessful VHAL readings cannot become cleanup commands
+  ---
+  duration_ms: 0.847625
+  type: 'test'
+  ...
+# Subtest: keystore guard resolves links and accepts outside siblings with similar prefixes
+ok 21 - keystore guard resolves links and accepts outside siblings with similar prefixes
+  ---
+  duration_ms: 9.587125
+  type: 'test'
+  ...
+# Subtest: source identity excludes credentials and generated bytecode
+ok 22 - source identity excludes credentials and generated bytecode
+  ---
+  duration_ms: 0.38675
+  type: 'test'
+  ...
+# Subtest: release copy preserves an existing deliverable instead of replacing it
+ok 23 - release copy preserves an existing deliverable instead of replacing it
+  ---
+  duration_ms: 1.705208
+  type: 'test'
+  ...
+# Subtest: nonempty evidence folder is rejected before adb is queried or changed
+ok 24 - nonempty evidence folder is rejected before adb is queried or changed
+  ---
+  duration_ms: 14.219125
+  type: 'test'
+  ...
+# Subtest: recording follows a declared version bump and rejects a previous installed APK
+ok 25 - recording follows a declared version bump and rejects a previous installed APK
+  ---
+  duration_ms: 2.096917
+  type: 'test'
+  ...
+# Subtest: ambiguous or disagreeing project declarations cannot authorize recording
+ok 26 - ambiguous or disagreeing project declarations cannot authorize recording
+  ---
+  duration_ms: 0.470584
+  type: 'test'
+  ...
+# Subtest: video composition rejects recordings from a different version or code before media access
+ok 27 - video composition rejects recordings from a different version or code before media access
+  ---
+  duration_ms: 232.633583
+  type: 'test'
+  ...
+# Subtest: masked signing checks the selected output prefix before opening a password dialog
+ok 28 - masked signing checks the selected output prefix before opening a password dialog
+  ---
+  duration_ms: 320.070917
+  type: 'test'
+  ...
+# Subtest: one-second wall regression cannot resurrect a stale live observation
+ok 29 - one-second wall regression cannot resurrect a stale live observation
+  ---
+  duration_ms: 7.439875
+  type: 'test'
+  ...
+# Subtest: every absolute wall regression invalidates even when it is smaller than drift tolerance
+ok 30 - every absolute wall regression invalidates even when it is smaller than drift tolerance
+  ---
+  duration_ms: 0.500708
+  type: 'test'
+  ...
+# Subtest: a sub-tick clock correction cannot reduce the source age floor
+ok 31 - a sub-tick clock correction cannot reduce the source age floor
+  ---
+  duration_ms: 0.268916
+  type: 'test'
+  ...
+# Subtest: delayed pre-invalidation response is rejected during and after fresh request recovery
+ok 32 - delayed pre-invalidation response is rejected during and after fresh request recovery
+  ---
+  duration_ms: 0.524542
+  type: 'test'
+  ...
+# Subtest: a clock change while the new request is pending invalidates that request too
+ok 33 - a clock change while the new request is pending invalidates that request too
+  ---
+  duration_ms: 0.104833
+  type: 'test'
+  ...
+# Subtest: large forward wall/monotonic drift requires a new clock session
+ok 34 - large forward wall/monotonic drift requires a new clock session
+  ---
+  duration_ms: 0.073584
+  type: 'test'
+  ...
+# Subtest: simulation clock invalidation stays latched until an explicit reset
+ok 35 - simulation clock invalidation stays latched until an explicit reset
+  ---
+  duration_ms: 0.260125
+  type: 'test'
+  ...
+# Subtest: source delay is subtracted from remaining time and expiry does not synthesize the next phase
+ok 36 - source delay is subtracted from remaining time and expiry does not synthesize the next phase
+  ---
+  duration_ms: 0.413334
+  type: 'test'
+  ...
+# Subtest: future source timestamps never authorize a phase
+ok 37 - future source timestamps never authorize a phase
+  ---
+  duration_ms: 0.698583
+  type: 'test'
+  ...
+# Subtest: all rejected live contracts suppress both phase and countdown
+ok 38 - all rejected live contracts suppress both phase and countdown
+  ---
+  duration_ms: 1.114125
+  type: 'test'
+  ...
+1..38
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 695.406292

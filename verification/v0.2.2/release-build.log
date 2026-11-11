@@ -1,0 +1,153 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:processResources NO-SOURCE
+> Task :core:processTestResources NO-SOURCE
+> Task :app:buildKotlinToolingMetadata
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseBuildConfig
+> Task :app:checkReleaseAarMetadata
+> Task :app:generateReleaseResValues
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:mergeReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:parseReleaseLocalResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:processReleaseManifestForPackage
+> Task :app:processReleaseResources
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeExtDexRelease
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:optimizeReleaseResources
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+
+> Task :core:compileKotlin
+w: file://[WORKSPACE]/work/signal-drive-app/core/src/main/kotlin/kr/signal/drive/core/SignalModels.kt:109:28 Non-public primary constructor is exposed via the generated 'copy()' method of the 'data' class.
+
+The generated 'copy()' will change its visibility in future releases.
+
+To suppress the warning do one of the following:
+- Annotate the data class with the '@ConsistentCopyVisibility' annotation.
+- Use the '-Xconsistent-data-class-copy-visibility' compiler flag.
+- Annotate the data class with the '@ExposedCopyVisibility' annotation 
+  (Discouraged, but can be used to keep binary compatibility).
+
+To learn more, see the documentation of the '@ConsistentCopyVisibility' and '@ExposedCopyVisibility' annotations.
+
+This will become an error in Kotlin 2.1.
+
+> Task :core:compileJava NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar
+> Task :core:compileTestKotlin
+> Task :core:compileTestJava NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:verifyCore
+PASS a reviewed exact target displays explicit RED
+PASS an empty registry cannot display any live signal
+PASS no selected target suppresses all color and numbers
+PASS blank intersection target is not meaningful
+PASS an unresolved approach suppresses display
+PASS an unresolved movement suppresses display
+PASS a missing packet suppresses display
+PASS another intersection cannot borrow this mapping
+PASS another approach cannot borrow this mapping
+PASS another movement cannot borrow this mapping
+PASS missing source approach is rejected
+PASS missing source movement is rejected
+PASS an unverified registry entry is never promoted
+PASS a retired registry entry is not authoritative
+PASS a verified label without evidence reference cannot authorize display
+PASS packet mapping id must match target mapping id
+PASS packet mapping version must match the reviewed version
+PASS a reviewed identity cannot be changed through target id reuse
+PASS duplicate registry authority is ambiguous and fails closed
+PASS the registry is copied rather than retaining a mutable caller list
+PASS null source timestamp is not fresh
+PASS zero or negative source timestamps are invalid
+PASS even a 1 ms future timestamp is rejected by default
+PASS freshness ends at the exact configured boundary
+PASS source age is subtracted rather than restarting received remaining time
+PASS countdown follows elapsed wall time rather than callback count
+PASS a packet expiration cannot synthesize the next signal color
+PASS one remaining millisecond rounds to one display second
+PASS null remaining duration is unknown
+PASS negative zero and excessive remaining durations are rejected
+PASS explicit RED does not become GREEN for a pedestrian
+PASS short GREEN remains GREEN rather than guessed YELLOW
+PASS unknown flashing and dark states never produce a solid color
+PASS all eight distinct approaches can be selected without collapsing values
+PASS only two reviewed official state names normalize to colors
+PASS SIMULATION never enters LIVE_ONLY even with a verified mapping
+PASS REPLAY never enters LIVE_ONLY
+PASS explicit demonstration works with an empty live mapping registry
+PASS replay is permanently marked as non-current data
+PASS live observations cannot be quietly relabeled as demonstrations
+PASS demonstrations retain exact target and freshness guards
+PASS invalid clock and timestamp overflow fail closed
+PASS configured future skew never extends the duration
+PASS invalid policies cannot be instantiated
+PASS UNKNOWN vehicle restrictions lock interaction
+PASS RESTRICTED vehicle state locks interaction
+PASS UNRESTRICTED vehicle state allows parked interaction only
+PASS wall clock jumps latch invalid until an explicit reset
+PASS backwards wall time or monotonic time is invalid
+PASS normal delayed callbacks and long pauses do not look like clock jumps
+PASS a sub-tick wall correction cannot reduce trusted source age
+PASS cumulative small corrections cannot extend the freshness window
+PASS an expired packet cannot be resurrected by repeated small clock corrections
+PASS a small forward correction cannot freeze subsequent trusted time
+PASS compatibility checkpoints share the same monotonic evaluation floor
+PASS trusted time stays invalid after a jump until explicit session reset
+PASS reset clears the previous session floor for a new packet
+PASS trusted time overflow invalidates instead of wrapping the age floor
+PASS wire enum parsing preserves eight directions and known movement
+CORE TESTS: 59 passed, 0 failed
+
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:compileReleaseKotlin
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:dexBuilderRelease
+> Task :app:mergeDexRelease
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :app:compileReleaseArtProfile
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseJavaResource
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+
+BUILD SUCCESSFUL in 27s
+51 actionable tasks: 51 executed
+Release status: signed-release
+APK SHA-256: a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a
+새 제출용 파일 생성: [WORKSPACE]/outputs/SIGNAL-Drive-v0.2.2-RC/개발물/윤태웅_SIGNALDrive_release.apk

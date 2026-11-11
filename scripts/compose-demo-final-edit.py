@@ -1,65 +1,241 @@
-# SIGNAL Drive 0.2.1 시연 영상 재편집 (2026-11-11)
-# 녹화 원본(recording-phone/, recording-aaos/)이 있는 폴더에 두고 실행한다. 원본은 0.2.1 APK로 녹화한 것(SHA는 영상 manifest 참고).
-# 같은 0.2.1 녹화 원본(recording-phone/, recording-aaos/)의 순서·길이만 바꾼다. 새로 녹화하지 않는다.
-# 목적: 신호가 '보이는' 장면을 앞에, 크게. '확인 불가' 장면은 짧게 이어 붙인다.
-import subprocess, os
-HERE = os.path.dirname(os.path.abspath(__file__))
-P = os.path.join(HERE, 'recording-phone'); A = os.path.join(HERE, 'recording-aaos')
-OUT = os.path.join(HERE, 'final-edit'); os.makedirs(os.path.join(OUT, 'cap'), exist_ok=True)
-F = '/System/Library/Fonts/AppleSDGothicNeo.ttc'; BG = '0x0f1419'
-inputs = []; parts = []; n = 0
-def cap(name, text):
-    p = os.path.join(OUT, 'cap', f'{name}.txt'); open(p, 'w', encoding='utf-8').write(text); return p
-def dt(tf, size, x, y, color='white', extra=''):
-    return f"drawtext=fontfile={F}:textfile={tf}:fontsize={size}:fontcolor={color}:x={x}:y={y}:line_spacing={int(size*0.45)}{extra}"
-def card(name, lines, d):
-    global n
-    fl = [dt(cap(f'{name}{i}', t), s, '(w-text_w)/2', y, c) for i, (t, s, c, y) in enumerate(lines)]
-    parts.append(f"color=c={BG}:s=1920x1080:d={d}:r=30,{','.join(fl)},format=yuv420p[s{n}]"); n += 1
-NP = cap('note_phone', '일반 Android 14 에뮬레이터 · v0.2.1\n화면의 신호는 합성 시연 데이터입니다 (실제 신호 아님)')
-NA = cap('note_aaos', 'Android Automotive 13 에뮬레이터 · v0.2.1 · 합성 시연 데이터 (Pleos·실차 아님)')
-def phone(name, f, ss, d, text):
-    global n
-    inputs.append(['-i', os.path.join(P, f)]); k = len(inputs) - 1
-    fl = [f"[{k}:v]trim=start={ss},setpts=PTS-STARTPTS,fps=30,tpad=stop_mode=clone:stop_duration={d},trim=duration={d},scale=-2:1040,setsar=1,pad=1920:1080:240:20:color={BG}",
-          dt(cap(name, text), 54, 820, '(h-text_h)/2-60'), dt(NP, 26, 820, 950, '0x9aa4ad')]
-    parts.append(','.join(fl) + f",format=yuv420p[s{n}]"); n += 1
-def aaos(name, f, ss, to, caps):
-    global n
-    inputs.append(['-i', os.path.join(A, f)]); k = len(inputs) - 1; d = to - ss
-    fl = [f"[{k}:v]trim=start={ss}:end={to},setpts=PTS-STARTPTS,fps=30,tpad=stop_mode=clone:stop_duration={d},trim=duration={d},scale=1104:828,setsar=1,pad=1920:1080:408:14:color={BG}",
-          dt(NA, 24, '(w-text_w)/2', 1044, '0x9aa4ad')]
-    for i, (a, b, t) in enumerate(caps):
-        fl.append(dt(cap(f'{name}{i}', t), 36, '(w-text_w)/2', 872, 'white', f":enable='between(t,{a},{b})'"))
-    parts.append(','.join(fl) + f",format=yuv420p[s{n}]"); n += 1
+"""Compose the current version's hero-first demo from verified emulator recordings."""
+import argparse
+import importlib.util
+import json
+import math
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
 
-card('title', [('SIGNAL Drive', 96, 'white', 300),
-               ('확인된 신호를, 크게, 한눈에', 56, '0x8fe3bf', 470),
-               ('확인할 수 없으면 숨깁니다', 40, '0xc8d2d6', 570),
-               ('현대자동차그룹 차량용 앱 개발 공모전 출품작 · v0.2.1', 28, '0x9aa4ad', 760)], 4.5)
-phone('g1', 'clip-01-green.mp4', 0.6, 6.0, '확인된 신호는\n색과 남은 시간을\n크게 보여줍니다')
-aaos('a_parked', 'aaos-2-drive.mp4', 0.0, 7.4, [(0, 99, '차량 화면에서도 같은 판정 · 정차 중 시연 화면')])
-phone('drv', 'clip-09-driving.mp4', 0.6, 6.5, '주행 화면\n신호 · 남은 시간 · 이유만\n크게 남깁니다\n(모의 주행 미리보기)')
-phone('dly', 'clip-02-delay.mp4', 0.6, 5.0, '데이터가 늦으면\n즉시 숨기고\n이유를 보여줍니다')
-phone('rec', 'clip-03-recover.mp4', 0.6, 4.0, '새 데이터가 오면\n다시 켜집니다')
-phone('dis', 'clip-04-disconnect.mp4', 0.6, 3.5, '연결이 끊기면 → 숨김')
-phone('mis', 'clip-05-mismatch.mp4', 0.6, 3.5, '다른 교차로 데이터 → 숨김')
-phone('dir', 'clip-06-direction.mp4', 0.6, 3.5, '진입 방향 미확정 → 숨김')
-phone('exp', 'clip-07-expired.mp4', 0.6, 3.5, '유효시간 끝 → 숨김\n다음 색을 추측하지 않습니다')
-phone('rec2', 'clip-08-recover.mp4', 0.6, 3.5, '복구되면 다시 표시')
-phone('clk1', 'clip-10-clock-back.mp4', 0.6, 4.0, '기기 시계가 바뀌면\n즉시 보류')
-phone('clk2', 'clip-11-clock-restore.mp4', 0.6, 4.0, '시계를 되돌려도\n지난 신호를\n되살리지 않습니다')
-phone('new', 'clip-12-new-data.mp4', 0.6, 4.5, '새 데이터가 들어온 뒤에만\n다시 켜집니다')
-aaos('a_drive', 'aaos-2-drive.mp4', 7.4, 22.9, [
-    (0, 9.3, '실제 차량에서 주행이 시작되면 시연 데이터를 끄고 주행 화면으로 바꿉니다\n(검증된 실제 신호만 표시 · 현재 등록 교차로 0곳)'),
-    (9.3, 99, '정차하면 일반 화면으로 돌아옵니다 · 시연은 사용자가 다시 켤 때만')])
-aaos('a_live', 'aaos-1-live.mp4', 1.0, 6.5, [(0, 99, '실제 데이터 화면 · 현장 검증된 교차로가 등록되면 이곳에 신호가 표시됩니다\n(현재 등록 0곳이라 표시하지 않음)')])
-card('end', [('SIGNAL Drive', 52, 'white', 330),
-             ('확인된 신호만 보여주고, 확인할 수 없으면 아무것도 보여주지 않습니다', 34, '0x8fe3bf', 430),
-             ('에뮬레이터 화면 녹화 · 화면의 신호는 모두 합성 시연 데이터 · Pleos·실차 실행 아님\n실제 신호등과 교통법규가 항상 우선합니다', 28, '0x9aa4ad', 560)], 5)
-fc = ';'.join(parts) + ';' + ''.join(f'[s{i}]' for i in range(n)) + f'concat=n={n}:v=1:a=0[out]'
-open(os.path.join(OUT, 'filter.txt'), 'w', encoding='utf-8').write(fc)
-out = os.path.join(OUT, 'SIGNAL-Drive-v0.2.1-시연영상.mp4')
-r = subprocess.run(['ffmpeg', '-v', 'error', '-y'] + sum(inputs, []) + ['-filter_complex_script', os.path.join(OUT, 'filter.txt'), '-map', '[out]',
-                    '-c:v', 'libx264', '-crf', '20', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], capture_output=True, text=True)
-print(r.returncode, r.stderr[-800:])
+_BASE_PATH = Path(__file__).with_name("compose-demo.py")
+_SPEC = importlib.util.spec_from_file_location("signal_drive_compose_base", _BASE_PATH)
+base = importlib.util.module_from_spec(_SPEC)
+_SPEC.loader.exec_module(base)
+
+# The recording clock precedes the first encoded frame. Buffer state labels around
+# commands/observations rather than claiming an unmeasured frame-exact transition.
+PRE_COMMAND_BUFFER = 0.5
+POST_OBSERVATION_BUFFER = 0.25
+AAOS_END_SECONDS = 22.9
+PHONE_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11]
+PHONE_DURATIONS = {0: 6.0, 8: 6.5, 1: 5.0, 2: 4.0, 3: 3.5, 4: 3.5,
+                   5: 3.5, 6: 3.5, 7: 3.5, 9: 4.0, 10: 4.0, 11: 4.5}
+PHONE_CAPTIONS = {
+    0: "합성 시연 신호를\n색과 남은 시간으로\n크게 보여줍니다",
+    8: "모의 차량 입력의 주행 화면\n신호 · 남은 시간 · 현장 안내\n설정과 시연 입력은 잠급니다",
+    1: "데이터가 늦으면\n색과 숫자를 숨기고\n이유를 보여줍니다",
+    2: "새 시연 데이터가 오면\n다시 표시합니다",
+    3: "연결 단절 시나리오\n색과 숫자를 숨깁니다",
+    4: "다른 교차로 데이터는\n표시하지 않습니다",
+    5: "진입 방향을 모르면\n표시하지 않습니다",
+    6: "유효시간이 끝나면\n다음 색을 추측하지 않습니다",
+    7: "새 시연 데이터로 복구되면\n다시 표시합니다",
+    9: "기기 시계가 바뀌면\n표시를 보류합니다",
+    10: "시계를 되돌려도\n지난 패킷을 다시 쓰지 않습니다",
+    11: "새 시연 데이터가\n들어온 뒤에만 다시 표시합니다",
+}
+
+
+def finite_number(value, label):
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+        raise ValueError(f"{label}: 유한한 숫자가 필요합니다.")
+    return float(value)
+
+
+def aaos_transition_plan(manifest, end=AAOS_END_SECONDS):
+    entries = manifest.get("aaosTransitions")
+    states = ["parked-demo", "idling-restricted", "parked-live"]
+    if (not isinstance(entries, list) or any(not isinstance(x, dict) for x in entries)
+            or [x.get("state") for x in entries] != states):
+        raise ValueError("AAOS 정차·공회전 제한·정차 복귀 관측 기록이 순서대로 필요합니다.")
+    parked, idle, returned = entries
+    first = finite_number(parked.get("seconds"), "정차 관측 시각")
+    command = finite_number(idle.get("commandedAtSeconds"), "공회전 제한 명령 시각")
+    observed = finite_number(idle.get("seconds"), "공회전 제한 관측 시각")
+    return_command = finite_number(returned.get("commandedAtSeconds"), "정차 복귀 명령 시각")
+    return_observed = finite_number(returned.get("seconds"), "정차 복귀 관측 시각")
+    end = finite_number(end, "AAOS 클립 종료 시각")
+    if not 0 <= first < command <= observed < return_command <= return_observed < end:
+        raise ValueError("AAOS 명령·관측 시각이 서로 맞지 않거나 영상 범위를 벗어납니다.")
+    intro_end = command - PRE_COMMAND_BUFFER
+    idle_start = observed + POST_OBSERVATION_BUFFER
+    return_start = return_command - PRE_COMMAND_BUFFER
+    parked_start = return_observed + POST_OBSERVATION_BUFFER
+    if not 1.5 <= intro_end < idle_start < return_start < parked_start < end:
+        raise ValueError("상태 자막을 보수적으로 나눌 수 있는 AAOS 녹화 구간이 부족합니다.")
+    return {
+        "introEndSeconds": intro_end,
+        "endSeconds": end,
+        "preCommandBufferSeconds": PRE_COMMAND_BUFFER,
+        "postObservationBufferSeconds": POST_OBSERVATION_BUFFER,
+        "rawTimes": {"idlingCommand": command, "idlingObserved": observed,
+                     "parkCommand": return_command, "parkObserved": return_observed},
+        "captions": [
+            (0.0, intro_end, "정차 중 합성 신호 시연\n실제 교통신호가 아닙니다"),
+            (intro_end, idle_start, "AAOS 에뮬레이터 제한 상태 전환 구간\n합성 시연을 해제하고 설정을 잠급니다"),
+            (idle_start, return_start, "AAOS 에뮬레이터 공회전(idling) 제한 상태\n시연 해제 · 설정 잠금 · 현재 신호 확인 불가"),
+            (return_start, parked_start, "AAOS 에뮬레이터 정차 복귀 전환 구간\n실제 차량 주행 시험이 아닙니다"),
+            (parked_start, end, "정차 복귀 · 시연으로 자동 복귀하지 않습니다\n지속 moving·Pleos·실차는 미검증입니다"),
+        ],
+    }
+
+
+def clipped_captions(captions, start, end):
+    return [(max(a, start) - start, min(b, end) - start, text)
+            for a, b, text in captions if max(a, start) < min(b, end)]
+
+
+def load_inputs(phone_dir, aaos_dir):
+    phone = base.load_recording(phone_dir, "phone", base.PHONE_NAMES)
+    aaos = base.load_recording(aaos_dir, "aaos", base.AAOS_NAMES)
+    for field in ("apkSha256", "versionName", "versionCode", "sourceManifestSha256"):
+        if phone[field] != aaos[field]:
+            raise ValueError(f"phone/AAOS 녹화의 {field}가 일치하지 않습니다.")
+    for manifest in (phone, aaos):
+        restoration = manifest.get("restoration")
+        if not isinstance(restoration, dict) or restoration.get("ok") is not True:
+            raise ValueError("설정 원상복구가 완료된 녹화만 사용합니다.")
+        if manifest.get("installedApkSha256") != manifest["apkSha256"]:
+            raise ValueError("입력·설치 APK 해시가 일치하는 녹화만 사용합니다.")
+    if phone["serial"] == aaos["serial"] or phone["avdName"] == aaos["avdName"]:
+        raise ValueError("phone/AAOS는 서로 다른 전용 에뮬레이터 녹화여야 합니다.")
+    clips = base.read_json(phone_dir / "phone-clips.json")
+    if clips != phone["clips"]:
+        raise ValueError("phone-clips.json이 검증된 녹화 manifest의 클립·시각 기록과 다릅니다.")
+    for clip in clips:
+        if finite_number(clip.get("lead"), f"{clip['file']} lead") < 0:
+            raise ValueError("클립 시작 시각이 음수입니다.")
+    return phone, aaos, clips, aaos_transition_plan(aaos)
+
+
+class HeroComposition(base.Composition):
+    def __init__(self, work_dir, font):
+        super().__init__(work_dir, font)
+        self.timeline = []
+        self.duration = 0.0
+
+    def remember(self, kind, duration, **fields):
+        self.timeline.append({"kind": kind, "videoStartSeconds": self.duration,
+                              "durationSeconds": duration, **fields})
+        self.duration += duration
+
+    def phone_scene(self, index, source, start, requested_duration):
+        available = base.probe_duration(source) - start
+        duration = min(requested_duration, available)
+        if duration < 1.5:
+            raise ValueError(f"{source}: 동작을 확인한 뒤의 실제 녹화가 부족합니다.")
+        ordinal = self.input(source)
+        filters = [f"[{ordinal}:v]trim=start={start}:duration={duration},setpts=PTS-STARTPTS,"
+                   f"fps=30,scale=-2:1040,setsar=1,pad=1920:1080:240:20:color={base.BG}"]
+        filters.append(self.text(f"hero-phone-{index}", PHONE_CAPTIONS[index], 54, 820,
+                                 "(h-text_h)/2-60"))
+        filters.append(self.text(
+            f"hero-phone-{index}-note", f"일반 Android 에뮬레이터 · v{base.VERSION}\n"
+            "모의 차량 입력 / 합성 신호 시연 (실제 신호 아님)",
+            25, 820, 950, "0x9aa4ad"))
+        self.append(filters)
+        self.remember("phone", duration, file=source.name, sourceStartSeconds=start,
+                      caption=PHONE_CAPTIONS[index])
+
+    def aaos_scene(self, name, source, start, end, captions):
+        self.aaos(name, source, start, end - start, captions)
+        self.remember("aaos", end - start, file=source.name, sourceStartSeconds=start,
+                      captions=[{"startSeconds": a, "endSeconds": b, "text": text}
+                                for a, b, text in captions])
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--phone-dir", required=True, type=Path)
+    parser.add_argument("--aaos-dir", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--font-file", type=Path, default=base.DEFAULT_FONT)
+    args = parser.parse_args(argv)
+    phone_dir, aaos_dir = args.phone_dir.resolve(), args.aaos_dir.resolve()
+    output = args.output.expanduser().absolute()
+    sidecar = output.with_name(output.name + ".manifest.json")
+    if os.path.lexists(output) or os.path.lexists(sidecar):
+        parser.error("기존 영상·manifest는 덮어쓰지 않습니다. 새 출력 경로를 지정하세요.")
+    if output.suffix.lower() != ".mp4":
+        parser.error("출력 확장자는 .mp4여야 합니다.")
+    if not args.font_file.is_file():
+        parser.error("한글 자막 폰트를 찾을 수 없습니다.")
+    if any(shutil.which(name) is None for name in ("ffmpeg", "ffprobe")):
+        parser.error("ffmpeg와 ffprobe가 필요합니다.")
+    try:
+        phone, aaos, clips, plan = load_inputs(phone_dir, aaos_dir)
+        aaos_source = aaos_dir / base.AAOS_NAMES[1]
+        if base.probe_duration(aaos_source) <= plan["rawTimes"]["parkObserved"] + 0.25:
+            raise ValueError("정차 복귀 관측 뒤의 실제 AAOS 녹화가 부족합니다.")
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix="signal-drive-hero-") as directory:
+            movie = HeroComposition(Path(directory), args.font_file.resolve())
+            movie.card("hero-title", [
+                ("SIGNAL Drive", 96, "white", 300),
+                ("확인된 신호를, 크게, 한눈에", 56, "0x8fe3bf", 470),
+                ("확인할 수 없으면 색과 숫자를 숨깁니다", 40, "0xc8d2d6", 570),
+                (f"v{base.VERSION} · 합성 시연 · 실제 신호 미수신", 28, "0x9aa4ad", 760),
+            ], 4.5)
+            movie.remember("title", 4.5)
+            movie.phone_scene(0, phone_dir / clips[0]["file"], clips[0]["lead"], PHONE_DURATIONS[0])
+            split, end = plan["introEndSeconds"], plan["endSeconds"]
+            movie.aaos_scene("hero-aaos-parked", aaos_source, 0, split,
+                             clipped_captions(plan["captions"], 0, split))
+            for index in PHONE_ORDER[1:]:
+                clip = clips[index]
+                movie.phone_scene(index, phone_dir / clip["file"], clip["lead"], PHONE_DURATIONS[index])
+            movie.aaos_scene("hero-aaos-restrictions", aaos_source, split, end,
+                             clipped_captions(plan["captions"], split, end))
+            movie.aaos_scene("hero-aaos-live", aaos_dir / base.AAOS_NAMES[0], 1.0, 6.5, [(0, 5.5,
+                "실시간 연결 상태 화면 · 실제 신호 미수신\n승인 매핑 0건이라 색과 숫자를 표시하지 않습니다")])
+            movie.card("hero-end", [
+                ("SIGNAL Drive", 52, "white", 290),
+                ("합성 시연 데이터와 에뮬레이터로 동작을 보여줍니다", 36, "0x8fe3bf", 400),
+                ("실제 신호 미수신 · 승인 매핑 0건 · 지속 moving 미검증\n"
+                 "Pleos SDK·Pleos 에뮬레이터·실차 실행 및 주행 사용 승인 미검증\n"
+                 "실제 신호등과 도로 상황을 우선 확인하세요", 28, "0x9aa4ad", 510),
+                (f"v{base.VERSION} · APK SHA-256 {phone['apkSha256'][:16]}…", 25,
+                 "0x8fe3bf", 760),
+            ], 5.0)
+            movie.remember("end", 5.0)
+            graph = Path(directory) / "filter.txt"
+            graph.write_text(movie.graph(), encoding="utf-8")
+            subprocess.run(
+                ["ffmpeg", "-hide_banner", "-v", "error", "-n", "-filter_threads", "2",
+                 "-filter_complex_threads", "2"] + movie.inputs +
+                ["-filter_complex_script", str(graph), "-map", "[out]", "-an",
+                 "-c:v", "libx264", "-threads", "2", "-crf", "20", "-preset", "medium",
+                 "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output)], check=True)
+        provenance = {
+            "versionName": base.VERSION, "versionCode": phone["versionCode"],
+            "apkSha256": phone["apkSha256"], "sourceManifestSha256": phone["sourceManifestSha256"],
+            "videoSha256": base.sha256_file(output), "videoDurationSeconds": base.probe_duration(output),
+            "edit": "hero-first; captions use buffered command/observation boundaries",
+            "timeline": movie.timeline, "aaosTransitionPlan": plan,
+            "staticTailExtensions": movie.static_extensions,
+            "phoneRecording": phone, "aaosRecording": aaos,
+            "inputClips": [{"platform": role, "file": name,
+                            "sha256": base.sha256_file(directory / name)}
+                           for role, directory, names in (("phone", phone_dir, base.PHONE_NAMES),
+                                                          ("aaos", aaos_dir, base.AAOS_NAMES))
+                           for name in names],
+            "limits": ["synthetic signal demonstration", "no received live traffic signals",
+                       "AAOS idling restrictions; sustained moving untested",
+                       "Pleos and production vehicle untested; not a driving approval",
+                       "transition timestamps are buffered metadata, not pixel detection"],
+        }
+        with sidecar.open("x", encoding="utf-8") as stream:
+            json.dump(provenance, stream, ensure_ascii=False, indent=2)
+            stream.write("\n")
+        print(f"영상 생성: {output}\nSHA-256: {provenance['videoSha256']}\nManifest: {sidecar}")
+        return 0
+    except (ValueError, OSError, KeyError, TypeError, subprocess.SubprocessError) as error:
+        print(f"영상 합성 실패: {error}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -25,7 +25,7 @@ fi
 
 SIGNAL_RELEASE_STORE_FILE="${SIGNAL_RELEASE_STORE_FILE:-$HOME/Documents/SignalDrive-keys/signal-release-v2.jks}" \
 SIGNAL_RELEASE_STORE_PASSWORD="$task_signing_password" SIGNAL_RELEASE_KEY_ALIAS="${SIGNAL_RELEASE_KEY_ALIAS:-signal}" SIGNAL_RELEASE_KEY_PASSWORD="$task_signing_password" \
-SIGNAL_RELEASE_TEAM="${SIGNAL_RELEASE_TEAM:-메이드인시그널}" SIGNAL_RELEASE_OUT="${SIGNAL_RELEASE_OUT:-./.local/release-0.2.1}" npm run android:release
+SIGNAL_RELEASE_TEAM="${SIGNAL_RELEASE_TEAM:-메이드인시그널}" SIGNAL_RELEASE_OUT="${SIGNAL_RELEASE_OUT:-./.local/release-candidate}" npm run android:release
 typeset -i task_build_status=$?
 unset task_signing_password
 exit $task_build_status

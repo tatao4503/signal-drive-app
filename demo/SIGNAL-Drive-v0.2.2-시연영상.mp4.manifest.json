@@ -1,0 +1,1244 @@
+{
+  "versionName": "0.2.2",
+  "versionCode": 4,
+  "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+  "sourceManifestSha256": "ebc9ed1c2a2df124df56c9f427c03623b6ee8885658a090e6c60386a30bd889a",
+  "videoSha256": "1a83b74566a6b3c9daebac9d0f692be403374c4b309ee3e6ff559cfc0e9fe14e",
+  "videoDurationSeconds": 90.366667,
+  "edit": "hero-first; captions use buffered command/observation boundaries",
+  "timeline": [
+    {
+      "kind": "title",
+      "videoStartSeconds": 0.0,
+      "durationSeconds": 4.5
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 4.5,
+      "durationSeconds": 6.0,
+      "file": "clip-01-green.mp4",
+      "sourceStartSeconds": 1.2189530000000013,
+      "caption": "합성 시연 신호를\n색과 남은 시간으로\n크게 보여줍니다"
+    },
+    {
+      "kind": "aaos",
+      "videoStartSeconds": 10.5,
+      "durationSeconds": 5.101519583000001,
+      "file": "aaos-2-drive.mp4",
+      "sourceStartSeconds": 0,
+      "captions": [
+        {
+          "startSeconds": 0.0,
+          "endSeconds": 5.101519583000001,
+          "text": "정차 중 합성 신호 시연\n실제 교통신호가 아닙니다"
+        }
+      ]
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 15.601519583000002,
+      "durationSeconds": 6.5,
+      "file": "clip-09-driving.mp4",
+      "sourceStartSeconds": 2.0532427079999906,
+      "caption": "모의 차량 입력의 주행 화면\n신호 · 남은 시간 · 현장 안내\n설정과 시연 입력은 잠급니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 22.101519583,
+      "durationSeconds": 5.0,
+      "file": "clip-02-delay.mp4",
+      "sourceStartSeconds": 1.200891292,
+      "caption": "데이터가 늦으면\n색과 숫자를 숨기고\n이유를 보여줍니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 27.101519583,
+      "durationSeconds": 4.0,
+      "file": "clip-03-recover.mp4",
+      "sourceStartSeconds": 1.2021197080000057,
+      "caption": "새 시연 데이터가 오면\n다시 표시합니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 31.101519583,
+      "durationSeconds": 3.5,
+      "file": "clip-04-disconnect.mp4",
+      "sourceStartSeconds": 1.202176625,
+      "caption": "연결 단절 시나리오\n색과 숫자를 숨깁니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 34.601519583,
+      "durationSeconds": 3.5,
+      "file": "clip-05-mismatch.mp4",
+      "sourceStartSeconds": 1.2031172499999956,
+      "caption": "다른 교차로 데이터는\n표시하지 않습니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 38.101519583,
+      "durationSeconds": 3.5,
+      "file": "clip-06-direction.mp4",
+      "sourceStartSeconds": 1.2018180419999989,
+      "caption": "진입 방향을 모르면\n표시하지 않습니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 41.601519583,
+      "durationSeconds": 3.5,
+      "file": "clip-07-expired.mp4",
+      "sourceStartSeconds": 1.2024324170000036,
+      "caption": "유효시간이 끝나면\n다음 색을 추측하지 않습니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 45.101519583,
+      "durationSeconds": 3.5,
+      "file": "clip-08-recover.mp4",
+      "sourceStartSeconds": 1.201799874999997,
+      "caption": "새 시연 데이터로 복구되면\n다시 표시합니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 48.601519583,
+      "durationSeconds": 4.0,
+      "file": "clip-10-clock-back.mp4",
+      "sourceStartSeconds": 1.5621644169999926,
+      "caption": "기기 시계가 바뀌면\n표시를 보류합니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 52.601519583,
+      "durationSeconds": 4.0,
+      "file": "clip-11-clock-restore.mp4",
+      "sourceStartSeconds": 1.6035090830000116,
+      "caption": "시계를 되돌려도\n지난 패킷을 다시 쓰지 않습니다"
+    },
+    {
+      "kind": "phone",
+      "videoStartSeconds": 56.601519583,
+      "durationSeconds": 4.5,
+      "file": "clip-12-new-data.mp4",
+      "sourceStartSeconds": 1.2025815839999996,
+      "caption": "새 시연 데이터가\n들어온 뒤에만 다시 표시합니다"
+    },
+    {
+      "kind": "aaos",
+      "videoStartSeconds": 61.101519583,
+      "durationSeconds": 17.798480416999997,
+      "file": "aaos-2-drive.mp4",
+      "sourceStartSeconds": 5.101519583000001,
+      "captions": [
+        {
+          "startSeconds": 0.0,
+          "endSeconds": 2.550762374999999,
+          "text": "AAOS 에뮬레이터 제한 상태 전환 구간\n합성 시연을 해제하고 설정을 잠급니다"
+        },
+        {
+          "startSeconds": 2.550762374999999,
+          "endSeconds": 8.799253957999998,
+          "text": "AAOS 에뮬레이터 공회전(idling) 제한 상태\n시연 해제 · 설정 잠금 · 현재 신호 확인 불가"
+        },
+        {
+          "startSeconds": 8.799253957999998,
+          "endSeconds": 11.314204416999996,
+          "text": "AAOS 에뮬레이터 정차 복귀 전환 구간\n실제 차량 주행 시험이 아닙니다"
+        },
+        {
+          "startSeconds": 11.314204416999996,
+          "endSeconds": 17.798480416999997,
+          "text": "정차 복귀 · 시연으로 자동 복귀하지 않습니다\n지속 moving·Pleos·실차는 미검증입니다"
+        }
+      ]
+    },
+    {
+      "kind": "aaos",
+      "videoStartSeconds": 78.89999999999999,
+      "durationSeconds": 5.5,
+      "file": "aaos-1-live.mp4",
+      "sourceStartSeconds": 1.0,
+      "captions": [
+        {
+          "startSeconds": 0,
+          "endSeconds": 5.5,
+          "text": "실시간 연결 상태 화면 · 실제 신호 미수신\n승인 매핑 0건이라 색과 숫자를 표시하지 않습니다"
+        }
+      ]
+    },
+    {
+      "kind": "end",
+      "videoStartSeconds": 84.39999999999999,
+      "durationSeconds": 5.0
+    }
+  ],
+  "aaosTransitionPlan": {
+    "introEndSeconds": 5.101519583000001,
+    "endSeconds": 22.9,
+    "preCommandBufferSeconds": 0.5,
+    "postObservationBufferSeconds": 0.25,
+    "rawTimes": {
+      "idlingCommand": 5.601519583000001,
+      "idlingObserved": 7.402281958,
+      "parkCommand": 14.400773541,
+      "parkObserved": 16.165723999999997
+    },
+    "captions": [
+      [
+        0.0,
+        5.101519583000001,
+        "정차 중 합성 신호 시연\n실제 교통신호가 아닙니다"
+      ],
+      [
+        5.101519583000001,
+        7.652281958,
+        "AAOS 에뮬레이터 제한 상태 전환 구간\n합성 시연을 해제하고 설정을 잠급니다"
+      ],
+      [
+        7.652281958,
+        13.900773541,
+        "AAOS 에뮬레이터 공회전(idling) 제한 상태\n시연 해제 · 설정 잠금 · 현재 신호 확인 불가"
+      ],
+      [
+        13.900773541,
+        16.415723999999997,
+        "AAOS 에뮬레이터 정차 복귀 전환 구간\n실제 차량 주행 시험이 아닙니다"
+      ],
+      [
+        16.415723999999997,
+        22.9,
+        "정차 복귀 · 시연으로 자동 복귀하지 않습니다\n지속 moving·Pleos·실차는 미검증입니다"
+      ]
+    ]
+  },
+  "staticTailExtensions": [],
+  "phoneRecording": {
+    "schemaVersion": 1,
+    "completed": true,
+    "expectedVersion": {
+      "versionName": "0.2.2",
+      "versionCode": 4
+    },
+    "platform": "phone",
+    "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+    "serial": "emulator-5584",
+    "sourceManifestFile": "source-manifest.json",
+    "sourceManifestSha256": "ebc9ed1c2a2df124df56c9f427c03623b6ee8885658a090e6c60386a30bd889a",
+    "startedAt": "2026-11-11T08:59:46.669Z",
+    "clips": [
+      {
+        "file": "clip-01-green.mp4",
+        "lead": 1.2189530000000013,
+        "sha256": "0ee5179714f770d36968c2bd595a333df93408429934db5b831bf73fb0a6d88c",
+        "requestedDurationSeconds": 9,
+        "caption": "정상 녹색"
+      },
+      {
+        "file": "clip-02-delay.mp4",
+        "lead": 1.200891292,
+        "sha256": "fb8eb9706d8f7a18e87578802b8212c644823221c0dd848dacbda2c7fb5da8a3",
+        "requestedDurationSeconds": 9,
+        "caption": "데이터 지연"
+      },
+      {
+        "file": "clip-03-recover.mp4",
+        "lead": 1.2021197080000057,
+        "sha256": "3a1574f63c4b663f74fa8eba0cf67eb1f6e76b66c2e863f04b3be1948a1bea9d",
+        "requestedDurationSeconds": 9,
+        "caption": "복구"
+      },
+      {
+        "file": "clip-04-disconnect.mp4",
+        "lead": 1.202176625,
+        "sha256": "e0c498b07f4a77c8092b9c751650129eba1bd3203673c75874309fbaee4c234f",
+        "requestedDurationSeconds": 9,
+        "caption": "연결 단절"
+      },
+      {
+        "file": "clip-05-mismatch.mp4",
+        "lead": 1.2031172499999956,
+        "sha256": "78cd28d92e4b7f6f5541d6527e68eb069a1518cbdce81d0b326dda40188b9c96",
+        "requestedDurationSeconds": 9,
+        "caption": "교차로 불일치"
+      },
+      {
+        "file": "clip-06-direction.mp4",
+        "lead": 1.2018180419999989,
+        "sha256": "a8a4fbb59b44c52b906618d44ba144c9d841d00f522e028106798e6464409583",
+        "requestedDurationSeconds": 9,
+        "caption": "방향 미확정"
+      },
+      {
+        "file": "clip-07-expired.mp4",
+        "lead": 1.2024324170000036,
+        "sha256": "94e7bb773fe61d1e4cf902637078b25b84229dc06cb8cb6e0eca4dc2442aca43",
+        "requestedDurationSeconds": 9,
+        "caption": "잔여시간 만료"
+      },
+      {
+        "file": "clip-08-recover.mp4",
+        "lead": 1.201799874999997,
+        "sha256": "1c178338b56612cbfb576311658048c60fec8a2f089612a2d50147855b660922",
+        "requestedDurationSeconds": 9,
+        "caption": "복구"
+      },
+      {
+        "file": "clip-09-driving.mp4",
+        "lead": 2.0532427079999906,
+        "sha256": "e1173a54781050b2f39a25f86b259d7dc1a9f6ccd5edb910fe22fc76c6bf50ed",
+        "requestedDurationSeconds": 10
+      },
+      {
+        "file": "clip-10-clock-back.mp4",
+        "lead": 1.5621644169999926,
+        "sha256": "384c9a391ab292bef7be5b0ba873e73a53d55a1292428f1f0af53fb1059baf95",
+        "requestedDurationSeconds": 9
+      },
+      {
+        "file": "clip-11-clock-restore.mp4",
+        "lead": 1.6035090830000116,
+        "sha256": "3e939a510dcaa5df02bfd5afa88b01b5b9ccd5002ce2422a4c228fc658f34677",
+        "requestedDurationSeconds": 9
+      },
+      {
+        "file": "clip-12-new-data.mp4",
+        "lead": 1.2025815839999996,
+        "sha256": "52bc4664e0d6105e7ab55f77aa4f1a8166894b8f161f7f11bc7513fab2a1a3b8",
+        "requestedDurationSeconds": 9
+      }
+    ],
+    "evidenceMethod": "adb-screenrecord-and-app-owned-trace",
+    "limits": [
+      "synthetic signal demonstration",
+      "no live traffic data received",
+      "not Pleos or a production vehicle",
+      "AAOS idling restriction only; sustained moving untested"
+    ],
+    "avdName": "signal-final-phone34",
+    "versionName": "0.2.2",
+    "versionCode": 4,
+    "installedApkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+    "restoration": {
+      "ok": true,
+      "steps": [
+        {
+          "label": "device-clock",
+          "ok": true
+        },
+        {
+          "label": "auto-time",
+          "ok": true
+        },
+        {
+          "label": "rotation-auto",
+          "ok": true
+        },
+        {
+          "label": "rotation-user",
+          "ok": true
+        },
+        {
+          "label": "screen-override",
+          "ok": true
+        },
+        {
+          "label": "trace-property",
+          "ok": true
+        }
+      ]
+    },
+    "completedAt": "2026-11-11T09:02:10.750Z"
+  },
+  "aaosRecording": {
+    "schemaVersion": 1,
+    "completed": true,
+    "expectedVersion": {
+      "versionName": "0.2.2",
+      "versionCode": 4
+    },
+    "platform": "aaos",
+    "apkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+    "serial": "emulator-5586",
+    "sourceManifestFile": "source-manifest.json",
+    "sourceManifestSha256": "ebc9ed1c2a2df124df56c9f427c03623b6ee8885658a090e6c60386a30bd889a",
+    "startedAt": "2026-11-11T02:31:31.861Z",
+    "clips": [
+      {
+        "file": "aaos-1-live.mp4",
+        "lead": 1.2038241670000007,
+        "sha256": "30d10b32bfce419958314131d8d078c95311cbe67c0e61a99af266584b12fe6b",
+        "requestedDurationSeconds": 8
+      },
+      {
+        "file": "aaos-2-drive.mp4",
+        "lead": 0,
+        "sha256": "d363876293c81d4e798d42b559e3d7c5eed37cab3eb4bf6cad7503b3e5ba7c4a",
+        "requestedDurationSeconds": 23,
+        "transitions": [
+          {
+            "state": "parked-demo",
+            "seconds": 0,
+            "trace": {
+              "scrollY": 0,
+              "contentTop": 76,
+              "traceElapsedMs": 795371,
+              "processId": 5590,
+              "windowFocused": true,
+              "traceSession": 2,
+              "sourceTimestampMs": 1794364311681,
+              "source": "시연 데이터 · 실제 신호 아님",
+              "sourceOnScreen": true,
+              "sourceBounds": {
+                "left": 832,
+                "top": 90,
+                "right": 996,
+                "bottom": 120,
+                "visibleLeft": 832,
+                "visibleTop": 90,
+                "visibleRight": 996,
+                "visibleBottom": 120,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "phase": "녹색 신호",
+              "phaseOnScreen": true,
+              "phaseBounds": {
+                "left": 206,
+                "top": 228,
+                "right": 448,
+                "bottom": 272,
+                "visibleLeft": 206,
+                "visibleTop": 228,
+                "visibleRight": 448,
+                "visibleBottom": 272,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "seconds": "23초",
+              "secondsDesc": "시연 잔여시간 23초",
+              "secondsOnScreen": true,
+              "secondsBounds": {
+                "left": 206,
+                "top": 272,
+                "right": 448,
+                "bottom": 375,
+                "visibleLeft": 206,
+                "visibleTop": 272,
+                "visibleRight": 448,
+                "visibleBottom": 375,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "reason": "시연용 데이터입니다 · 실제 신호를 나타내지 않습니다",
+              "guide": "현장 신호와 주위를 한 번 더 확인해요",
+              "guideOnScreen": true,
+              "guideBounds": {
+                "left": 50,
+                "top": 389,
+                "right": 448,
+                "bottom": 418,
+                "visibleLeft": 50,
+                "visibleTop": 389,
+                "visibleRight": 448,
+                "visibleBottom": 418,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "ux": "차량 플랫폼에서 제한 없음이 확인되었습니다",
+              "drivingNotice": "",
+              "drivingNoticeOnScreen": false,
+              "footerOnScreen": false,
+              "driving": false,
+              "footerBox": "656..707 in 76..672",
+              "buttons": [
+                {
+                  "text": "시연 화면",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 271,
+                  "y": 162
+                },
+                {
+                  "text": "실시간 연결 상태",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 753,
+                  "y": 162
+                },
+                {
+                  "text": "정상 녹색",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 578,
+                  "y": 511
+                },
+                {
+                  "text": "정상 적색",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 740,
+                  "y": 511
+                },
+                {
+                  "text": "데이터 지연",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 902,
+                  "y": 511
+                },
+                {
+                  "text": "연결 단절",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 578,
+                  "y": 565
+                },
+                {
+                  "text": "교차로 불일치",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 740,
+                  "y": 565
+                },
+                {
+                  "text": "방향 미확정",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 902,
+                  "y": 565
+                },
+                {
+                  "text": "미래 시각",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 578,
+                  "y": 619
+                },
+                {
+                  "text": "잔여시간 만료",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 740,
+                  "y": 619
+                },
+                {
+                  "text": "복구",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 902,
+                  "y": 619
+                }
+              ]
+            },
+            "screenshot": {
+              "file": "aaos-parked-demo.png",
+              "sha256": "8a09c87d1373e28c9176803bbf3542127b2abccfc9b0ddedadb519477f5e8219",
+              "independentVisualReview": "not-performed-by-script"
+            }
+          },
+          {
+            "state": "idling-restricted",
+            "commandedAtSeconds": 5.601519583000001,
+            "seconds": 7.402281958,
+            "trace": {
+              "scrollY": 0,
+              "contentTop": 76,
+              "traceElapsedMs": 801632,
+              "processId": 5590,
+              "windowFocused": true,
+              "traceSession": 3,
+              "sourceTimestampMs": null,
+              "source": "실시간 연결 · 검증된 데이터만 표시",
+              "sourceOnScreen": true,
+              "sourceBounds": {
+                "left": 799,
+                "top": 90,
+                "right": 996,
+                "bottom": 120,
+                "visibleLeft": 799,
+                "visibleTop": 90,
+                "visibleRight": 996,
+                "visibleBottom": 120,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "phase": "현재 신호\n확인 불가",
+              "phaseOnScreen": true,
+              "phaseBounds": {
+                "left": 571,
+                "top": 272,
+                "right": 729,
+                "bottom": 391,
+                "visibleLeft": 571,
+                "visibleTop": 272,
+                "visibleRight": 729,
+                "visibleBottom": 391,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "seconds": "",
+              "secondsDesc": "",
+              "secondsOnScreen": false,
+              "secondsBounds": {
+                "left": 571,
+                "top": 316,
+                "right": 813,
+                "bottom": 419,
+                "visibleLeft": 571,
+                "visibleTop": 316,
+                "visibleRight": 729,
+                "visibleBottom": 391,
+                "shown": false,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": false
+              },
+              "reason": "검증된 교차로·진행 방향 등록이 필요합니다",
+              "guide": "지금은 신호등을 직접 봐 주세요",
+              "guideOnScreen": true,
+              "guideBounds": {
+                "left": 50,
+                "top": 466,
+                "right": 974,
+                "bottom": 508,
+                "visibleLeft": 50,
+                "visibleTop": 466,
+                "visibleRight": 974,
+                "visibleBottom": 508,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "ux": "주행 중 · 설정 잠금",
+              "drivingNotice": "주행 중 · 설정 잠금 · 현장 신호 우선 확인",
+              "drivingNoticeOnScreen": true,
+              "footerOnScreen": false,
+              "driving": true,
+              "footerBox": "656..707 in 76..672",
+              "buttons": []
+            },
+            "screenshot": {
+              "file": "aaos-idling-restricted.png",
+              "sha256": "f10acf48adc52d8aaa144fd22e20506f0a6faaf00b4def4e62b696934f0a932a",
+              "independentVisualReview": "not-performed-by-script"
+            }
+          },
+          {
+            "state": "parked-live",
+            "commandedAtSeconds": 14.400773541,
+            "seconds": 16.165723999999997,
+            "trace": {
+              "scrollY": 0,
+              "contentTop": 76,
+              "traceElapsedMs": 810304,
+              "processId": 5590,
+              "windowFocused": true,
+              "traceSession": 3,
+              "sourceTimestampMs": null,
+              "source": "실시간 연결 · 검증된 데이터만 표시",
+              "sourceOnScreen": true,
+              "sourceBounds": {
+                "left": 799,
+                "top": 90,
+                "right": 996,
+                "bottom": 120,
+                "visibleLeft": 799,
+                "visibleTop": 90,
+                "visibleRight": 996,
+                "visibleBottom": 120,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "phase": "현재 신호\n확인 불가",
+              "phaseOnScreen": true,
+              "phaseBounds": {
+                "left": 206,
+                "top": 248,
+                "right": 448,
+                "bottom": 339,
+                "visibleLeft": 206,
+                "visibleTop": 248,
+                "visibleRight": 448,
+                "visibleBottom": 339,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "seconds": "",
+              "secondsDesc": "",
+              "secondsOnScreen": false,
+              "secondsBounds": {
+                "left": 206,
+                "top": 292,
+                "right": 448,
+                "bottom": 395,
+                "visibleLeft": 206,
+                "visibleTop": 292,
+                "visibleRight": 448,
+                "visibleBottom": 339,
+                "shown": false,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": false
+              },
+              "reason": "검증된 교차로·진행 방향 등록이 필요합니다",
+              "guide": "지금은 신호등을 직접 봐 주세요",
+              "guideOnScreen": true,
+              "guideBounds": {
+                "left": 50,
+                "top": 374,
+                "right": 448,
+                "bottom": 403,
+                "visibleLeft": 50,
+                "visibleTop": 374,
+                "visibleRight": 448,
+                "visibleBottom": 403,
+                "shown": true,
+                "globalVisible": true,
+                "alphaVisible": true,
+                "fullyVisible": true
+              },
+              "ux": "차량 플랫폼에서 제한 없음이 확인되었습니다",
+              "drivingNotice": "",
+              "drivingNoticeOnScreen": false,
+              "footerOnScreen": true,
+              "driving": false,
+              "footerBox": "591..642 in 76..672",
+              "buttons": [
+                {
+                  "text": "시연 화면",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 271,
+                  "y": 162
+                },
+                {
+                  "text": "실시간 연결 상태",
+                  "enabled": true,
+                  "onScreen": true,
+                  "x": 753,
+                  "y": 162
+                }
+              ]
+            },
+            "screenshot": {
+              "file": "aaos-parked-live.png",
+              "sha256": "609a623c300a68052f0150c913d150e7f507970340597948a2333d846b1b694e",
+              "independentVisualReview": "not-performed-by-script"
+            }
+          }
+        ]
+      }
+    ],
+    "evidenceMethod": "adb-screenrecord-and-app-owned-trace",
+    "limits": [
+      "synthetic signal demonstration",
+      "no live traffic data received",
+      "not Pleos or a production vehicle",
+      "AAOS idling restriction only; sustained moving untested"
+    ],
+    "avdName": "signal-final-aaos33",
+    "versionName": "0.2.2",
+    "versionCode": 4,
+    "installedApkSha256": "a044b6d47d43ede45d3810e5c3162b88dd238776ca431cead82d452b50e99d8a",
+    "aaosTransitions": [
+      {
+        "state": "parked-demo",
+        "seconds": 0,
+        "trace": {
+          "scrollY": 0,
+          "contentTop": 76,
+          "traceElapsedMs": 795371,
+          "processId": 5590,
+          "windowFocused": true,
+          "traceSession": 2,
+          "sourceTimestampMs": 1794364311681,
+          "source": "시연 데이터 · 실제 신호 아님",
+          "sourceOnScreen": true,
+          "sourceBounds": {
+            "left": 832,
+            "top": 90,
+            "right": 996,
+            "bottom": 120,
+            "visibleLeft": 832,
+            "visibleTop": 90,
+            "visibleRight": 996,
+            "visibleBottom": 120,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "phase": "녹색 신호",
+          "phaseOnScreen": true,
+          "phaseBounds": {
+            "left": 206,
+            "top": 228,
+            "right": 448,
+            "bottom": 272,
+            "visibleLeft": 206,
+            "visibleTop": 228,
+            "visibleRight": 448,
+            "visibleBottom": 272,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "seconds": "23초",
+          "secondsDesc": "시연 잔여시간 23초",
+          "secondsOnScreen": true,
+          "secondsBounds": {
+            "left": 206,
+            "top": 272,
+            "right": 448,
+            "bottom": 375,
+            "visibleLeft": 206,
+            "visibleTop": 272,
+            "visibleRight": 448,
+            "visibleBottom": 375,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "reason": "시연용 데이터입니다 · 실제 신호를 나타내지 않습니다",
+          "guide": "현장 신호와 주위를 한 번 더 확인해요",
+          "guideOnScreen": true,
+          "guideBounds": {
+            "left": 50,
+            "top": 389,
+            "right": 448,
+            "bottom": 418,
+            "visibleLeft": 50,
+            "visibleTop": 389,
+            "visibleRight": 448,
+            "visibleBottom": 418,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "ux": "차량 플랫폼에서 제한 없음이 확인되었습니다",
+          "drivingNotice": "",
+          "drivingNoticeOnScreen": false,
+          "footerOnScreen": false,
+          "driving": false,
+          "footerBox": "656..707 in 76..672",
+          "buttons": [
+            {
+              "text": "시연 화면",
+              "enabled": true,
+              "onScreen": true,
+              "x": 271,
+              "y": 162
+            },
+            {
+              "text": "실시간 연결 상태",
+              "enabled": true,
+              "onScreen": true,
+              "x": 753,
+              "y": 162
+            },
+            {
+              "text": "정상 녹색",
+              "enabled": true,
+              "onScreen": true,
+              "x": 578,
+              "y": 511
+            },
+            {
+              "text": "정상 적색",
+              "enabled": true,
+              "onScreen": true,
+              "x": 740,
+              "y": 511
+            },
+            {
+              "text": "데이터 지연",
+              "enabled": true,
+              "onScreen": true,
+              "x": 902,
+              "y": 511
+            },
+            {
+              "text": "연결 단절",
+              "enabled": true,
+              "onScreen": true,
+              "x": 578,
+              "y": 565
+            },
+            {
+              "text": "교차로 불일치",
+              "enabled": true,
+              "onScreen": true,
+              "x": 740,
+              "y": 565
+            },
+            {
+              "text": "방향 미확정",
+              "enabled": true,
+              "onScreen": true,
+              "x": 902,
+              "y": 565
+            },
+            {
+              "text": "미래 시각",
+              "enabled": true,
+              "onScreen": true,
+              "x": 578,
+              "y": 619
+            },
+            {
+              "text": "잔여시간 만료",
+              "enabled": true,
+              "onScreen": true,
+              "x": 740,
+              "y": 619
+            },
+            {
+              "text": "복구",
+              "enabled": true,
+              "onScreen": true,
+              "x": 902,
+              "y": 619
+            }
+          ]
+        },
+        "screenshot": {
+          "file": "aaos-parked-demo.png",
+          "sha256": "8a09c87d1373e28c9176803bbf3542127b2abccfc9b0ddedadb519477f5e8219",
+          "independentVisualReview": "not-performed-by-script"
+        }
+      },
+      {
+        "state": "idling-restricted",
+        "commandedAtSeconds": 5.601519583000001,
+        "seconds": 7.402281958,
+        "trace": {
+          "scrollY": 0,
+          "contentTop": 76,
+          "traceElapsedMs": 801632,
+          "processId": 5590,
+          "windowFocused": true,
+          "traceSession": 3,
+          "sourceTimestampMs": null,
+          "source": "실시간 연결 · 검증된 데이터만 표시",
+          "sourceOnScreen": true,
+          "sourceBounds": {
+            "left": 799,
+            "top": 90,
+            "right": 996,
+            "bottom": 120,
+            "visibleLeft": 799,
+            "visibleTop": 90,
+            "visibleRight": 996,
+            "visibleBottom": 120,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "phase": "현재 신호\n확인 불가",
+          "phaseOnScreen": true,
+          "phaseBounds": {
+            "left": 571,
+            "top": 272,
+            "right": 729,
+            "bottom": 391,
+            "visibleLeft": 571,
+            "visibleTop": 272,
+            "visibleRight": 729,
+            "visibleBottom": 391,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "seconds": "",
+          "secondsDesc": "",
+          "secondsOnScreen": false,
+          "secondsBounds": {
+            "left": 571,
+            "top": 316,
+            "right": 813,
+            "bottom": 419,
+            "visibleLeft": 571,
+            "visibleTop": 316,
+            "visibleRight": 729,
+            "visibleBottom": 391,
+            "shown": false,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": false
+          },
+          "reason": "검증된 교차로·진행 방향 등록이 필요합니다",
+          "guide": "지금은 신호등을 직접 봐 주세요",
+          "guideOnScreen": true,
+          "guideBounds": {
+            "left": 50,
+            "top": 466,
+            "right": 974,
+            "bottom": 508,
+            "visibleLeft": 50,
+            "visibleTop": 466,
+            "visibleRight": 974,
+            "visibleBottom": 508,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "ux": "주행 중 · 설정 잠금",
+          "drivingNotice": "주행 중 · 설정 잠금 · 현장 신호 우선 확인",
+          "drivingNoticeOnScreen": true,
+          "footerOnScreen": false,
+          "driving": true,
+          "footerBox": "656..707 in 76..672",
+          "buttons": []
+        },
+        "screenshot": {
+          "file": "aaos-idling-restricted.png",
+          "sha256": "f10acf48adc52d8aaa144fd22e20506f0a6faaf00b4def4e62b696934f0a932a",
+          "independentVisualReview": "not-performed-by-script"
+        }
+      },
+      {
+        "state": "parked-live",
+        "commandedAtSeconds": 14.400773541,
+        "seconds": 16.165723999999997,
+        "trace": {
+          "scrollY": 0,
+          "contentTop": 76,
+          "traceElapsedMs": 810304,
+          "processId": 5590,
+          "windowFocused": true,
+          "traceSession": 3,
+          "sourceTimestampMs": null,
+          "source": "실시간 연결 · 검증된 데이터만 표시",
+          "sourceOnScreen": true,
+          "sourceBounds": {
+            "left": 799,
+            "top": 90,
+            "right": 996,
+            "bottom": 120,
+            "visibleLeft": 799,
+            "visibleTop": 90,
+            "visibleRight": 996,
+            "visibleBottom": 120,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "phase": "현재 신호\n확인 불가",
+          "phaseOnScreen": true,
+          "phaseBounds": {
+            "left": 206,
+            "top": 248,
+            "right": 448,
+            "bottom": 339,
+            "visibleLeft": 206,
+            "visibleTop": 248,
+            "visibleRight": 448,
+            "visibleBottom": 339,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "seconds": "",
+          "secondsDesc": "",
+          "secondsOnScreen": false,
+          "secondsBounds": {
+            "left": 206,
+            "top": 292,
+            "right": 448,
+            "bottom": 395,
+            "visibleLeft": 206,
+            "visibleTop": 292,
+            "visibleRight": 448,
+            "visibleBottom": 339,
+            "shown": false,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": false
+          },
+          "reason": "검증된 교차로·진행 방향 등록이 필요합니다",
+          "guide": "지금은 신호등을 직접 봐 주세요",
+          "guideOnScreen": true,
+          "guideBounds": {
+            "left": 50,
+            "top": 374,
+            "right": 448,
+            "bottom": 403,
+            "visibleLeft": 50,
+            "visibleTop": 374,
+            "visibleRight": 448,
+            "visibleBottom": 403,
+            "shown": true,
+            "globalVisible": true,
+            "alphaVisible": true,
+            "fullyVisible": true
+          },
+          "ux": "차량 플랫폼에서 제한 없음이 확인되었습니다",
+          "drivingNotice": "",
+          "drivingNoticeOnScreen": false,
+          "footerOnScreen": true,
+          "driving": false,
+          "footerBox": "591..642 in 76..672",
+          "buttons": [
+            {
+              "text": "시연 화면",
+              "enabled": true,
+              "onScreen": true,
+              "x": 271,
+              "y": 162
+            },
+            {
+              "text": "실시간 연결 상태",
+              "enabled": true,
+              "onScreen": true,
+              "x": 753,
+              "y": 162
+            }
+          ]
+        },
+        "screenshot": {
+          "file": "aaos-parked-live.png",
+          "sha256": "609a623c300a68052f0150c913d150e7f507970340597948a2333d846b1b694e",
+          "independentVisualReview": "not-performed-by-script"
+        }
+      }
+    ],
+    "restoration": {
+      "ok": true,
+      "steps": [
+        {
+          "label": "vehicle-gear",
+          "ok": true
+        },
+        {
+          "label": "vehicle-parking-brake",
+          "ok": true
+        },
+        {
+          "label": "auto-time",
+          "ok": true
+        },
+        {
+          "label": "rotation-auto",
+          "ok": true
+        },
+        {
+          "label": "rotation-user",
+          "ok": true
+        },
+        {
+          "label": "screen-override",
+          "ok": true
+        },
+        {
+          "label": "trace-property",
+          "ok": true
+        }
+      ]
+    },
+    "completedAt": "2026-11-11T02:32:14.183Z"
+  },
+  "inputClips": [
+    {
+      "platform": "phone",
+      "file": "clip-01-green.mp4",
+      "sha256": "0ee5179714f770d36968c2bd595a333df93408429934db5b831bf73fb0a6d88c"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-02-delay.mp4",
+      "sha256": "fb8eb9706d8f7a18e87578802b8212c644823221c0dd848dacbda2c7fb5da8a3"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-03-recover.mp4",
+      "sha256": "3a1574f63c4b663f74fa8eba0cf67eb1f6e76b66c2e863f04b3be1948a1bea9d"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-04-disconnect.mp4",
+      "sha256": "e0c498b07f4a77c8092b9c751650129eba1bd3203673c75874309fbaee4c234f"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-05-mismatch.mp4",
+      "sha256": "78cd28d92e4b7f6f5541d6527e68eb069a1518cbdce81d0b326dda40188b9c96"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-06-direction.mp4",
+      "sha256": "a8a4fbb59b44c52b906618d44ba144c9d841d00f522e028106798e6464409583"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-07-expired.mp4",
+      "sha256": "94e7bb773fe61d1e4cf902637078b25b84229dc06cb8cb6e0eca4dc2442aca43"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-08-recover.mp4",
+      "sha256": "1c178338b56612cbfb576311658048c60fec8a2f089612a2d50147855b660922"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-09-driving.mp4",
+      "sha256": "e1173a54781050b2f39a25f86b259d7dc1a9f6ccd5edb910fe22fc76c6bf50ed"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-10-clock-back.mp4",
+      "sha256": "384c9a391ab292bef7be5b0ba873e73a53d55a1292428f1f0af53fb1059baf95"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-11-clock-restore.mp4",
+      "sha256": "3e939a510dcaa5df02bfd5afa88b01b5b9ccd5002ce2422a4c228fc658f34677"
+    },
+    {
+      "platform": "phone",
+      "file": "clip-12-new-data.mp4",
+      "sha256": "52bc4664e0d6105e7ab55f77aa4f1a8166894b8f161f7f11bc7513fab2a1a3b8"
+    },
+    {
+      "platform": "aaos",
+      "file": "aaos-1-live.mp4",
+      "sha256": "30d10b32bfce419958314131d8d078c95311cbe67c0e61a99af266584b12fe6b"
+    },
+    {
+      "platform": "aaos",
+      "file": "aaos-2-drive.mp4",
+      "sha256": "d363876293c81d4e798d42b559e3d7c5eed37cab3eb4bf6cad7503b3e5ba7c4a"
+    }
+  ],
+  "limits": [
+    "synthetic signal demonstration",
+    "no received live traffic signals",
+    "AAOS idling restrictions; sustained moving untested",
+    "Pleos and production vehicle untested; not a driving approval",
+    "transition timestamps are buffered metadata, not pixel detection"
+  ],
+  "timelineInterpretation": "timeline uses planned segment durations; actual encoded duration is videoDurationSeconds and frame sampling provides rendered timestamps"
+}

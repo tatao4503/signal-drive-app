@@ -12,8 +12,8 @@ android {
         applicationId = "kr.signal.drive"
         minSdk = 28
         targetSdk = 34
-        versionCode = 3
-        versionName = "0.2.1"
+        versionCode = 4
+        versionName = "0.2.2"
         // Public owned server address only. Never place a Seoul API key in the APK.
         val backend = providers.gradleProperty("signalBackendUrl").orElse("").get()
         if (backend.isNotEmpty()) {

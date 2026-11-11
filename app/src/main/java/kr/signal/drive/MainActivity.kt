@@ -81,6 +81,7 @@ class MainActivity : Activity() {
     private lateinit var phaseLabel: TextView
     private lateinit var timeLabel: TextView
     private lateinit var reasonLabel: TextView
+    private lateinit var guideLabel: TextView
     private lateinit var timestampLabel: TextView
     private lateinit var uxLabel: TextView
     private lateinit var platformLabel: TextView
@@ -220,6 +221,8 @@ class MainActivity : Activity() {
             typeface = weight(700); fontFeatureSettings = "tnum"; includeFontPadding = false; letterSpacing = -0.03f; maxLines = 1
         }
         reasonLabel = text("", 15f, Color.rgb(200, 210, 214))
+        // 신호별 안내 한 줄. 재촉하지 않고 안심시키는 말투. 남은 시간으로 가속·통과를 유도하지 않는다.
+        guideLabel = text("", 19f, ink).apply { typeface = weight(600) }
         signalCard = column().apply { setPadding(dp(22), dp(22), dp(22), dp(20)) }
         // 신호 원과 상태·남은 시간을 나란히. 가로 화면은 높이가 낮으므로 세로로 쌓지 않는다.
         val head = row()
@@ -232,7 +235,8 @@ class MainActivity : Activity() {
         stack.addView(timeLabel)
         head.addView(stack, LinearLayout.LayoutParams(0, -2, 1f))
         signalCard.addView(head)
-        signalCard.addView(reasonLabel, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(12) })
+        signalCard.addView(guideLabel, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(14) })
+        signalCard.addView(reasonLabel, LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(6) })
         // 주행 화면에서만 카드 안에 보이는 차량 상태 한 줄(가로 화면은 오른쪽 열을 숨기므로)
         drivingStatus = text("", 15f, signalAmber).apply { typeface = weight(600); visibility = View.GONE }
         signalCard.addView(drivingStatus, LinearLayout.LayoutParams(-2, -2).apply { topMargin = dp(10) })
@@ -375,6 +379,11 @@ class MainActivity : Activity() {
             signalShown = true
             phaseLabel.put("$name 신호")
             phaseLabel.putColor(c)
+            guideLabel.put(when (d.phase) {
+                SignalPhase.RED -> "잠시 쉬어 가요"
+                SignalPhase.GREEN -> "현장 신호와 주위를 한 번 더 확인해요"
+                else -> "서두르지 않아도 돼요"
+            })
             lamp.color = c
             paintCard(c)
             timeLabel.visibility = View.VISIBLE
@@ -386,6 +395,7 @@ class MainActivity : Activity() {
             signalShown = false
             phaseLabel.put("현재 신호\n확인 불가")
             phaseLabel.putColor(ink)
+            guideLabel.put("지금은 신호등을 직접 봐 주세요")
             lamp.color = null
             paintCard(null)
             timeLabel.put("")
@@ -503,6 +513,9 @@ class MainActivity : Activity() {
             .put("secondsOnScreen", secondsBounds.optBoolean("fullyVisible"))
             .put("secondsBounds", secondsBounds)
             .put("reason", reasonLabel.text.toString())
+            .put("guide", guideLabel.text.toString())
+            .put("guideOnScreen", onScreen(guideLabel))
+            .put("guideBounds", visibleBounds(guideLabel))
             .put("ux", uxLabel.text.toString())
             .put("drivingNotice", if (drivingStatus.isShown) drivingStatus.text.toString() else "")
             .put("drivingNoticeOnScreen", onScreen(drivingStatus))
@@ -640,6 +653,9 @@ class MainActivity : Activity() {
         signalStack.layoutParams = (signalStack.layoutParams as LinearLayout.LayoutParams).apply { width = if (fill) -2 else 0; weight = if (fill) 0f else 1f }
         headRow.gravity = if (fill) Gravity.CENTER else Gravity.CENTER_VERTICAL
         reasonLabel.gravity = if (fill) Gravity.CENTER else Gravity.START
+        guideLabel.gravity = if (fill) Gravity.CENTER else Gravity.START
+        guideLabel.textSize = when { compact -> 14f; on && wideLayout -> 28f; on -> 22f; else -> 19f }
+        guideLabel.layoutParams = (guideLabel.layoutParams as LinearLayout.LayoutParams).apply { topMargin = dp(if (compact) 4 else 14) }
         signalCard.gravity = if (fill) Gravity.CENTER else Gravity.START
         signalCard.minimumHeight = if (fill && !compact) resources.displayMetrics.heightPixels - dp(150) else 0
         signalCard.setPadding(dp(if (compact) 12 else 22), dp(when { compact -> 8; fill -> 28; else -> 22 }),

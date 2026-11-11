@@ -7,6 +7,7 @@ import { performance } from 'node:perf_hooks';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { sha256File, collectSourceIdentity } from './build-release.mjs';
+import { readProjectVersion, assertInstalledVersion } from './project-version.mjs';
 import { shellQuote, selectDevice, parseInt32Property, parseWmOverride, validateSnapshot, buildRestoreCommands, executeRestoration } from './android-device-check.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
@@ -26,6 +27,7 @@ export function parseRecordArgs(argv) {
 
 export async function runRecording(argv = process.argv.slice(2)) {
   const { apk, outDir, serial, aaos } = parseRecordArgs(argv);
+  const expectedVersion = readProjectVersion(ROOT);
   if (!existsSync(apk) || !apk.endsWith('.apk')) throw new Error('APK 파일이 없습니다.');
   if (existsSync(outDir) && readdirSync(outDir).length) throw new Error('기존 녹화 결과를 덮어쓰지 않습니다. 새 폴더를 사용하세요.');
   const toolsFile = path.resolve(ROOT, '../toolchains/paths.json');
@@ -38,7 +40,7 @@ export async function runRecording(argv = process.argv.slice(2)) {
   const temporaryFiles = new Set();
   const source = collectSourceIdentity(ROOT);
   const sourceBytes = `${JSON.stringify(source, null, 2)}\n`;
-  const manifest = { schemaVersion: 1, completed: false, platform: aaos ? 'aaos' : 'phone', apkSha256: sha256File(apk), serial, sourceManifestFile: 'source-manifest.json', sourceManifestSha256: createHash('sha256').update(sourceBytes).digest('hex'), startedAt: new Date().toISOString(), clips, evidenceMethod: 'adb-screenrecord-and-app-owned-trace', limits: ['synthetic signal demonstration', 'no live traffic data received', 'not Pleos or a production vehicle', 'AAOS idling restriction only; sustained moving untested'] };
+  const manifest = { schemaVersion: 1, completed: false, expectedVersion, platform: aaos ? 'aaos' : 'phone', apkSha256: sha256File(apk), serial, sourceManifestFile: 'source-manifest.json', sourceManifestSha256: createHash('sha256').update(sourceBytes).digest('hex'), startedAt: new Date().toISOString(), clips, evidenceMethod: 'adb-screenrecord-and-app-owned-trace', limits: ['synthetic signal demonstration', 'no live traffic data received', 'not Pleos or a production vehicle', 'AAOS idling restriction only; sustained moving untested'] };
   function adb(args, { cleanup = false, allowFail = false, timeout = 45000, successCodes = [0] } = {}) {
     if (interrupted && !cleanup) throw new Error('녹화를 중단했습니다.');
     const result = spawnSync(adbPath, ['-s', serial, ...args], { encoding: 'utf8', timeout, maxBuffer: 32 * 1024 * 1024 });
@@ -166,7 +168,7 @@ export async function runRecording(argv = process.argv.slice(2)) {
     const dump = shell(`dumpsys package ${PKG}`);
     manifest.versionName = dump.match(/\bversionName=([^\s]+)/)?.[1];
     manifest.versionCode = Number(dump.match(/\bversionCode=(\d+)/)?.[1]);
-    if (manifest.versionName !== '0.2.1' || manifest.versionCode !== 3) throw new Error('0.2.1 versionCode3 설치본이 아닙니다.');
+    assertInstalledVersion(expectedVersion, manifest);
     const packagePaths = shell(`pm path ${PKG}`).split('\n').map(line => line.match(/^package:(.+)$/)?.[1]).filter(Boolean);
     if (packagePaths.length !== 1) throw new Error('단일 설치 APK를 특정할 수 없습니다.');
     manifest.installedApkSha256 = shell(`sha256sum ${shellQuote(packagePaths[0])}`).match(/^([0-9a-f]{64})\s/i)?.[1]?.toLowerCase();

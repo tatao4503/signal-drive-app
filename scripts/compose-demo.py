@@ -1,4 +1,4 @@
-"""Compose a labeled 0.2.1 video from matching phone and AAOS recordings."""
+"""Compose a labeled project-version video from matching phone and AAOS recordings."""
 
 import argparse
 import hashlib
@@ -11,7 +11,24 @@ import subprocess
 import tempfile
 
 
-VERSION = "0.2.1"
+def read_project_version(root):
+    package_version = json.loads((root / "package.json").read_text(encoding="utf-8")).get("version")
+    gradle = (root / "app/build.gradle.kts").read_text(encoding="utf-8")
+    names = re.findall(r'^\s*versionName\s*=\s*"([^"]+)"\s*(?://[^\n]*)?$', gradle, re.MULTILINE)
+    codes = re.findall(r'^\s*versionCode\s*=\s*(\d+)\s*(?://[^\n]*)?$', gradle, re.MULTILINE)
+    if (not isinstance(package_version, str)
+            or not re.fullmatch(r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?", package_version)
+            or len(names) != 1 or len(codes) != 1 or names[0] != package_version):
+        raise ValueError("package.json과 Android의 versionName을 하나의 같은 버전으로 맞춰야 합니다.")
+    code = int(codes[0])
+    if not 0 < code <= 9_007_199_254_740_991:
+        raise ValueError("Android versionCode가 올바른 양의 정수가 아닙니다.")
+    return {"versionName": package_version, "versionCode": code}
+
+
+PROJECT_VERSION = read_project_version(Path(__file__).resolve().parent.parent)
+VERSION = PROJECT_VERSION["versionName"]
+VERSION_CODE = PROJECT_VERSION["versionCode"]
 BG = "0x0f1419"
 DEFAULT_FONT = Path("/System/Library/Fonts/AppleSDGothicNeo.ttc")
 PHONE_NAMES = [
@@ -70,8 +87,8 @@ def load_recording(directory, platform, expected_names):
         raise ValueError(f"{manifest_path}: completed=true인 녹화가 필요합니다.")
     if manifest.get("platform") != platform or manifest.get("versionName") != VERSION:
         raise ValueError(f"{manifest_path}: {platform} / 버전 {VERSION} 녹화가 아닙니다.")
-    if not isinstance(manifest.get("versionCode"), int) or manifest["versionCode"] <= 0:
-        raise ValueError(f"{manifest_path}: 실제 APK versionCode가 필요합니다.")
+    if type(manifest.get("versionCode")) is not int or manifest["versionCode"] != VERSION_CODE:
+        raise ValueError(f"{manifest_path}: 프로젝트의 versionCode {VERSION_CODE} 녹화가 필요합니다.")
     require_hash(manifest.get("apkSha256"), f"{manifest_path} apkSha256")
     source_hash = require_hash(
         manifest.get("sourceManifestSha256"), f"{manifest_path} sourceManifestSha256"
