@@ -1,6 +1,6 @@
 # SIGNAL Drive 0.2.1 release APK
 
-[서명 APK 다운로드](https://github.com/tatao4503/signal-drive-app/raw/refs/heads/main/apk/메이드인시그널_SIGNALDrive_release.apk)
+[서명 APK 다운로드](https://github.com/tatao4503/signal-drive-app/raw/refs/heads/main/apk/윤태웅_SIGNALDrive_release.apk)
 
 - 패키지 `kr.signal.drive`, versionName `0.2.1`, versionCode `3`
 - Android9(API28) 이상, targetSdk34

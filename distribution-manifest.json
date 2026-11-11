@@ -16,7 +16,7 @@
       "sha256": "bbd62c89ff66aa32b868e7d95de9321cdde218d3ef466b4aacbae86f66beb8f1"
     },
     {
-      "path": "apk/메이드인시그널_SIGNALDrive_release.apk",
+      "path": "apk/윤태웅_SIGNALDrive_release.apk",
       "sha256": "52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7"
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "path": "demo/SIGNAL-Drive-v0.2.1-시연영상.mp4",
-      "sha256": "d41b9ff64807e97971541627a893a4cbeb756d66000d78206f25a15559356aa7"
+      "sha256": "db6b00ed51b83ee04646729d030540e14aa344f315142fe3f76a52efd668e1c3"
     },
     {
       "path": "demo/SIGNAL-Drive-v0.2.1-시연영상.mp4.manifest.json",

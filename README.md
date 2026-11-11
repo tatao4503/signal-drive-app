@@ -20,7 +20,7 @@
 |---|---|
 | 앱 이름 | SIGNAL Drive (`kr.signal.drive`, 0.2.1 / versionCode 3) |
 | 한 줄 소개 | 확인된 신호만 보여주고, 확인할 수 없으면 색과 숫자를 숨기는 차량용 신호 표시 앱 |
-| APK 위치 | [`apk/메이드인시그널_SIGNALDrive_release.apk`](apk/) (제출 명칭 메이드인시그널; 최종 서명·해시는 검증 기록 참조) |
+| APK 위치 | [`apk/윤태웅_SIGNALDrive_release.apk`](apk/) (개인 참가 제출 명칭; 최종 서명·해시는 검증 기록 참조) |
 | 테스트 환경 | Android 9(API 28) 이상. 일반 Android 14 에뮬레이터·Android Automotive 13 에뮬레이터에서 실행 확인(`검증결과.md`). 일반 Android는 시연 모드로 시작. Pleos SDK·Pleos 에뮬레이터·실차는 미검증 |
 | 시연 영상 | [`demo/SIGNAL-Drive-v0.2.1-시연영상.mp4`](demo/) (합성 시연, 에뮬레이터 화면 녹화 · Pleos·실차 아님) |
 | 필요 설정 | 시연에는 설정·키가 필요 없음. 실제 신호는 승인 매핑과 소유 HTTPS 서버가 있어야 하며 기본 상태에서는 표시하지 않음 |
@@ -30,7 +30,7 @@
 Android 9 이상 기기 또는 에뮬레이터에 설치합니다.
 
 ```sh
-adb install apk/메이드인시그널_SIGNALDrive_release.apk
+adb install apk/윤태웅_SIGNALDrive_release.apk
 ```
 
 앱 이름은 `SIGNAL Drive`입니다. 일반 Android에서는 시연 화면으로 시작하고, 설정·키 없이 바로 시연할 수 있습니다. Android Automotive에서는 플랫폼의 제한 상태에 따라 화면을 줄이고 입력을 잠급니다. AAOS 공회전(idling) 제한 상태 전환을 시험하며, 지속 moving·Pleos·실차 실행은 미검증입니다. 시연 데이터는 정차 상태에서만 볼 수 있습니다.

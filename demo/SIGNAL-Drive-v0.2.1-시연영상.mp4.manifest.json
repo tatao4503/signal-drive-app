@@ -9,8 +9,8 @@
       "seconds": 0.11122200000000149
     }
   ],
-  "videoSha256": "d41b9ff64807e97971541627a893a4cbeb756d66000d78206f25a15559356aa7",
-  "videoDurationSeconds": 101.166667,
+  "videoSha256": "db6b00ed51b83ee04646729d030540e14aa344f315142fe3f76a52efd668e1c3",
+  "videoDurationSeconds": 89.4,
   "phoneRecording": {
     "schemaVersion": 1,
     "completed": true,
@@ -935,5 +935,14 @@
     "AAOS idling restrictions; no sustained moving state",
     "not tested on Pleos or a production vehicle",
     "not a DO approval"
-  ]
+  ],
+  "previousEdit": {
+    "videoSha256": "d41b9ff64807e97971541627a893a4cbeb756d66000d78206f25a15559356aa7",
+    "videoDurationSeconds": 101.166667
+  },
+  "edit": {
+    "date": "2026-11-11",
+    "script": "scripts/compose-demo-final-edit.py",
+    "note": "같은 녹화 원본의 순서·길이만 변경(신호 표시 장면을 앞으로). 재녹화 아님."
+  }
 }

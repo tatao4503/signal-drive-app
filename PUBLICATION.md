@@ -2,8 +2,8 @@
 
 기록일: 2026-11-10 KST. 이 버전의 개발 코드, 서명 APK, 시연 영상과 실행 근거를 함께 제공합니다. 공모전의 메일 접수 상태나 주행 사용 승인을 뜻하지 않습니다.
 
-- [release APK 다운로드](https://github.com/tatao4503/signal-drive-app/raw/refs/heads/main/apk/메이드인시그널_SIGNALDrive_release.apk)
-- [시연 영상](demo/SIGNAL-Drive-v0.2.1-시연영상.mp4) — 101.17초, 1920×1080 H.264 30fps, 음성 없음
+- [release APK 다운로드](https://github.com/tatao4503/signal-drive-app/raw/refs/heads/main/apk/윤태웅_SIGNALDrive_release.apk)
+- [시연 영상](demo/SIGNAL-Drive-v0.2.1-시연영상.mp4) — 89.4초, 1920×1080 H.264 30fps, 음성 없음 (2026-11-11 재편집, 아래 참고)
 - [최종 검증 기록](verification/report.md) — Kotlin59, Node55, Android14 전화기40/40, AAOS13 공회전 제한12/12
 - [빌드 소스·서명 근거](verification/release-identity.json), [APK 검사](verification/apk-inspection.json), [별도 화면 검토](verification/visual-review.json)
 
@@ -20,3 +20,8 @@ README의 API 키 "URL 비노출"은 공유 URL을 뜻합니다. 키는 서버 �
 ## 검증 경계
 
 화면의 신호는 합성 시연 데이터입니다. 승인 매핑0건이며 실제 신호 API 수신·교차로 현장 정확도는 미검증입니다. AAOS 공회전(idling)의 제한 전환 확인은 지속 moving 시험이 아닙니다. Pleos SDK·Pleos 에뮬레이터·실차에서 검증하지 않았으며 DO 선언도 주행 사용 승인이나 안전 성능의 증명이 아닙니다.
+
+## 2026-11-11 변경 (파일 이름·영상 편집만, 앱·APK 내용은 동일)
+
+- **APK 파일명**: 개인 참가 제출 규칙(`팀명(개인은 성명)_앱이름_release.apk`)에 맞춰 `메이드인시그널_SIGNALDrive_release.apk` → `윤태웅_SIGNALDrive_release.apk`로 이름만 바꿨습니다. APK SHA-256은 `52174cf9ee1ae136feb20f36533a4f20e1812fa5597670c7dbf76cc1a66edda7` 그대로입니다. `verification/`의 기록은 검증 당시 파일명으로 남겨 두었습니다.
+- **시연 영상**: 같은 0.2.1 녹화 원본(장면별 SHA-256은 `demo/…mp4.manifest.json`의 recording 기록과 동일)의 순서·길이만 바꿔 신호가 표시되는 장면을 앞에 두었습니다. 새로 녹화하지 않았습니다. 새 영상 SHA-256 `db6b00ed51b83ee04646729d030540e14aa344f315142fe3f76a52efd668e1c3`, 89.40초. 편집 스크립트: `scripts/compose-demo-final-edit.py`. `verification/video-review.json`은 이전 편집본(101.17초)에 대한 검토 기록입니다.
